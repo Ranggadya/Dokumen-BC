@@ -178,7 +178,6 @@
         border: 0.5pt solid #000;
         border-top: 0;
         padding: 0.6mm;
-        font-weight: bold;
     }
 
     .e-sub-left {
@@ -186,7 +185,6 @@
         border-top: 0;
         border-right: 0.5pt solid #000;
         padding: 0.6mm;
-        font-weight: bold;
         width: 50%;
     }
 
@@ -195,7 +193,6 @@
         border-top: 0;
         border-left: 0;
         padding: 0.6mm;
-        font-weight: bold;
         width: 50%;
     }
 
@@ -278,13 +275,13 @@
     }
 
     .peti-grid td {
-        border: 0 !important;
+        border: 0;
         padding: 0.45mm 0.55mm;
         vertical-align: top;
     }
 
     .peti-grid .vline {
-        border-left: 0.5pt solid #000 !important;
+        border-left: 0.5pt solid #000;
     }
 
     .lb-top {
@@ -333,110 +330,134 @@
         vertical-align: top;
     }
 
-    table.segelpanel2 {
+    table.block2632 {
         width: 100%;
         border-collapse: collapse;
         table-layout: fixed;
+    }
+
+    table.block2632 td {
         border: 0.5pt solid #000;
-    }
-
-    table.segelpanel2 td {
-        border: 0;
-        padding: 0;
         vertical-align: top;
+        padding: 1.2pt;
     }
 
-    table.segelpanel2 .sg-head {
+    .block2632 .hdr-center {
         text-align: center;
-        font-weight: bold;
-        padding: 2pt 0 1.5pt 0;
-        border-bottom: 0.5pt solid #000;
     }
 
-    table.segelpanel2 .segel-top {
+    .block2632 .bc-asal {
+        text-align: center;
+    }
+
+    .block2632 .row-head {
+        height: 6mm;
+        vertical-align: middle;
+    }
+
+    .block2632 .row-top {
         height: var(--hTop);
     }
 
-    table.segelpanel2 .segel-bottom {
+    .block2632 .row-bottom {
         height: var(--hBottom);
     }
 
-    table.segelpanel2 table.segel-grid {
-        width: 100%;
-        height: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
+    .block2632 .blank {
+        padding: 0;
     }
 
-    table.segelpanel2 table.segel-grid td {
-        border: 0;
-        padding: 0;
+    .block2632 .center-content {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .block2632 .inner-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .block2632 .inner-table td {
         vertical-align: top;
     }
 
-    table.segelpanel2 .sg-v30 {
-        border-left: 0.5pt solid #000;
-    }
-
-    table.segelpanel2 table.sg-bc {
+    table.sigFH {
         width: 100%;
-        height: 100%;
         border-collapse: collapse;
         table-layout: fixed;
     }
 
-    table.segelpanel2 table.sg-bc td {
-        border: 0;
-        padding: 1.2pt;
+    table.sigFH td {
+        border: 0.5pt solid #000;
+        vertical-align: top;
+        padding: 1.2mm;
     }
 
-    table.segelpanel2 .sg-bc-title {
+    .sigFH .fh-head {
+        padding: 0.8mm 1.2mm;
+    }
+
+    .sigFH .fh-f {
+        width: 55%;
+        line-height: 1.05;
+    }
+
+    .sigFH .fh-h1,
+    .sigFH .fh-h2 {
+        width: 22.5%;
+    }
+
+    .sigFH .fh-office {
         text-align: center;
-        font-weight: bold;
-        padding: 1.2pt 0;
-        border-bottom: 0.5pt solid #000;
+        padding: 0.8mm 1.2mm;
     }
 
-    table.segelpanel2 .sg-28label,
-    table.segelpanel2 .sg-29label {
-        border-bottom: 0.5pt solid #000;
+    .sigFH .fh-sign {
+        height: 20mm;
+        vertical-align: bottom;
+        padding: 2mm;
+        position: relative;
     }
 
-    table.segelpanel2 .sg-29label,
-    table.segelpanel2 .sg-29val,
-    table.segelpanel2 .sg-29blank {
-        border-left: 0.5pt solid #000;
+    .sigFH .fh-statement {
+        margin-bottom: 8mm;
+
     }
 
-    table.segelpanel2 .sg-28val,
-    table.segelpanel2 .sg-29val {
-        border-bottom: 0.5pt solid #000;
+    .sigFH .fh-date {
+        text-align: center;
+        margin-top: 3mm;
     }
 
-    table.segelpanel2 .sg-30cell {
-        padding: 1.2pt;
-        border-bottom: 0.5pt solid #000;
+    .sigFH .fh-sign-inner {
+        position: absolute;
+        left: 2mm;
+        right: 2mm;
+        bottom: 10mm;
+        line-height: 1.1;
     }
 
-    table.segelpanel2 .sg-30body {
-        padding: 1.2pt;
-        height: 100%;
-    }
-
-    table.segelpanel2 table.sg-blank {
+    .bc27-mini {
         width: 100%;
-        height: 100%;
         border-collapse: collapse;
         table-layout: fixed;
+        margin: 0;
     }
 
-    table.segelpanel2 table.sg-blank td {
-        border-top: 0 !important;
-        border-bottom: 0 !important;
+    .bc27-mini td {
         padding: 0;
+        border: 0;
+        font-size: 7pt;
+        font-weight: bold;
+        text-align: right;
+        line-height: 1;
     }
 </style>
-
+<table class="bc27-mini">
+    <tr>
+        <td>BC 2.7</td>
+    </tr>
+</table>
 <table class="b1 topbar" cellspacing="0" cellpadding="0">
     <tr>
         <td class="b1 center bc sizebc topbar-left" style="width:18mm;">BC 2.7</td>
@@ -535,10 +556,6 @@
         </td>
     </tr>
 
-
-    <!-- =========================
-       E
-       ========================= -->
     <tr>
         <td class="b1 bt0 p0">
             <table class="e-table">
@@ -588,9 +605,6 @@
         </td>
     </tr>
 
-    <!-- =========================
-       ... (bagian 12-25 kamu biarkan seperti semula)
-       ========================= -->
 
     <tr>
         <td class="b1 bt0 p0">
@@ -809,195 +823,101 @@
             </table>
         </td>
     </tr>
+
     <tr>
         <td class="p0">
-            <table class="bigbox2">
+            <table class="block2632">
                 <colgroup>
-                    <col style="width:75%;">
-                    <col style="width:25%;">
+                    <!-- Panel A total 75% (26+27, 31+32) -->
+                    <col style="width: 65%;"> <!-- 26+27 / 31+32 jadi satu kolom -->
+
+                    <!-- Panel B total 25% (28,29,30) -->
+                    <col style="width: 12%;"> <!-- 28 -->
+                    <col style="width: 14%;"> <!-- 29 -->
+                    <col style="width: 11%;"> <!-- 30 -->
                 </colgroup>
 
+                <!-- Baris 1: Judul Panel A dan Panel B -->
+                <tr class="row-head">
+                    <td class="hdr">DATA PENGANGKUTAN</td>
+                    <td class="hdr-center" colspan="3">SEGEL (DIISI OLEH BEA DAN CUKAI)</td>
+                </tr>
+
+                <!-- Baris 2-3: zona atas -->
+                <tr class="row-top">
+                    <!-- 26 & 27 sejajar horizontal dalam satu cell -->
+                    <td rowspan="2">
+                        <table class="inner-table">
+                            <tr>
+                                <td style="width: 56%; padding: 0; border: none;">
+                                    <span class="nowrap">26.</span> Jenis Sarana Pengangkut Darat <span class="nowrap">:</span>
+                                    <?= v($data, 'jenis_sarana') ?>
+                                </td>
+                                <td style="width: 44%; padding: 0; border: none;">
+                                    <span class="nowrap">27.</span> No Polisi <span class="nowrap">:</span>
+                                    <?= v($data, 'no_polisi') ?>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
+                    <td class="bc-asal" colspan="2">BC Asal</td>
+
+                    <td rowspan="2" class="center-content">
+                        <span class="nowrap">30.</span> Catatan BC Tujuan
+                        <div style="margin-top:1.2pt;">
+                            <?= v($data, 'catatan_bc_tujuan') ?>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Baris 3: label 28 & 29 -->
                 <tr>
-                    <!-- PANEL KIRI -->
-                    <td style="padding:0;">
-                        <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
-                            <!-- AREA ATAS -->
-                            <tr>
-                                <td style="padding:0; height:var(--hTop);">
-                                    <table class="leftbox lb-top" style="width:100%; height:100%;">
-                                        <tr>
-                                            <td style="padding:0.6mm 0.6mm; border-bottom:0.5pt solid #000;">DATA PENGANGKUTAN</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding:0; height:100%;">
-                                                <table class="split-noline" style="width:100%; height:100%;">
-                                                    <colgroup>
-                                                        <col style="width:56%;">
-                                                        <col style="width:44%;">
-                                                    </colgroup>
-                                                    <tr>
-                                                        <td class="wrap" style="padding:1.2pt; vertical-align:top;">
-                                                            <span class="nowrap">26.</span> Jenis Sarana Pengangkut Darat <span class="nowrap">:</span>
-                                                            <?= v($data, 'jenis_sarana') ?>
-                                                        </td>
-                                                        <td class="wrap" style="padding:1.2pt; vertical-align:top;">
-                                                            <span class="nowrap">27.</span> No Polisi <span class="nowrap">:</span>
-                                                            <?= v($data, 'no_polisi') ?>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="2" style="height:100%;">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
+                    <td>
+                        <span class="nowrap">28.</span> No Segel
+                        <div style="margin-top:1.2pt;">
+                            <?= v($data, 'no_segel') ?>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="nowrap">29.</span> Jenis
+                        <div style="margin-top:1.2pt;">
+                            <?= v($data, 'jenis_segel') ?>
+                        </div>
+                    </td>
+                </tr>
 
-                            <!-- AREA BAWAH -->
+                <!-- Baris 4-5: zona bawah -->
+                <tr class="row-bottom">
+                    <!-- Judul Data Peti -->
+                    <td class="hdr">DATA PETI KEMAS DAN PENGEMAS</td>
+
+                    <!-- area kosong segel -->
+                    <td class="blank" rowspan="2">&nbsp;</td>
+                    <td class="blank" rowspan="2">&nbsp;</td>
+                    <td class="blank" rowspan="2">&nbsp;</td>
+                </tr>
+
+                <!-- Baris 5: 31 & 32 sejajar horizontal dalam satu cell -->
+                <tr>
+                    <td>
+                        <table class="inner-table">
                             <tr>
-                                <td style="padding:0; height:var(--hBottom);">
-                                    <table class="leftbox lb-bottom" style="width:100%; height:100%;">
-                                        <tr>
-                                            <td style="padding:0.6mm 0.6mm; border-bottom:0.5pt solid #000;">DATA PETI KEMAS DAN PENGEMAS</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding:0; height:100%;">
-                                                <table class="peti-grid" style="width:100%; height:100%;">
-                                                    <colgroup>
-                                                        <col style="width:56%;">
-                                                        <col style="width:44%;">
-                                                    </colgroup>
-                                                    <tr>
-                                                        <td style="padding:1.2pt; vertical-align:top;">
-                                                            31. Merek dan No Kemasan/Peti Kemasan dan Jumlah
-                                                        </td>
-                                                        <td class="vline" style="padding:1.2pt; vertical-align:top;">
-                                                            32. Jumlah dan Jenis Kemasan
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="padding:1.2pt; vertical-align:top;"><?= v($data, 'merek_kemasan') ?></td>
-                                                        <td class="vline" style="padding:1.2pt; vertical-align:top;"><?= v($data, 'jumlah_jenis_kemasan') ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height:100%;">&nbsp;</td>
-                                                        <td class="vline" style="height:100%;">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                <td style="width: 56%; padding: 0; border: none;">
+                                    <span class="nowrap">31.</span> Merek dan No Kemasan/Peti Kemasan dan Jumlah
+                                    <div style="margin-top:1.2pt;">
+                                        <?= v($data, 'merek_kemasan') ?>
+                                    </div>
+                                </td>
+                                <td style="width: 44%; padding: 0; border: none;">
+                                    <span class="nowrap">32.</span> Jumlah dan Jenis Kemasan
+                                    <div style="margin-top:1.2pt;">
+                                        <?= v($data, 'jumlah_jenis_kemasan') ?>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
                     </td>
-
-                    <td style="padding:0;">
-                        <table class="segelpanel2" cellpadding="0" cellspacing="0">
-                            <colgroup>
-                                <col style="width:56%;">
-                                <col style="width:44%;">
-                            </colgroup>
-
-                            <!-- ZONA ATAS -->
-                            <tr>
-                                <td class="segel-top" colspan="2" style="padding:0;">
-                                    <table class="segel-grid" cellpadding="0" cellspacing="0">
-                                        <colgroup>
-                                            <col style="width:56%;">
-                                            <col style="width:44%;">
-                                        </colgroup>
-
-                                        <tr>
-                                            <td class="sg-head" colspan="2">SEGEL (DIISI OLEH BEA DAN CUKAI)</td>
-                                        </tr>
-
-                                        <tr>
-                                            <!-- KIRI: BC Asal -->
-                                            <td style="padding:0;">
-                                                <table class="sg-bc" cellpadding="0" cellspacing="0" style="height:100%;">
-                                                    <colgroup>
-                                                        <col style="width:50%;">
-                                                        <col style="width:50%;">
-                                                    </colgroup>
-
-                                                    <tr>
-                                                        <td class="sg-bc-title" colspan="2">BC Asal</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="sg-28label">28. No Segel</td>
-                                                        <td class="sg-29label">29. Jenis</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="sg-28val"><?= v($data, 'no_segel') ?></td>
-                                                        <td class="sg-29val"><?= v($data, 'jenis_segel') ?></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td style="height:100%;">&nbsp;</td>
-                                                        <td class="sg-29blank" style="height:100%;">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-
-                                            <!-- KANAN: 30 (border bawah di TD supaya nyambung) -->
-                                            <td class="sg-v30" style="padding:0;">
-                                                <table style="width:100%; height:100%; border-collapse:collapse; table-layout:fixed;">
-                                                    <tr>
-                                                        <td class="sg-30cell">30. Catatan BC Tujuan</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="sg-30body">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-
-                                    </table>
-                                </td>
-                            </tr>
-
-                            <!-- ZONA BAWAH -->
-                            <tr>
-                                <td class="segel-bottom" colspan="2" style="padding:0;">
-                                    <table class="segel-grid" cellpadding="0" cellspacing="0">
-                                        <colgroup>
-                                            <col style="width:56%;">
-                                            <col style="width:44%;">
-                                        </colgroup>
-
-                                        <tr>
-                                            <!-- blank kiri -->
-                                            <td style="padding:0;">
-                                                <table class="sg-blank" cellpadding="0" cellspacing="0" style="height:100%;">
-                                                    <colgroup>
-                                                        <col style="width:50%;">
-                                                        <col style="width:50%;">
-                                                    </colgroup>
-                                                    <tr>
-                                                        <td style="height:100%;">&nbsp;</td>
-                                                        <td class="sg-29blank" style="height:100%;">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-
-                                            <!-- blank kanan: tetap ada garis vertikal sg-v30 -->
-                                            <td class="sg-v30" style="padding:0;">
-                                                <div class="sg-30body"><?= v($data, 'catatan_bc_tujuan') ?></div>
-                                            </td>
-                                        </tr>
-
-                                    </table>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </td>
-
                 </tr>
             </table>
         </td>
@@ -1014,9 +934,6 @@
         </td>
     </tr>
 
-    <!-- =========================
-       ... lanjutkan bagian setelah ini seperti punyamu
-       ========================= -->
     <tr>
         <td class="b1 bt0 p0">
             <table>
@@ -1051,75 +968,54 @@
             </table>
         </td>
     </tr>
+
     <tr>
         <td class="b1 bt0 p0">
-            <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+            <table class="sigFH">
+                <colgroup>
+                    <col style="width:55%;">
+                    <col style="width:22.5%;">
+                    <col style="width:22.5%;">
+                </colgroup>
+
+                <!-- Row 1: Header -->
                 <tr>
-                    <td class="b1 bt0 p1" style="width:55%;">F. TANDA TANGAN PENGUSAHA TPB</td>
-                    <td class="b1 bt0 p1" style="width:45%;">H. UNTUK PEJABAT BEA DAN CUKAI</td>
+                    <td class="fh-head">F. TANDA TANGAN PENGUSAHA TPB</td>
+                    <td class="fh-head" colspan="2">H. UNTUK PEJABAT BEA DAN CUKAI</td>
                 </tr>
 
+                <!-- Row 2: isi F (rowspan=2) + header kantor -->
                 <tr>
-                    <td class="b1 bt0 p1" style="height:24mm; vertical-align:top;">
-                        Dengan ini saya menyatakan bertanggung jawab atas kebenaran hal-hal yang<br>
-                        diberitahukan dalam pemberitahuan pabean ini.<br><br>
-                        , <?= v($data, 'tanggal_cetak') ?>
+                    <td class="fh-f" rowspan="2">
+                        <div class="fh-statement">
+                            Dengan ini saya menyatakan bertanggung jawab atas kebenaran hal-hal yang<br>
+                            diberitahukan dalam pemberitahuan pabean ini.
+                        </div>
+
+                        <div class="fh-date">
+                            , <?= v($data, 'tanggal_cetak') ?>
+                        </div>
                     </td>
 
-                    <td class="b1 bt0 p0" style="height:24mm; vertical-align:top;">
-                        <table style="width:100%; border-collapse:collapse; table-layout:fixed; height:24mm; border:0.5pt solid #000;">
-                            <colgroup>
-                                <col style="width:50%;">
-                                <col style="width:50%;">
-                            </colgroup>
+                    <td class="fh-office fh-h1">Kantor Pabean Asal</td>
+                    <td class="fh-office fh-h2">Kantor Pabean Tujuan</td>
+                </tr>
 
-                            <tr>
-                                <td class="p1 center" style="
-                                border:0;
-                                border-bottom:0.5pt solid #000;
-                                border-right:0.5pt solid #000;
-                            ">
-                                    Kantor Pabean Asal
-                                </td>
-
-                                <td class="p1 center" style="
-                                border:0;
-                                border-bottom:0.5pt solid #000;
-                                border-left:0.5pt solid #000;
-                            ">
-                                    Kantor Pabean Tujuan
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td style="
-                                height:20mm;
-                                vertical-align:bottom;
-                                border:0;
-                                padding:0;
-                                border-right:0.5pt solid #000;
-                            ">
-                                    <div style="padding-left:2mm; padding-right:0.6mm; padding-bottom:0.6mm; line-height:1.05;">
-                                        Nama :<br>
-                                        NIM :
-                                    </div>
-                                </td>
-
-                                <td style="
-                                height:20mm;
-                                vertical-align:bottom;
-                                border:0;
-                                padding:0;
-                                border-left:0.5pt solid #000;
-                            ">
-                                    <div style="padding-left:2mm; padding-right:0.6mm; padding-bottom:0.6mm; line-height:1.05;">
-                                        Nama :<br>
-                                        NIM :
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                <!-- Row 3: area tanda tangan (Nama/NIM bawah) -->
+                <tr>
+                    <td class="fh-sign">
+                        <div class="fh-sign-inner">
+                            Nama :<br>
+                            NIM :
+                        </div>
                     </td>
+                    <td class="fh-sign">
+                        <div class="fh-sign-inner">
+                            Nama :<br>
+                            NIM :
+                        </div>
+                    </td>
+
                 </tr>
             </table>
         </td>
