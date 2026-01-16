@@ -46,7 +46,7 @@ $items = $data['barang_page3'] ?? [
 // kalau halaman 3 meneruskan nomor dari halaman 2, set sesuai kebutuhan
 $startNo = 1; // misal kalau halaman 3 berisi baris ke-3 dst, set 3
 
-$tpl = __DIR__ . '/../src/Templates/bc27_page3_MARGIN_FIXED.php';
+$tpl = __DIR__ . '/../src/Templates/bc27_page2.php';
 
 ob_start();
 $itemsLocal = $items; // hindari variable collision
@@ -72,4 +72,4 @@ $mpdf->WriteHTML($html);
 
 ob_end_clean();
 
-$mpdf->Output('BC27_page3.pdf', 'I');
+$mpdf->Output('BC27_page2.pdf', 'I');

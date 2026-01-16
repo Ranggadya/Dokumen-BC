@@ -113,7 +113,7 @@ $mpdf->SetHTMLFooter('
 ');
 
 // ===== Render template =====
-$template = $root . '/src/Templates/bc27_page1_MARGIN_FIXED.php';
+$template = $root . '/src/Templates/bc27_page1.php';
 if (!file_exists($template)) {
     die('Template tidak ditemukan: ' . $template);
 }
