@@ -452,6 +452,159 @@
         text-align: right;
         line-height: 1;
     }
+
+
+    /* =========================
+   BLOK: NOMOR PENGAJUAN + A/B/C + D/G (SINGLE BORDER SYSTEM)
+   ========================= */
+    table.adgHeader {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border: 0.5pt solid #000;
+    }
+
+    table.adgHeader td {
+        border: 0.5pt solid #000;
+        padding: 1.2mm 2.5mm;
+        vertical-align: top;
+    }
+
+    table.adgHeader .no-border-right {
+        border-right: none !important;
+    }
+
+    table.adgHeader .no-border-left {
+        border-left: none !important;
+    }
+
+    table.adgHeader .no-border-top {
+        border-top: none !important;
+    }
+
+    table.adgHeader .no-border-bottom {
+        border-bottom: none !important;
+    }
+
+    table.adgHeader .left-col {
+        width: 46%;
+    }
+
+    table.adgHeader .right-col {
+        width: 54%;
+    }
+
+    /* Baris Halaman */
+    table.adgHeader .halaman-cell {
+        padding: 1.2mm 2.5mm;
+    }
+
+    table.adgHeader .halaman {
+        text-align: right;
+        font-size: 6.8pt;
+        justify-content: right;
+        justify-items: right;
+    }
+
+    /* Baris D */
+    table.adgHeader .section-d-cell {
+        padding: 1.2mm 2.5mm;
+    }
+
+    /* Baris G dengan border kiri dan atas */
+    table.adgHeader .section-g-cell {
+        padding: 1.2mm 2.5mm;
+        border-left: 0.5pt solid #000 !important;
+        border-top: 0.5pt solid #000 !important;
+    }
+
+    /* Table untuk alignment field KIRI (NOMOR, A, B, C) */
+    table.field-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.field-table td {
+        border: none !important;
+        padding: 0.3mm 0;
+        vertical-align: top;
+    }
+
+    table.field-table .field-label {
+        width: 38mm;
+    }
+
+    table.field-table .indent-label {
+        padding-left: 5mm;
+        width: 38mm;
+    }
+
+    table.field-table .field-sep {
+        width: 1mm;
+        text-align: left;
+        padding-right: 1mm;
+    }
+
+    table.field-table .field-value {
+        width: auto;
+    }
+
+    /* Table untuk alignment field D */
+    table.field-table-right {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.field-table-right td {
+        border: none !important;
+        padding: 0.3mm 0;
+        vertical-align: top;
+    }
+
+    table.field-table-right .field-label-right {
+        width: 30mm;
+    }
+
+    table.field-table-right .field-sep-right {
+        width: 1mm;
+        text-align: left;
+        padding-right: 1mm;
+    }
+
+    table.field-table-right .field-value-right {
+        width: auto;
+    }
+
+    /* Table untuk alignment field G */
+    table.field-table-g {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.field-table-g td {
+        border: none !important;
+        padding: 0.3mm 0;
+        vertical-align: top;
+    }
+
+    table.field-table-g .field-label-g {
+        width: 32mm;
+    }
+
+    table.field-table-g .indent-label {
+        padding-left: 5mm;
+        width: 32mm;
+    }
+
+    table.field-table-g .field-sep-g {
+        width: 1mm;
+        text-align: left;
+        padding-right: 1mm;
+    }
+
+    table.field-table-g .field-value-g {
+        width: auto;
+    }
 </style>
 <table class="bc27-mini">
     <tr>
@@ -468,94 +621,104 @@
     </tr>
 </table>
 
-<table class="b1 bt0">
+<table class="b1">
 
     <tr>
         <td class="b1 bt0 p1">HEADER</td>
     </tr>
 
-    <!-- BLOK: NOMOR PENGAJUAN + A/D/G (SATU BORDER LUAR) -->
+    <!-- BLOK: NOMOR PENGAJUAN + A/B/C + D/G (SINGLE BORDER SYSTEM) -->
     <tr>
-        <td class="b1 bt0 p0">
-            <table class="adgWrap">
-                <colgroup>
-                    <!-- KIRI -->
-                    <col style="width:26%;">
-                    <col style="width:2.0mm;"> <!-- ":" kiri makin rapat -->
-                    <col style="width:36%;">
-                    <!-- KANAN -->
-                    <col style="width:20%;">
-                    <col style="width:2.0mm;"> <!-- ":" kanan makin rapat -->
-                    <col style="width:14%;">
-                </colgroup>
-
-                <!-- Row 0: NOMOR PENGAJUAN | Halaman -->
+        <td class="p0">
+            <table class="adgHeader">
+                <!-- Baris 1: NOMOR PENGAJUAN | Halaman -->
                 <tr>
-                    <td class="secHead">NOMOR PENGAJUAN</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'nomor_pengajuan') ?></td>
+                    <td class="left-col no-border-right" rowspan="3">
+                        <table class="field-table">
+                            <tr>
+                                <td class="field-label">NOMOR PENGAJUAN</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'nomor_pengajuan') ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="height: 1mm;"></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label">A. KANTOR PABEAN</td>
+                                <td class="field-sep"></td>
+                                <td class="field-value"></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label indent-label">1. Kantor Asal</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'kantor_asal', '-') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label indent-label">2. Kantor Tujuan</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'kantor_tujuan', '-') ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="height: 1mm;"></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label">B. JENIS TPB ASAL</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'jenis_tpb_asal', '-') ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="height: 1mm;"></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label">C. JENIS TPB TUJUAN</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'jenis_tpb_tujuan', '-') ?></td>
+                            </tr>
+                        </table>
+                    </td>
 
-                    <td colspan="3" style="padding-right:0.8mm;">
-                        <div class="page">Halaman ke-3 dari 3</div>
+                    <!-- Baris 1 Kanan: Halaman (sejajar dengan NOMOR) -->
+                    <td class="right-col no-border-left no-border-bottom halaman-cell">
+                        <div class="halaman">Halaman ke-3 dari 3</div>
                     </td>
                 </tr>
 
-                <!-- Row 1: A | D -->
+                <!-- Baris 2 Kanan: D (sejajar dengan A) -->
                 <tr>
-                    <td class="secHead">A. KANTOR PABEAN</td>
-                    <td class="sep">:</td>
-                    <td class="val">-</td>
-
-                    <td class="secHead">D. JENIS TRANSAKSI</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'jenis_transaksi', '-') ?></td>
+                    <td class="right-col no-border-left no-border-top section-d-cell">
+                        <table class="field-table-right">
+                            <tr>
+                                <td class="field-label-right">D. JENIS TRANSAKSI</td>
+                                <td class="field-sep-right">:</td>
+                                <td class="field-value-right"><?= v($data, 'jenis_transaksi', '-') ?></td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
 
-                <!-- Row 2: 1. Kantor Asal | kosong kanan -->
+                <!-- Baris 3 Kanan: G (sejajar dengan 2. Kantor Tujuan) -->
                 <tr>
-                    <td class="indent">1. Kantor Asal</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'kantor_asal', '-') ?></td>
-
-                    <td colspan="3">&nbsp;</td>
+                    <td class="right-col no-border-left section-g-cell">
+                        <div style="margin-bottom: 1.5mm; font-weight: bold;">
+                            G. KOLOM KHUSUS BEA CUKAI
+                        </div>
+                        <table class="field-table-g">
+                            <tr>
+                                <td class="field-label-g indent-label">Nomor Pendaftaran</td>
+                                <td class="field-sep-g">:</td>
+                                <td class="field-value-g"><?= v($data, 'nomor_pendaftaran', '') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label-g indent-label">Tanggal</td>
+                                <td class="field-sep-g">:</td>
+                                <td class="field-value-g"><?= v($data, 'tanggal_pendaftaran', '') ?></td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
-
-                <!-- Row 3: 2. Kantor Tujuan | G header (mulai splitL + garis tebal atas hanya kanan) -->
-                <tr>
-                    <td class="indent">2. Kantor Tujuan</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'kantor_tujuan', '-') ?></td>
-
-                    <!-- garis tebal atas hanya area kanan -->
-                    <td class="secHead splitL gTopBold" colspan="3">G. KOLOM KHUSUS BEA CUKAI</td>
-                </tr>
-
-                <!-- Row 4: B | Nomor Pendaftaran -->
-                <tr>
-                    <td class="secHead">B. JENIS TPB ASAL</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'jenis_tpb_asal', '-') ?></td>
-
-                    <td class="splitL indent gLabel">Nomor Pendaftaran</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'nomor_pendaftaran', '-') ?></td>
-                </tr>
-
-                <!-- Row 5: C | Tanggal -->
-                <tr>
-                    <td class="secHead">C. JENIS TPB TUJUAN</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'jenis_tpb_tujuan', '-') ?></td>
-
-                    <td class="splitL indent gLabel">Tanggal</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'tanggal_pendaftaran', '-') ?></td>
-                </tr>
-
             </table>
         </td>
     </tr>
-
     <tr>
         <td class="b1 bt0 p0">
             <table class="e-table">

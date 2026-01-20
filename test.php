@@ -1,76 +1,38 @@
-ini tolong rapihin code saya dulu, kalau ada code yang gadipakai buang aja, tulis ualng semua code yang benar dan rapi dan yang dibutuhkan saja,<?php
-// Functions loaded from src/Support/helpers.php
+<?php
+
+/** @var array $data */
 ?>
 
 <style>
-    @page {
-        margin-top: 4.2mm;
-        margin-right: 5mm;
-        margin-bottom: 27.8mm;
-        margin-left: 5mm;
-    }
-
-    :root {
-        --hTop: 24mm;
-        --hBottom: 18mm;
-    }
-
     * {
         box-sizing: border-box;
     }
 
     body {
         font-family: Arial, sans-serif;
-        font-size: 7.6pt;
-        line-height: 1.02;
+        font-size: 7.4pt;
+        line-height: 1.12;
+        color: #000;
     }
 
     table {
-        border-collapse: collapse;
         width: 100%;
+        border-collapse: collapse;
         table-layout: fixed;
     }
 
-    table,
-    tr,
     td {
-        page-break-inside: avoid;
+        vertical-align: top;
+        padding: 1.0mm 1.2mm;
     }
 
     .b1 {
-        border: 0.5pt solid black;
+        border: 0.6pt solid #000;
     }
 
-    .bt0 {
-        border-top: 0;
-    }
-
-    .bb0 {
-        border-bottom: 0;
-    }
-
-    .bl0 {
-        border-left: 0;
-    }
-
-    .br0 {
-        border-right: 0;
-    }
-
-    .p0 {
+    .p0,
+    .p0 td {
         padding: 0;
-    }
-
-    .p1 {
-        padding: 0.45mm;
-    }
-
-    .p2 {
-        padding: 0.85mm;
-    }
-
-    .p3 {
-        padding: 1.2mm;
     }
 
     .center {
@@ -85,1079 +47,781 @@ ini tolong rapihin code saya dulu, kalau ada code yang gadipakai buang aja, tuli
         font-weight: bold;
     }
 
-    .title {
+    /* ===== WRAPPER (SATU KOTAK BESAR) ===== */
+    table.outerBox {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border: 2pt solid #000;
+        /* border luar tunggal */
+    }
+
+    table.outerBox td {
+        border: none;
+        /* jangan bikin border lagi */
+        padding: 0;
+        /* biar rapat */
+    }
+
+    /* ===== HEADER BC33 ===== */
+    table.bc33Header {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border: none;
+        /* PENTING: border luar dipegang outerBox */
+    }
+
+    table.bc33Header td {
+        border: 1pt solid #000;
+        padding: 2mm 3mm;
+        vertical-align: top;
+        font-size: 9pt;
+    }
+
+    .headerVertical {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-weight: bold;
         font-size: 10pt;
-        line-height: 1.05;
+        text-align: center;
+        width: 10mm;
+        padding: 3mm 1.5mm;
     }
 
-    .small {
-        font-size: 6.8pt;
+    .bcNumber {
+        font-weight: bold;
+        font-size: 11pt;
+        text-align: center;
+        padding: 3mm;
     }
 
-    .blk {
-        margin: 0;
-        padding: 0;
-    }
-
-
-    .kv td {
-        padding: 0.25mm 0.55mm;
-        vertical-align: top;
-    }
-
-    .kv-tight td {
-        padding: 0.18mm 0.55mm;
-        vertical-align: top;
-    }
-
-    .sec-title {
-        display: block;
-        padding-top: 0.6mm;
-        padding-bottom: 0.4mm;
-    }
-
-    .sec-cell {
-        padding: 0.7mm 0.9mm;
-    }
-
-    .bc-gap {
-        margin-top: 0.6mm;
-    }
-
-    .sec-kv {
-        margin-top: 0.2mm;
-    }
-
-    .kv-abc td {
-        padding: 0.20mm 0.60mm;
-    }
-
-    .bc {
-        font-size: large;
-    }
-
-    .f10 {
+    .titleHeader {
+        font-weight: bold;
         font-size: 10pt;
+        text-align: center;
+        padding: 3mm;
     }
 
-    .e-table {
+    .halaman {
+        text-align: right;
+        font-size: 8pt;
+        margin-bottom: 3mm;
+    }
+
+    .sectionJ {
+        font-weight: bold;
+        margin-bottom: 2mm;
+    }
+
+    table.alignTable {
         width: 100%;
         border-collapse: collapse;
         table-layout: fixed;
     }
 
-    .e-title {
-        border: 0.5pt solid #000;
-        border-top: 0;
-        padding: 0.6mm;
-        font-weight: bold;
-    }
-
-    .e-sub-left {
-        border: 0.5pt solid #000;
-        border-top: 0;
-        border-right: 0.5pt solid #000;
-        padding: 0.6mm;
-        font-weight: bold;
-        width: 50%;
-    }
-
-    .e-sub-right {
-        border: 0.5pt solid #000;
-        border-top: 0;
-        border-left: 0;
-        padding: 0.6mm;
-        font-weight: bold;
-        width: 50%;
-    }
-
-    .e-body {
-        border: 0.5pt solid #000;
-        border-top: 0;
-        padding: 0.6mm;
-    }
-
-    .e-body-grid {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-        border: 0;
-    }
-
-    .e-body-grid td {
-        border: 0;
+    table.alignTable td {
+        border: none !important;
+        padding: 0.5mm 0;
         vertical-align: top;
-        padding: 0;
+        font-size: 9pt;
     }
 
-    .kv-row {
-        padding: 0.35mm 0;
-        line-height: 1.05;
+    .fieldLabel {
+        width: 35mm;
     }
 
-    .kv-no {
-        display: inline-block;
-        width: 6mm;
-        white-space: nowrap;
-    }
-
-    .kv-lbl {
-        display: inline-block;
-        width: 34mm;
-        vertical-align: top;
-    }
-
-    .kv-sep {
-        display: inline-block;
-        width: 3mm;
+    .fieldSep {
+        width: 2mm;
         text-align: center;
     }
 
-    .kv-val {
-        display: inline-block;
-        width: 60mm;
-        vertical-align: top;
-
+    .fieldValue {
+        width: auto;
     }
 
-    table.topbar {
-        margin: 0;
-    }
-
-    table.topbar td {
-
-        padding: 0.4mm 0.6mm;
-
-        line-height: 1.0;
-        vertical-align: middle;
-    }
-
-
-    .topbar-left {
-        padding: 0 !important;
-        line-height: 1.0 !important;
-    }
-
-
-    .topbar-right {
-        padding: 0.35mm 0.6mm !important;
-        line-height: 1.0 !important;
-    }
-
-
-    .topbar-right.f10 {
-        font-size: 9.5pt;
-    }
-
-
-    .bc {
-        font-size: 10pt;
-        line-height: 1.0;
-    }
-
-    .sizebc {
-        font-weight: bold;
-    }
-
-    .wrap {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-    }
-
-    .nowrap {
-        white-space: nowrap;
-    }
-
-    .leftbox {
+    /* ===== BODY TABLE (H dst) ===== */
+    table.bodyBox {
         width: 100%;
         border-collapse: collapse;
         table-layout: fixed;
+        border: none;
+        /* border luar dipegang outerBox */
     }
 
-    .leftbox td {
-        border: 0.5pt solid #000;
-        padding: 0.45mm 0.55mm;
+    table.bodyBox td {
+        border: 0.6pt solid #000;
+        /* grid body */
+        padding: 1.0mm 1.2mm;
         vertical-align: top;
+        font-size: 7.4pt;
     }
 
-    .leftbox .head {
-        font-weight: bold;
-        padding: 0.45mm 0.55mm;
-    }
-
-    .split-noline {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-
-    .split-noline td {
-        border: 0 !important;
-        padding: 0.35mm 0.55mm !important;
-        vertical-align: top;
-    }
-
-    .peti-grid {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-
-    .peti-grid td {
-        border: 0 !important;
-        padding: 0.45mm 0.55mm;
-        vertical-align: top;
-    }
-
-    .peti-grid .vline {
-        border-left: 0.5pt solid #000 !important;
-    }
-
-    .bigbox2 {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-
-    .bigbox2>tbody>tr>td {
-        border: 0.5pt solid #000;
-        padding: 0;
-        vertical-align: top;
-    }
-
-    .lb-top {
-        height: var(--hTop);
-    }
-
-    .lb-bottom {
-        height: var(--hBottom);
-    }
-
-    .lb-top td,
-    .lb-bottom td {
-        vertical-align: top;
-    }
-
-    .segelpanel2 td {
-        border: 0;
-        padding: 0;
-        vertical-align: top;
-    }
-
-    .segel-head2 {
-        text-align: center;
-        font-weight: bold;
-        padding-top: 2pt;
-        padding-bottom: 1.5pt;
-        border-bottom: 0.5pt solid #000;
-    }
-
-    .segel-v30 {
-        border-left: 0.5pt solid #000 !important;
-    }
-
-    .segel-v2829 {
-        border-left: 0.5pt solid #000 !important;
-    }
-
-    /* Garis bawah untuk batas “bagian atas” dengan area kosong (INI BUKAN area kosong) */
-    .segel-top-divider {
-        border-bottom: 0.5pt solid #000 !important;
-    }
-
-    .bc-title-line {
-        border-bottom: 0.5pt solid #000 !important;
-        font-weight: bold;
-        text-align: center;
-    }
-
-    .bc-label-line {
-        border-bottom: 0.5pt solid #000 !important;
-    }
-
-    .bc-pad {
-        padding: 1.2pt;
-    }
-
-    .segel-blank td {
-        border-top: 0 !important;
-        border-bottom: 0 !important;
-    }
-
-    table.segelpanel2 {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-
-    table.segelpanel2 td {
-        border: 0 !important;
-        padding: 0;
-        vertical-align: top;
-    }
-
-    table.segelpanel2 .segel-head2 {
-        text-align: center;
-        font-weight: bold;
-        padding: 2pt 0 1.5pt 0;
-        border-bottom: 0.5pt solid #000 !important;
-    }
-
-    table.segelpanel2 .sp-right {
-        border-left: 0.5pt solid #000 !important;
-    }
-
-    table.segelpanel2 .sp-top {
-        border-bottom: 0.5pt solid #000 !important;
-    }
-
-    table.segelpanel2 table.bc28 {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-
-    table.segelpanel2 table.bc28 td {
-        border: 0 !important;
-        padding: 1.2pt;
-        vertical-align: top;
-    }
-
-    table.segelpanel2 .bc-title {
-        text-align: center;
-        font-weight: bold;
-        padding: 1.2pt 0;
-        border-bottom: 0.5pt solid #000 !important;
-    }
-
-    table.segelpanel2 .bc-label {
-        border-bottom: 0.5pt solid #000 !important;
-    }
-
-    table.segelpanel2 .bc-v2829 {
-        border-left: 0.5pt solid #000 !important;
-    }
-
-    table.segelpanel2 table.blank28 {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-
-    table.segelpanel2 table.blank28 td {
-        border-top: 0 !important;
-        border-bottom: 0 !important;
-        padding: 0;
-    }
-
-    table.segelpanel2 .sp30-title {
-        padding: 1.2pt;
-        vertical-align: middle;
-    }
-
-    table.segelpanel2 .sp30-body {
-        padding: 1.2pt;
-        vertical-align: top;
-    }
-
-    .hSign {
-        border: 0.5pt solid #000;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-
-    .hSign td {
-        border: 0;
-        vertical-align: top;
-    }
-
-    .hSign .p1 {
-        padding: 0.45mm;
-    }
-
-    .hSign td[style*="border-left:0.5pt solid #000"] {
-        border-left: 0.5pt solid #000 !important;
-    }
-
-    .hSign td[style*="border-bottom:0.5pt solid #000"] {
-        border-bottom: 0.5pt solid #000 !important;
+    /* footer */
+    .footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 6mm;
+        font-size: 7.0pt;
     }
 </style>
 
-<table class="b1 topbar" cellspacing="0" cellpadding="0">
+<!-- SATU KOTAK BESAR -->
+<table class="outerBox">
     <tr>
-        <td class="b1 center bc sizebc topbar-left" style="width:18mm;">BC 2.7</td>
-        <td class="b1 center f10 topbar-right">
-            PEMBERITAHUAN PENGELUARAN UNTUK DIANGKUT DARI TEMPAT PENIMBUNAN<br>
-            BERIKAT KE TEMPAT PENIMBUNAN BERIKAT LAINNYA
-        </td>
-    </tr>
-</table>
+        <td>
 
-<table class="b1 bt0">
-
-    <tr>
-        <td class="b1 bt0 p1">HEADER</td>
-    </tr>
-
-    <tr>
-        <td class="">
-            <table class="kv-tight">
-                <tr>
-                    <td class="" style="width:40mm;">NOMOR PENGAJUAN</td>
-                    <td class="center" style="width:4mm;">:</td>
-                    <td class=""><?= v($data, 'nomor_pengajuan') ?></td>
-                    <td class="right small" style="width:35mm;">Halaman ke-1 dari 3</td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-
-    <tr>
-        <td class="b1 bt0 p0">
-            <table>
-                <tr>
-                    <td class="b1 bt0 bl0 br0 p0" style="width:62%;">
-                        <table>
-                            <tr>
-                                <td class="b1 bt0 bl0 br0 sec-cell" style="vertical-align:top;">
-                                    <span class="sec-title">A. KANTOR PABEAN</span>
-                                    <table class="kv kv-abc sec-kv">
-                                        <?= row3('Kantor Asal', v($data, 'kantor_asal', '-'), '1') ?>
-                                        <?= row3('Kantor Tujuan', v($data, 'kantor_tujuan', '-'), '2') ?>
-                                    </table>
-                                </td>
-
-                                <td class="b1 bt0 bl0 br0 sec-cell" style="width:30%; vertical-align:top;">
-                                    <span class="sec-title">D. JENIS TRANSAKSI</span>
-                                    <table class="kv kv-abc sec-kv">
-                                        <tr>
-                                            <td style="width:3mm;"></td>
-                                            <td class="center" style="width:3mm;">:</td>
-                                            <td><?= v($data, 'jenis_transaksi', '-') ?></td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="b1 bt0 bl0 br0 sec-cell" colspan="2">
-                                    <span class="sec-title">B. JENIS TPB ASAL</span>
-                                    <table class="kv kv-abc sec-kv">
-                                        <tr>
-                                            <td style="width:6mm;"></td>
-                                            <td style="width:34mm;"></td>
-                                            <td class="center" style="width:3mm;">:</td>
-                                            <td><?= v($data, 'jenis_tpb_asal', '-') ?></td>
-                                        </tr>
-                                    </table>
-
-                                    <span class="sec-title bc-gap">C. JENIS TPB TUJUAN</span>
-                                    <table class="kv kv-abc sec-kv">
-                                        <tr>
-                                            <td style="width:6mm;"></td>
-                                            <td style="width:34mm;"></td>
-                                            <td class="center" style="width:3mm;">:</td>
-                                            <td><?= v($data, 'jenis_tpb_tujuan', '-') ?></td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </td>
-
-                    <td class="b1 bt0 sec-cell" style="width:38%; vertical-align:top;">
-                        <span class="sec-title">G. KOLOM KHUSUS BEA CUKAI</span>
-                        <table class="kv kv-abc sec-kv">
-                            <tr>
-                                <td style="width:38mm;">Nomor Pendaftaran</td>
-                                <td class="center" style="width:3mm;">:</td>
-                                <td><?= v($data, 'nomor_pendaftaran') ?></td>
-                            </tr>
-                            <tr>
-                                <td>Tanggal</td>
-                                <td class="center">:</td>
-                                <td><?= v($data, 'tanggal_pendaftaran') ?></td>
-                            </tr>
-                        </table>
-                    </td>
-
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td class="b1 bt0 p0">
-            <table class="e-table">
-                <tr>
-                    <td class="e-title" colspan="2">E. DATA PEMBERITAHUAN</td>
-                </tr>
-
-                <tr>
-                    <td class="e-sub-left">TPB ASAL BARANG</td>
-                    <td class="e-sub-right">TPB TUJUAN BARANG</td>
-                </tr>
-
-                <tr>
-                    <td class="e-body" colspan="2">
-                        <table class="e-body-grid">
-                            <tr>
-                                <td style="width:50%; padding-right:2mm;">
-                                    <div class="kv-row">
-                                        <span class="kv-no">1.</span><span class="kv-lbl">NPWP</span><span class="kv-sep">:</span>
-                                        <span class="kv-val"><?= v($data, 'tpb_asal_npwp') ?></span>
-                                    </div>
-                                    <div class="kv-row">
-                                        <span class="kv-no">2.</span><span class="kv-lbl">Nama</span><span class="kv-sep">:</span>
-                                        <span class="kv-val"><?= v($data, 'tpb_asal_nama') ?></span>
-                                    </div>
-                                    <div class="kv-row">
-                                        <span class="kv-no">3.</span><span class="kv-lbl">Alamat</span><span class="kv-sep">:</span>
-                                        <span class="kv-val"><?= v($data, 'tpb_asal_alamat') ?></span>
-                                    </div>
-                                    <div class="kv-row">
-                                        <span class="kv-no">4.</span><span class="kv-lbl">No Izin TPB</span><span class="kv-sep">:</span>
-                                        <span class="kv-val"><?= v($data, 'tpb_asal_no_izin') ?></span>
-                                    </div>
-                                </td>
-
-                                <td style="width:50%; padding-left:2mm;">
-                                    <div class="kv-row">
-                                        <span class="kv-no">5.</span><span class="kv-lbl">NPWP</span><span class="kv-sep">:</span>
-                                        <span class="kv-val"><?= v($data, 'tpb_tujuan_npwp') ?></span>
-                                    </div>
-                                    <div class="kv-row">
-                                        <span class="kv-no">6.</span><span class="kv-lbl">Nama</span><span class="kv-sep">:</span>
-                                        <span class="kv-val"><?= v($data, 'tpb_tujuan_nama') ?></span>
-                                    </div>
-                                    <div class="kv-row">
-                                        <span class="kv-no">7.</span><span class="kv-lbl">Alamat</span><span class="kv-sep">:</span>
-                                        <span class="kv-val"><?= v($data, 'tpb_tujuan_alamat') ?></span>
-                                    </div>
-                                    <div class="kv-row">
-                                        <span class="kv-no">8.</span><span class="kv-lbl">No Izin TPB</span><span class="kv-sep">:</span>
-                                        <span class="kv-val"><?= v($data, 'tpb_tujuan_no_izin') ?></span>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="b1 bt0 p0" colspan="2">
-                        <div class="p1">PEMILIK BARANG</div>
-                        <table class="kv">
-                            <?= row3('NPWP', v($data, 'pemilik_npwp'), '9') ?>
-                            <?= row3('Nama', v($data, 'pemilik_nama'), '10') ?>
-                            <?= row3('Alamat', v($data, 'pemilik_alamat'), '11') ?>
-                        </table>
-                    </td>
-                </tr>
-
-            </table>
-        </td>
-    </tr>
-
-
-    <tr>
-        <td class="b1 bt0 p0">
-            <table>
-                <tr>
-                    <td class="b1 bt0 p1">DOKUMEN PELENGKAP PABEAN</td>
-                </tr>
-                <tr>
-                    <td class="b1 bt0 p0">
-                        <table>
-                            <tr>
-                                <td class="b1 bt0 bl0 p1" style="width:50%; vertical-align:top;">
-                                    <table class="kv-tight">
-                                        <tr>
-                                            <td style="width:6mm;">12.</td>
-                                            <td style="width:30mm;">Invoice</td>
-                                            <td class="center" style="width:3mm;">:</td>
-                                            <td><?= v($data, 'invoice_no') ?></td>
-                                            <td style="width:10mm;" class="right">tgl.</td>
-                                            <td><?= v($data, 'invoice_tgl') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>13.</td>
-                                            <td>Packing List</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'packing_list_no') ?></td>
-                                            <td class="right">tgl.</td>
-                                            <td><?= v($data, 'packing_list_tgl') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>14.</td>
-                                            <td>Kontrak</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'kontrak_no') ?></td>
-                                            <td class="right">tgl.</td>
-                                            <td><?= v($data, 'kontrak_tgl') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>15.</td>
-                                            <td>Faktur Pajak</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'faktur_pajak_no') ?></td>
-                                            <td class="right">tgl.</td>
-                                            <td><?= v($data, 'faktur_pajak_tgl') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>Uang Muka</td>
-                                            <td></td>
-                                            <td><?= v($data, 'uang_muka_tgl') ?></td>
-                                        </tr>
-                                    </table>
-                                </td>
-
-                                <td class="b1 bt0 br0 p1" style="width:50%; vertical-align:top;">
-                                    <table class="kv-tight">
-                                        <tr>
-                                            <td style="width:6mm;">16.</td>
-                                            <td style="width:40mm;">Surat Jalan</td>
-                                            <td class="center" style="width:3mm;">:</td>
-                                            <td><?= v($data, 'surat_jalan_no') ?></td>
-                                            <td style="width:10mm;" class="right">tgl.</td>
-                                            <td><?= v($data, 'surat_jalan_tgl') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>17.</td>
-                                            <td>Surat Keputusan/Persetujuan</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'sk_persetujuan_no') ?></td>
-                                            <td class="right">tgl.</td>
-                                            <td><?= v($data, 'sk_persetujuan_tgl') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>18.</td>
-                                            <td>Lainnya</td>
-                                            <td class="center">:</td>
-                                            <td colspan="3"><?= v($data, 'lainnya') ?></td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-
-    <tr>
-        <td class="b1 bt0 p0">
-            <table>
-                <tr>
-                    <td class="b1 bt0 p1">RIWAYAT BARANG</td>
-                </tr>
-                <tr>
-                    <td class="b1 bt0 p1">
-                        <table class="kv-tight">
-                            <tr>
-                                <td style="width:6mm;">19.</td>
-                                <td style="width:6mm;">a.</td>
-                                <td style="width:55mm;">Nomor dan Tanggal BC 2.7</td>
-                                <td class="center" style="width:3mm;">:</td>
-                                <td><?= v($data, 'riwayat_bc27_no') ?></td>
-                                <td class="right" style="width:10mm;">tgl.</td>
-                                <td><?= v($data, 'riwayat_bc27_tgl') ?></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>b.</td>
-                                <td>Nomor dan Tanggal BC 2.3</td>
-                                <td class="center">:</td>
-                                <td><?= v($data, 'riwayat_bc23_no') ?></td>
-                                <td class="right">tgl.</td>
-                                <td><?= v($data, 'riwayat_bc23_tgl') ?></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>c.</td>
-                                <td>Nomor dan Tanggal BC 4.0</td>
-                                <td class="center">:</td>
-                                <td><?= v($data, 'riwayat_bc40_no') ?></td>
-                                <td class="right">tgl.</td>
-                                <td><?= v($data, 'riwayat_bc40_tgl') ?></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-
-    <tr>
-        <td class="b1 bt0 p0">
-            <table>
-                <tr>
-                    <td class="b1 bt0 p1">DATA PERDAGANGAN</td>
-                </tr>
-                <tr>
-                    <td class="b1 bt0 p0">
-                        <table>
-                            <tr>
-                                <td class="b1 bt0 bl0 p1" style="width:50%; vertical-align:top;">
-                                    <table class="kv-tight">
-                                        <tr>
-                                            <td style="width:6mm;">20.</td>
-                                            <td style="width:45mm;">Jenis Valuta Asing</td>
-                                            <td class="center" style="width:3mm;">:</td>
-                                            <td><?= v($data, 'valuta', '-') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>21.</td>
-                                            <td>CIF</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'cif') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>22.</td>
-                                            <td>Nilai Penggantian/Nilai</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'nilai_penggantian') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>23.</td>
-                                            <td>Harga Penyerahan</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'harga_penyerahan') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>24.</td>
-                                            <td>Harga Perolehan</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'harga_perolehan') ?></td>
-                                        </tr>
-                                    </table>
-                                </td>
-
-                                <td class="b1 bt0 br0 p1" style="width:50%; vertical-align:top;">
-                                    <table class="kv-tight">
-                                        <tr>
-                                            <td style="width:6mm;">25.</td>
-                                            <td style="width:45mm;">Nilai Uang Muka</td>
-                                            <td class="center" style="width:3mm;">:</td>
-                                            <td><?= v($data, 'nilai_uang_muka') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>Diskon</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'diskon') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>Dasar Pengenaan</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'dasar_pengenaan') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>PPN Pajak(0%)</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'ppn') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>PPNBM Pajak</td>
-                                            <td class="center">:</td>
-                                            <td><?= v($data, 'ppnbm') ?></td>
-                                        </tr>
-                                    </table>
-                                </td>
-
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td class="p0">
-            <table class="bigbox2">
+            <!-- =======================
+                 HEADER BC 3.3
+                 ======================= -->
+            <table class="bc33Header">
                 <colgroup>
-                    <col style="width:75%;">
-                    <col style="width:25%;">
+                    <col style="width:10mm;">
+                    <col style="width:95mm;">
+                    <col style="width:auto;">
                 </colgroup>
 
                 <tr>
-                    <td style="padding:0;">
+                    <td class="headerVertical" rowspan="3">HEADER</td>
+
+                    <td colspan="2" style="padding:0;">
                         <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
-                            <tr>
-                                <td style="padding:0; height:var(--hTop);">
-                                    <table class="leftbox lb-top" style="width:100%; height:100%; border-collapse:collapse; table-layout:fixed;">
-                                        <tr>
-                                            <td class="" style="padding:0.6mm 0.6mm; border-bottom:0.5pt solid #000;">
-                                                DATA PENGANGKUTAN
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding:0; height:100%;">
-                                                <table class="split-noline" style="width:100%; border-collapse:collapse; table-layout:fixed; height:100%;">
-                                                    <colgroup>
-                                                        <col style="width:56%;">
-                                                        <col style="width:44%;">
-                                                    </colgroup>
-                                                    <tr>
-                                                        <td class="wrap" style="padding:1.2pt 1.2pt; vertical-align:top;">
-                                                            <span class="nowrap">26.</span> Jenis Sarana Pengangkut Darat <span class="nowrap">:</span>
-                                                            <?= v($data, 'jenis_sarana') ?>
-                                                        </td>
-                                                        <td class="wrap" style="padding:1.2pt 1.2pt; vertical-align:top;">
-                                                            <span class="nowrap">27.</span> No Polisi <span class="nowrap">:</span>
-                                                            <?= v($data, 'no_polisi') ?>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td colspan="2" style="height:100%;">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td style="padding:0; height:var(--hBottom);">
-                                    <table class="leftbox lb-bottom" style="width:100%; height:100%; border-collapse:collapse; table-layout:fixed;">
-                                        <tr>
-                                            <td class="" style="padding:0.6mm 0.6mm; border-bottom:0.5pt solid #000;">
-                                                DATA PETI KEMAS DAN PENGEMAS
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding:0; height:100%;">
-                                                <table class="peti-grid" style="width:100%; border-collapse:collapse; table-layout:fixed; height:100%;">
-                                                    <colgroup>
-                                                        <col style="width:56%;">
-                                                        <col style="width:44%;">
-                                                    </colgroup>
-                                                    <tr>
-                                                        <td style="padding:1.2pt 1.2pt; vertical-align:top;">
-                                                            31. Merek dan No Kemasan/Peti Kemasan dan Jumlah
-                                                        </td>
-                                                        <td class="vline" style="padding:1.2pt 1.2pt; vertical-align:top;">
-                                                            32. Jumlah dan Jenis Kemasan
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="padding:1.2pt 1.2pt; vertical-align:top;">
-                                                            <?= v($data, 'merek_kemasan') ?>
-                                                        </td>
-                                                        <td class="vline" style="padding:1.2pt 1.2pt; vertical-align:top;">
-                                                            <?= v($data, 'jumlah_jenis_kemasan') ?>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td style="height:100%;">&nbsp;</td>
-                                                        <td class="vline" style="height:100%;">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td style="padding:0;">
-                        <table class="segelpanel2" cellpadding="0" cellspacing="0">
                             <colgroup>
-                                <col style="width:56%;">
-                                <col style="width:44%;">
+                                <col style="width:70px;">
+                                <col style="width:auto;">
                             </colgroup>
-
                             <tr>
-                                <td class="segel-head2" colspan="2">
-                                    SEGEL (DIISI OLEH BEA DAN CUKAI)
+                                <td class="bcNumber" style="border:none; border-right:1pt solid #000;">BC 3.3</td>
+                                <td class="titleHeader" style="border:none;">
+                                    PEBERITAHUAN EKSPOR MELALUI/DARI PUSAT LOGISTIK BERIKAT
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td class="sp-left sp-top">
-                                    <table class="bc28" cellpadding="0" cellspacing="0">
-                                        <colgroup>
-                                            <col style="width:50%;">
-                                            <col style="width:50%;">
-                                        </colgroup>
-
-                                        <tr>
-                                            <td class="bc-title" colspan="2">BC Asal</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="bc-label">28. No Segel</td>
-                                            <td class="bc-label bc-v2829">29. Jenis</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="bc-val"><?= v($data, 'no_segel') ?></td>
-                                            <td class="bc-val bc-v2829"><?= v($data, 'jenis_segel') ?></td>
-                                        </tr>
-                                    </table>
-                                </td>
-
-                                <td class="sp-right sp-top">
-                                    <div class="sp30-title">30. Catatan BC Tujuan</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="sp-left sp-bottom">
-                                    <table class="blank28" cellpadding="0" cellspacing="0">
-                                        <colgroup>
-                                            <col style="width:50%;">
-                                            <col style="width:50%;">
-                                        </colgroup>
-                                        <tr>
-                                            <td class="blank-cell" style="height:var(--hBottom);">&nbsp;</td>
-                                            <td class="blank-cell bc-v2829" style="height:var(--hBottom);">&nbsp;</td>
-                                        </tr>
-                                    </table>
-                                </td>
-
-                                <td class="sp-right sp-bottom">
-                                    <div class="sp30-body" style="height:var(--hBottom);">
-                                        <?= v($data, 'catatan_bc_tujuan') ?>
-                                    </div>
-                                </td>
-                            </tr>
-
                         </table>
                     </td>
-
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td class="p0">
-            <table class="" style="width:100%; border-collapse:collapse; table-layout:fixed;">
-                <tr>
-                    <td class="p1 first" style="width:33.33%;">33. Volume (m3) : <?= v($data, 'volume') ?></td>
-                    <td class="p1" style="width:33.33%;">34. Berat Kotor : <?= v($data, 'berat_kotor') ?></td>
-                    <td class="p1 last" style="width:33.33%;">35. Berat Bersih (kg) : <?= v($data, 'berat_bersih') ?></td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-
-
-    <tr>
-        <td class="b1 bt0 p0">
-            <table>
-                <tr>
-                    <td class="b1 bt0 p1" style="width:10mm;">36.<br>No</td>
-                    <td class="b1 bt0 p1" style="width:95mm;">
-                        37. Pos tarif/HS, uraian jumlah dan barang secara lengkap, kode barang,<br>
-                        merk, tipe, ukuran, dan spesifikasi
-                    </td>
-                    <td class="b1 bt0 p1" style="width:45mm;">
-                        38.<br>
-                        - Jumlah &amp; Jenis Satuan<br>
-                        - Berat Bersih (kg)<br>
-                        - Volume (m3)
-                    </td>
-                    <td class="b1 bt0 p1">
-                        39.<br>
-                        - Nilai CIF<br>
-                        - Harga penyerahan<br>
-                        - Harga perolehan<br>
-                        - Nilai Penggantian/Nilai Jasa
-                    </td>
                 </tr>
 
                 <tr>
-                    <td class="b1 bt0 center" style="height:25mm;" colspan="4">
-                        <div class="center" style="margin-top:10mm;">
-                            -------------- (2) Jenis barang. Lihat lembar lanjut --------------
+                    <td rowspan="2" style="vertical-align:top;">
+                        <table class="alignTable">
+                            <tr>
+                                <td class="fieldLabel">Nomor Pengajuan</td>
+                                <td class="fieldSep">:</td>
+                                <td class="fieldValue"><?= v($data, 'nomor_pengajuan') ?></td>
+                            </tr>
+                        </table>
+
+                        <div style="margin-top:3mm;">
+                            <table class="alignTable">
+                                <tr>
+                                    <td class="fieldLabel">A. Kantor Pengawas</td>
+                                    <td class="fieldSep">:</td>
+                                    <td class="fieldValue"><?= v($data, 'kantor_pengawas', '') ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="fieldLabel">B. Kantor Pabean</td>
+                                    <td class="fieldSep">:</td>
+                                    <td class="fieldValue"><?= v($data, 'kantor_pabean', '') ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="fieldLabel">C. Jenis Ekspor</td>
+                                    <td class="fieldSep">:</td>
+                                    <td class="fieldValue"><?= v($data, 'jenis_ekspor', '') ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="fieldLabel">D. Kategori Ekspor</td>
+                                    <td class="fieldSep">:</td>
+                                    <td class="fieldValue"><?= v($data, 'kategori_ekspor', '') ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="fieldLabel">E. Cara Perdagangan</td>
+                                    <td class="fieldSep">:</td>
+                                    <td class="fieldValue"><?= v($data, 'cara_perdagangan', '') ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="fieldLabel">F. Cara Pembayaran</td>
+                                    <td class="fieldSep">:</td>
+                                    <td class="fieldValue"><?= v($data, 'cara_pembayaran', '') ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="fieldLabel">G. Jenis BC 3.3</td>
+                                    <td class="fieldSep">:</td>
+                                    <td class="fieldValue"><?= v($data, 'jenis_bc33', '-') ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+
+                    <td style="vertical-align:top;">
+                        <div style="text-align:center; margin-bottom:2mm;">Tanggal</div>
+                        <div style="height:15mm;"></div>
+                        <div class="halaman">Halaman ke-1 dari 1</div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="vertical-align:top;">
+                        <div class="sectionJ">J. PENDAFTARAN DAN PEMBAYARAN</div>
+
+                        <table class="alignTable">
+                            <tr>
+                                <td class="fieldLabel">Pendaftaran</td>
+                                <td class="fieldSep"></td>
+                                <td class="fieldValue"></td>
+                            </tr>
+                        </table>
+
+                        <table class="alignTable">
+                            <colgroup>
+                                <col style="width:35mm;">
+                                <col style="width:2mm;">
+                                <col style="width:auto;">
+                                <col style="width:20mm;">
+                                <col style="width:2mm;">
+                                <col style="width:auto;">
+                            </colgroup>
+                            <tr>
+                                <td>Nomor</td>
+                                <td>:</td>
+                                <td><?= v($data, 'pendaftaran_nomor', '') ?></td>
+                                <td style="padding-left:5mm;">Tanggal</td>
+                                <td>:</td>
+                                <td><?= v($data, 'pendaftaran_tanggal', '') ?></td>
+                            </tr>
+                        </table>
+
+                        <div style="margin-top:3mm;">
+                            <table class="alignTable">
+                                <tr>
+                                    <td class="fieldLabel">Bukti Pembayaran</td>
+                                    <td class="fieldSep"></td>
+                                    <td class="fieldValue"></td>
+                                </tr>
+                            </table>
+
+                            <table class="alignTable">
+                                <colgroup>
+                                    <col style="width:35mm;">
+                                    <col style="width:2mm;">
+                                    <col style="width:auto;">
+                                    <col style="width:20mm;">
+                                    <col style="width:2mm;">
+                                    <col style="width:auto;">
+                                </colgroup>
+                                <tr>
+                                    <td>Nomor</td>
+                                    <td>:</td>
+                                    <td><?= v($data, 'bukti_bayar_nomor', '') ?></td>
+                                    <td style="padding-left:5mm;">Tanggal</td>
+                                    <td>:</td>
+                                    <td><?= v($data, 'bukti_bayar_tanggal', '') ?></td>
+                                </tr>
+                            </table>
                         </div>
                     </td>
                 </tr>
             </table>
-        </td>
-    </tr>
-    <tr>
-        <td class="b1 bt0 p0">
-            <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+
+            <!-- =======================
+                 BODY (H. DATA PERDAGANGAN dst)
+                 PENTING: BODY TABLE JANGAN PAKAI BORDER LUAR LAGI
+                 ======================= -->
+            <table class="bodyBox">
+                <colgroup>
+                    <col style="width:10mm;">
+                    <col style="width:auto;">
+                </colgroup>
+
+                <!-- H. DATA PERDAGANGAN -->
                 <tr>
-                    <td class="b1 bt0 p1" style="width:55%;">F. TANDA TANGAN PENGUSAHA TPB</td>
-                    <td class="b1 bt0 p1" style="width:45%;">H. UNTUK PEJABAT BEA DAN CUKAI</td>
+                    <td class="b1 sectionHead" colspan="2">H. DATA PERDAGANGAN</td>
                 </tr>
 
                 <tr>
-                    <td class="b1 bt0 p1" style="height:24mm; vertical-align:top;">
-                        Dengan ini saya menyatakan bertanggung jawab atas kebenaran hal-hal yang<br>
-                        diberitahukan dalam pemberitahuan pabean ini.<br><br>
-                        , <?= v($data, 'tanggal_cetak') ?>
+                    <!-- vertikal H. DATA PERDAGANGAN -->
+                    <td class="b1 vcol">
+                        <div class="vbox" style="min-height:165mm;">
+                            <div class="vtext">H. DATA PERDAGANGAN</div>
+                        </div>
                     </td>
 
-                    <td class="b1 bt0 p0" style="height:24mm; vertical-align:top;">
-                        <table style="width:100%; border-collapse:collapse; table-layout:fixed; height:24mm; border:0.5pt solid #000;">
+                    <td class="b1 p0">
+                        <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
                             <colgroup>
                                 <col style="width:50%;">
                                 <col style="width:50%;">
                             </colgroup>
 
+                            <!-- ROW: Exportir vs Dokumen Pelengkap -->
                             <tr>
-                                <td class="p1 center" style="
-                                border:0;
-                                border-bottom:0.5pt solid #000;
-                                border-right:0.5pt solid #000;
-                            ">
-                                    Kantor Pabean Asal
+                                <td class="b1 bt0 bl0" style="border-right:0;">
+                                    <div class="bold" style="padding:1mm 1.2mm; border-bottom:0.6pt solid #000;">EXPORTIR</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">1. Identitas</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'exportir_identitas', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">2. Nama</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'exportir_nama', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">3. Alamat</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'exportir_alamat', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">4. Niper</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'exportir_niper', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">5. Status</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'exportir_status', '') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">PEMILIK BARANG</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">6. Identitas</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pemilik_identitas', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">7. Nama</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pemilik_nama', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">8. Alamat</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pemilik_alamat', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">9. Niper</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pemilik_niper', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">10. Status</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pemilik_status', '') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">PPJK</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">11. NPWP</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'ppjk_npwp', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">12. Nama</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'ppjk_nama', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">13. Alamat</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'ppjk_alamat', '') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">PENERIMA</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">14. Nama</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'penerima_nama', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">15. Alamat</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'penerima_alamat', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">16. Negara</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'penerima_negara', '') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">PEMBELI</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">17. Nama</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pembeli_nama', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">18. Alamat</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pembeli_alamat', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">19. Negara</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pembeli_negara', '') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">DATA PENGANGKUT</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">36. Cara</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'angkut_cara', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">37. Sarana</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'angkut_sarana', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">38. No. Pengangkut</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'angkut_no', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">39. Perkiraan Tanggal</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'angkut_perkiraan_tgl', '--') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">40. Pelabuhan/Tempat Muat</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pelabuhan_muat', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">41. Pelabuhan Bongkar</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pelabuhan_bongkar', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">42. Pelabuhan Tujuan</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'pelabuhan_tujuan', '') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">DATA PETI KEMAS</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">43. Jumlah Peti kemas</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'jumlah_peti_kemas', '0') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">44. Nomor, Ukuran dan Status Peti</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'nomor_ukuran_status_peti', '') ?></td>
+                                        </tr>
+                                    </table>
                                 </td>
 
-                                <td class="p1 center" style="
-                                border:0;
-                                border-bottom:0.5pt solid #000;
-                                border-left:0.5pt solid #000;
-                            ">
-                                    Kantor Pabean Tujuan
+                                <!-- KANAN -->
+                                <td class="b1 bt0 br0" style="border-left:0;">
+                                    <div class="bold" style="padding:1mm 1.2mm; border-bottom:0.6pt solid #000;">DOKUMEN PELENGKAP PABEAN</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">20. Invoice</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'invoice_no', '-') ?></td>
+                                            <td class="flbl" style="width:18mm;">Tanggal</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'invoice_tgl', '-') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">21. Packing List</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'packing_list_no', '-') ?></td>
+                                            <td class="flbl" style="width:18mm;">Tanggal</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'packing_list_tgl', '-') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div style="padding:0.5mm 1.2mm;">
+                                        <div class="bold">22. Dokumen Persyaratan</div>
+                                        <table class="ftable">
+                                            <tr>
+                                                <td class="flbl">Jenis</td>
+                                                <td class="fsep">:</td>
+                                                <td class="fval"><?= v($data, 'dok_persyaratan_jenis', '') ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="flbl">Nomor</td>
+                                                <td class="fsep">:</td>
+                                                <td class="fval"><?= v($data, 'dok_persyaratan_nomor', '') ?></td>
+                                                <td class="flbl" style="width:18mm;">Tanggal</td>
+                                                <td class="fsep">:</td>
+                                                <td class="fval"><?= v($data, 'dok_persyaratan_tgl', '') ?></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div style="padding:0.5mm 1.2mm; border-top:0.6pt solid #000;">
+                                        <div class="bold">23. Dokumen Fasilitas Fiskal di Bidang</div>
+                                        <table class="ftable">
+                                            <tr>
+                                                <td class="flbl">Jenis</td>
+                                                <td class="fsep">:</td>
+                                                <td class="fval"><?= v($data, 'dok_fiskal_jenis', '') ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="flbl">Nomor</td>
+                                                <td class="fsep">:</td>
+                                                <td class="fval"><?= v($data, 'dok_fiskal_nomor', '') ?></td>
+                                                <td class="flbl" style="width:18mm;">Tanggal</td>
+                                                <td class="fsep">:</td>
+                                                <td class="fval"><?= v($data, 'dok_fiskal_tgl', '') ?></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">PUSAT LOGISTIK BERIKAT</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">24. Nama PLB</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'plb_nama', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">25. Lokasi/Kode</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'plb_lokasi_kode', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">26. Cara Pengangkutan ke</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'plb_cara_pengangkutan_ke', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">27. Perkiraan Tanggal</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'plb_perkiraan_tgl', '') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">DATA PENYERAHAN</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">28. Daerah Asal</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'daerah_asal', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">29. Cara Penyerahan</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'cara_penyerahan', '-') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">DATA PENYERAHAN</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">30. Bank Devisa hasil</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'bank_devisa_hasil', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">31. Jenis Valuta</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'jenis_valuta', '') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">32. Nilai Tukar</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'nilai_tukar', '0.00') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">33. Nilai Barang</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'nilai_barang', '0.00') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">34. FOB</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'fob', '0.00') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="flbl">35. Nilai Maklon</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'nilai_maklon', '0.00') ?></td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="bold" style="padding:1mm 1.2mm; border-top:0.6pt solid #000; border-bottom:0.6pt solid #000;">DATA KEMASAN</div>
+                                    <table class="ftable" style="padding:1mm 1.2mm;">
+                                        <tr>
+                                            <td class="flbl">45. Jenis, Jumlah dan Merek</td>
+                                            <td class="fsep">:</td>
+                                            <td class="fval"><?= v($data, 'jenis_jumlah_merek_kemasan', '') ?></td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
 
+                            <!-- DATA BARANG EKSPOR (ringkas sesuai template 1 halaman) -->
                             <tr>
-                                <td style="
-                                height:20mm;
-                                vertical-align:bottom;
-                                border:0;
-                                padding:0;
-                                border-right:0.5pt solid #000;
-                            ">
-                                    <div style="padding-left:2mm; padding-right:0.6mm; padding-bottom:0.6mm; line-height:1.05;">
-                                        Nama :<br>
-                                        NIM :
-                                    </div>
-                                </td>
+                                <td class="b1 bl0 bb0" colspan="2" style="border-top:0.6pt solid #000; padding:0;">
+                                    <div class="bold" style="padding:1mm 1.2mm; border-bottom:0.6pt solid #000;">DATA BARANG EKSPOR</div>
 
-                                <td style="
-                                height:20mm;
-                                vertical-align:bottom;
-                                border:0;
-                                padding:0;
-                                border-left:0.5pt solid #000;
-                            ">
-                                    <div style="padding-left:2mm; padding-right:0.6mm; padding-bottom:0.6mm; line-height:1.05;">
-                                        Nama :<br>
-                                        NIM :
-                                    </div>
+                                    <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                                        <tr>
+                                            <td style="width:50%; border-right:0.6pt solid #000; padding:1mm 1.2mm;">
+                                                46. Berat Kotor (Kg) : <?= v($data, 'berat_kotor', '0.0000') ?>
+                                            </td>
+                                            <td style="width:50%; padding:1mm 1.2mm;">
+                                                47. Berat Bersih (Kg) : <?= v($data, 'berat_bersih', '0.0000') ?>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- header kolom barang -->
+                                    <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                                        <colgroup>
+                                            <col style="width:5%;">
+                                            <col style="width:30%;">
+                                            <col style="width:20%;">
+                                            <col style="width:15%;">
+                                            <col style="width:15%;">
+                                            <col style="width:15%;">
+                                        </colgroup>
+                                        <tr>
+                                            <td class="b1 bl0" style="text-align:center; padding:1mm 0.8mm;">
+                                                48.<br>No
+                                            </td>
+                                            <td class="b1" style="padding:1mm 1.2mm;">
+                                                49. - Pos Tarif/HS<br>
+                                                - Uraian jenis barang (termasuk merk, tipe, dan spesifikasi wajib)<br>
+                                                - Negara Asal Barang
+                                            </td>
+                                            <td class="b1" style="padding:1mm 1.2mm;">
+                                                50. Keterangan<br>
+                                                - Kode Barang<br>
+                                                - Persyaratan &amp; No. Unit<br>
+                                                - Fasilitas &amp; No. Unit
+                                            </td>
+                                            <td class="b1" style="padding:1mm 1.2mm;">
+                                                51. - HE Barang<br>- BK<br>- PPh
+                                            </td>
+                                            <td class="b1" style="padding:1mm 1.2mm;">
+                                                52. - Jumlah &amp; Jenis Satuan<br>
+                                                - Berat Bersih (Kg)<br>
+                                                - Volume (m3)
+                                            </td>
+                                            <td class="b1 br0" style="padding:1mm 1.2mm;">
+                                                53. - Nilai Barang<br>- FOB
+                                            </td>
+                                        </tr>
+
+                                        <!-- 1 baris contoh (sesuai PDF contoh kosong) -->
+                                        <tr>
+                                            <td class="b1 bl0" style="text-align:center; padding:2mm 0.8mm;">1</td>
+                                            <td class="b1" style="padding:2mm 1.2mm;">-</td>
+                                            <td class="b1" style="padding:2mm 1.2mm;">-</td>
+                                            <td class="b1" style="padding:2mm 1.2mm;">-</td>
+                                            <td class="b1" style="padding:2mm 1.2mm;">-</td>
+                                            <td class="b1 br0" style="padding:2mm 1.2mm;">-</td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- penerimaan negara + pemberitahuan pabean impor -->
+                                    <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                                        <colgroup>
+                                            <col style="width:50%;">
+                                            <col style="width:50%;">
+                                        </colgroup>
+                                        <tr>
+                                            <td class="b1 bl0" style="border-right:0; padding:0;">
+                                                <div class="bold center" style="padding:1mm 1.2mm; border-bottom:0.6pt solid #000;">
+                                                    DATA PENERIMAAN NEGARA
+                                                </div>
+                                                <table class="ftable" style="padding:1mm 1.2mm;">
+                                                    <tr>
+                                                        <td class="flbl">54. Bea Keluar</td>
+                                                        <td class="fsep">:</td>
+                                                        <td class="fval"><?= v($data, 'bea_keluar', '') ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="flbl">55. PPh</td>
+                                                        <td class="fsep">:</td>
+                                                        <td class="fval"><?= v($data, 'pph', '') ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="flbl">56. Lainnya</td>
+                                                        <td class="fsep">:</td>
+                                                        <td class="fval"><?= v($data, 'lainnya', '') ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="flbl">57. Jumlah</td>
+                                                        <td class="fsep">:</td>
+                                                        <td class="fval"><?= v($data, 'jumlah', '') ?></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+
+                                            <td class="b1 br0" style="border-left:0; padding:0;">
+                                                <div class="bold center" style="padding:1mm 1.2mm; border-bottom:0.6pt solid #000;">
+                                                    PEMBERITAHUAN PABEAN IMPOR (dalam hal Ekspor)
+                                                </div>
+                                                <table class="ftable" style="padding:1mm 1.2mm;">
+                                                    <tr>
+                                                        <td class="flbl">58. Jenis Dokumen</td>
+                                                        <td class="fsep">:</td>
+                                                        <td class="fval"><?= v($data, 'impor_jenis_dok', '') ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="flbl">59. Nomor Pendaftaran</td>
+                                                        <td class="fsep">:</td>
+                                                        <td class="fval"><?= v($data, 'impor_no_daftar', '') ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="flbl">60. Tanggal Pendaftaran</td>
+                                                        <td class="fsep">:</td>
+                                                        <td class="fval"><?= v($data, 'impor_tgl_daftar', '') ?></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- TANDA TANGAN -->
+                                    <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                                        <tr>
+                                            <td class="b1 bl0 br0" style="border-top:0; padding:1mm 1.2mm;">
+                                                <div class="bold">I. TANDA TANGAN EKSPORTIR</div>
+                                                <div style="margin-top:1mm;">
+                                                    Dengan ini saya menyatakan bertanggung jawab atas kebenaran hal-hal yang<br>
+                                                    diberitahukan dalam dokuemn ini dan keabsahan dokumen pelengkap pabean yang<br>
+                                                    menjadi dasar pembuatan ini.
+                                                </div>
+                                            </td>
+                                            <td class="b1 br0" style="border-top:0; width:30%; padding:1mm 1.2mm; vertical-align:bottom;">
+                                                <div class="center">, <?= v($data, 'tanggal', '17-01-2026') ?></div>
+                                                <div style="height:14mm;"></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
+
         </td>
     </tr>
+</table>
 
-</table> 
+<div class="footer">
+    Printed from <?= v($data, 'printed_app', 'esikatERP') ?> | <?= v($data, 'printed_datetime', '') ?>
+    <span style="float:right;">Halaman ke-1 dari 1</span>
+</div>

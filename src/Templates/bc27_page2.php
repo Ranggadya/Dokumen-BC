@@ -4,9 +4,6 @@
 /** @var array $data */
 /** @var array $items */
 /** @var int $startNo */
-
-// Helper functions sudah tersedia dari helpers.php via autoload Composer
-// function v(), vv(), row3() sudah di-deklarasikan di src/Support/helpers.php
 ?>
 
 <style>
@@ -94,17 +91,17 @@
     }
 
     .topbar td {
-        padding: 0.4mm 0.6mm;
+        padding: 0.7mm 0.8mm;
         line-height: 1.0;
         vertical-align: middle;
     }
 
     .topbar-left {
-        padding: 0 !important;
+        padding: 0;
     }
 
     .topbar-right {
-        padding: 0.35mm 0.6mm !important;
+        padding: 2mm;
     }
 
     .kv-tight td {
@@ -135,9 +132,7 @@
         padding: 0.20mm 0.60mm;
     }
 
-    /* Tabel barang 36-39 */
     .goods-head td {
-        font-weight: bold;
         vertical-align: top;
     }
 
@@ -173,153 +168,285 @@
         padding: 0;
     }
 
-    /* rapatkan semua cell di adgWrap */
-    .adgWrap td {
-        padding: 0.22mm 0.30mm;
-        /* lebih rapat dari sebelumnya */
+    /* =========================
+   BLOK: NOMOR PENGAJUAN + A/B/C + D/G (SINGLE BORDER SYSTEM)
+   ========================= */
+    table.adgHeader {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border: 0.5pt solid #000;
+    }
+
+    table.adgHeader td {
+        border: 0.5pt solid #000;
+        padding: 1.2mm 2.5mm;
         vertical-align: top;
     }
 
-    /* kolom ":" super rapat */
-    .adgWrap .sep {
-        width: 2.0mm;
-        /* dari 2.6mm -> 2.0mm */
-        text-align: center;
-        padding: 0 !important;
-        /* kunci supaya ":" nempel */
+    table.adgHeader .no-border-right {
+        border-right: none !important;
     }
 
-    /* value biar "-" dekat ":" */
-    .adgWrap .val {
-        padding-left: 0.15mm !important;
-        /* kecil sekali supaya "-" dekat ":" */
+    table.adgHeader .no-border-left {
+        border-left: none !important;
     }
 
-    /* label kiri/kanan rapat (supaya ":" dekat label) */
-    .adgWrap .indent,
-    .adgWrap .secHead {
-        padding-right: 0.25mm !important;
-        /* label makin dekat ke ":" */
+    table.adgHeader .no-border-top {
+        border-top: none !important;
     }
 
-    /* khusus label kanan di area G (Nomor Pendaftaran/Tanggal): lebih rapat lagi */
-    .adgWrap .gLabel {
-        padding-right: 0.10mm !important;
+    table.adgHeader .no-border-bottom {
+        border-bottom: none !important;
     }
 
-    /* garis vertikal pemisah G */
-    .adgWrap .splitL {
-        border-left: 0.5pt solid #000;
+    table.adgHeader .left-col {
+        width: 46%;
     }
 
-    /* garis tebal atas khusus area G (hanya panel kanan) */
-    .adgWrap .gTopBold {
-        border-top: 1.0pt solid #000;
-        /* “tebal” */
+    table.adgHeader .right-col {
+        width: 54%;
+    }
+
+    /* Baris Halaman */
+    table.adgHeader .halaman-cell {
+        padding: 1.2mm 2.5mm;
+    }
+
+    table.adgHeader .halaman {
+        text-align: right;
+        font-size: 6.8pt;
+        justify-content: right;
+        justify-items: right;
+    }
+
+    /* Baris D */
+    table.adgHeader .section-d-cell {
+        padding: 1.2mm 2.5mm;
+    }
+
+    /* Baris G dengan border kiri dan atas */
+    table.adgHeader .section-g-cell {
+        padding: 1.2mm 2.5mm;
+        border-left: 0.5pt solid #000 !important;
+        border-top: 0.5pt solid #000 !important;
+    }
+
+    /* Table untuk alignment field KIRI (NOMOR, A, B, C) */
+    table.field-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.field-table td {
+        border: none !important;
+        padding: 0.3mm 0;
+        vertical-align: top;
+    }
+
+    table.field-table .field-label {
+        width: 38mm;
+    }
+
+    table.field-table .indent-label {
+        padding-left: 5mm;
+        width: 38mm;
+    }
+
+    table.field-table .field-sep {
+        width: 1mm;
+        text-align: left;
+        padding-right: 1mm;
+    }
+
+    table.field-table .field-value {
+        width: auto;
+    }
+
+    /* Table untuk alignment field D */
+    table.field-table-right {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.field-table-right td {
+        border: none !important;
+        padding: 0.3mm 0;
+        vertical-align: top;
+    }
+
+    table.field-table-right .field-label-right {
+        width: 30mm;
+    }
+
+    table.field-table-right .field-sep-right {
+        width: 1mm;
+        text-align: left;
+        padding-right: 1mm;
+    }
+
+    table.field-table-right .field-value-right {
+        width: auto;
+    }
+
+    /* Table untuk alignment field G */
+    table.field-table-g {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.field-table-g td {
+        border: none !important;
+        padding: 0.3mm 0;
+        vertical-align: top;
+    }
+
+    table.field-table-g .field-label-g {
+        width: 32mm;
+    }
+
+    table.field-table-g .indent-label {
+        padding-left: 5mm;
+        width: 32mm;
+    }
+
+    table.field-table-g .field-sep-g {
+        width: 1mm;
+        text-align: left;
+        padding-right: 1mm;
+    }
+
+    table.field-table-g .field-value-g {
+        width: auto;
+    }
+
+    .bc27-mini {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        margin: 0;
+    }
+
+    .bc27-mini td {
+        padding: 0;
+        border: 0;
+        font-size: 7pt;
+        font-weight: bold;
+        text-align: right;
+        line-height: 1;
     }
 </style>
-
+<table class="bc27-mini">
+    <tr>
+        <td>BC 2.7</td>
+    </tr>
+</table>
 <!-- TOP BAR -->
 <table class="b1 topbar" cellspacing="0" cellpadding="0">
     <tr>
         <td class="b1 center bc bold topbar-left" style="width:18mm;">BC 2.7</td>
-        <td class="b1 center bold topbar-right f10">
-            LEMBAR LANJUTAN DATA BARANG
+        <td class="b1 center topbar-right f10">
+            LEMBAR LANJUTAN <br> DATA BARANG
         </td>
     </tr>
 </table>
 
 <!-- OUTER -->
-<table class="b1 bt0">
-
-    <!-- HEADER row -->
+<table class="b1">
     <tr>
-        <td class="b1 bt0 p1">HEADER</td>
+        <td class="b1 bt0 p1" style="padding-left: 1.5mm;">HEADER</td>
     </tr>
-
-    <!-- BLOK: NOMOR PENGAJUAN + A/D/G (SATU BORDER LUAR) -->
+    <!-- BLOK: NOMOR PENGAJUAN + A/B/C + D/G (SINGLE BORDER SYSTEM) -->
     <tr>
-        <td class="b1 bt0 p0">
-            <table class="adgWrap">
-                <colgroup>
-                    <!-- KIRI -->
-                    <col style="width:26%;">
-                    <col style="width:2.0mm;"> <!-- ":" kiri makin rapat -->
-                    <col style="width:36%;">
-                    <!-- KANAN -->
-                    <col style="width:20%;">
-                    <col style="width:2.0mm;"> <!-- ":" kanan makin rapat -->
-                    <col style="width:14%;">
-                </colgroup>
-
-                <!-- Row 0: NOMOR PENGAJUAN | Halaman -->
+        <td class="p0">
+            <table class="adgHeader">
                 <tr>
-                    <td class="secHead">NOMOR PENGAJUAN</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'nomor_pengajuan') ?></td>
+                    <td class="left-col no-border-right" rowspan="3">
+                        <table class="field-table">
+                            <tr>
+                                <td class="field-label">NOMOR PENGAJUAN</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'nomor_pengajuan') ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="height: 1mm;"></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label">A. KANTOR PABEAN</td>
+                                <td class="field-sep"></td>
+                                <td class="field-value"></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label indent-label">1. Kantor Asal</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'kantor_asal', '-') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label indent-label">2. Kantor Tujuan</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'kantor_tujuan', '-') ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="height: 1mm;"></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label">B. JENIS TPB ASAL</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'jenis_tpb_asal', '-') ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="height: 1mm;"></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label">C. JENIS TPB TUJUAN</td>
+                                <td class="field-sep">:</td>
+                                <td class="field-value"><?= v($data, 'jenis_tpb_tujuan', '-') ?></td>
+                            </tr>
+                        </table>
+                    </td>
 
-                    <td colspan="3" style="padding-right:0.8mm;">
-                        <div class="page">Halaman ke-3 dari 3</div>
+                    <!-- Baris 1 Kanan: Halaman (sejajar dengan NOMOR) -->
+                    <td class="right-col no-border-left no-border-bottom halaman-cell">
+                        <div class="halaman">Halaman ke-3 dari 3</div>
                     </td>
                 </tr>
 
-                <!-- Row 1: A | D -->
+                <!-- Baris 2 Kanan: D (sejajar dengan A) -->
                 <tr>
-                    <td class="secHead">A. KANTOR PABEAN</td>
-                    <td class="sep">:</td>
-                    <td class="val">-</td>
-
-                    <td class="secHead">D. JENIS TRANSAKSI</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'jenis_transaksi', '-') ?></td>
+                    <td class="right-col no-border-left no-border-top section-d-cell">
+                        <table class="field-table-right">
+                            <tr>
+                                <td class="field-label-right">D. JENIS TRANSAKSI</td>
+                                <td class="field-sep-right">:</td>
+                                <td class="field-value-right"><?= v($data, 'jenis_transaksi', '-') ?></td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
 
-                <!-- Row 2: 1. Kantor Asal | kosong kanan -->
+                <!-- Baris 3 Kanan: G (sejajar dengan 2. Kantor Tujuan) -->
                 <tr>
-                    <td class="indent">1. Kantor Asal</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'kantor_asal', '-') ?></td>
-
-                    <td colspan="3">&nbsp;</td>
+                    <td class="right-col no-border-left section-g-cell">
+                        <div style="margin-bottom: 1.5mm; font-weight: bold;">
+                            G. KOLOM KHUSUS BEA CUKAI
+                        </div>
+                        <table class="field-table-g">
+                            <tr>
+                                <td class="field-label-g indent-label">Nomor Pendaftaran</td>
+                                <td class="field-sep-g">:</td>
+                                <td class="field-value-g"><?= v($data, 'nomor_pendaftaran', '') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="field-label-g indent-label">Tanggal</td>
+                                <td class="field-sep-g">:</td>
+                                <td class="field-value-g"><?= v($data, 'tanggal_pendaftaran', '') ?></td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
-
-                <!-- Row 3: 2. Kantor Tujuan | G header (mulai splitL + garis tebal atas hanya kanan) -->
-                <tr>
-                    <td class="indent">2. Kantor Tujuan</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'kantor_tujuan', '-') ?></td>
-
-                    <!-- garis tebal atas hanya area kanan -->
-                    <td class="secHead splitL gTopBold" colspan="3">G. KOLOM KHUSUS BEA CUKAI</td>
-                </tr>
-
-                <!-- Row 4: B | Nomor Pendaftaran -->
-                <tr>
-                    <td class="secHead">B. JENIS TPB ASAL</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'jenis_tpb_asal', '-') ?></td>
-
-                    <td class="splitL indent gLabel">Nomor Pendaftaran</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'nomor_pendaftaran', '-') ?></td>
-                </tr>
-
-                <!-- Row 5: C | Tanggal -->
-                <tr>
-                    <td class="secHead">C. JENIS TPB TUJUAN</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'jenis_tpb_tujuan', '-') ?></td>
-
-                    <td class="splitL indent gLabel">Tanggal</td>
-                    <td class="sep">:</td>
-                    <td class="val"><?= v($data, 'tanggal_pendaftaran', '-') ?></td>
-                </tr>
-
             </table>
         </td>
     </tr>
-
-
     <!-- TABEL 36-39 -->
     <tr>
         <td class="b1 bt0 p0">
@@ -397,13 +524,13 @@
         <td class="b1 bt0 p0">
             <table>
                 <tr>
-                    <td class="b1 bt0 p1" style="width:55%;">F. TANDA TANGAN PENGUSAHA TPB</td>
-                    <td class="b1 bt0 p1" style="width:45%;">H. UNTUK PEJABAT BEA DAN CUKAI</td>
+                    <td class="b1 bt0 p1" style="width:55%; padding-left:1.5mm;">F. TANDA TANGAN PENGUSAHA TPB</td>
+                    <td class="b1 bt0 p1" style="width:45%; padding-left:1.5mm">H. UNTUK PEJABAT BEA DAN CUKAI</td>
                 </tr>
                 <tr>
-                    <td class="b1 bt0 p1" style="height:24mm; vertical-align:top;">
+                    <td class="b1 bt0 p1" style="height:24mm; vertical-align:top; padding:2mm;">
                         Dengan ini saya menyatakan bertanggung jawab atas kebenaran hal-hal yang<br>
-                        diberitahukan dalam pemberitahuan pabean ini.<br><br>
+                        diberitahukan dalam pemberitahuan pabean ini.<br>
                         , <?= v($data, 'tanggal_cetak') ?>
                     </td>
 
@@ -433,22 +560,22 @@
         height:18mm;              /* SAMAKAN kiri & kanan */
         vertical-align:bottom;
         border:0;
-        padding-left:1.2mm;         /* jarak kiri dari border */
+        padding-left:1.4mm;         /* jarak kiri dari border */
         padding-right:0.6mm;
-        padding-bottom:0.3mm;
+        padding-bottom:0.7mm;
         line-height:1.05;
     ">
                                     Nama :<br>NIM :
                                 </td>
 
                                 <td style="
-        height:20mm;              /* SAMAKAN kiri & kanan */
+        height:20mm;              
         vertical-align:bottom;
         border:0;
         border-left:0.5pt solid #000; /* garis vertikal lanjut sampai bawah */
-        padding-left:1.2mm;         /* jarak dari garis tengah */
+        padding-left:1.4mm;         /* jarak dari garis tengah */
         padding-right:0.6mm;
-        padding-bottom:0.3mm;
+        padding-bottom:0.7mm;
         line-height:1.05;
     ">
                                     Nama :<br>NIM :
@@ -462,7 +589,6 @@
     </tr>
 </table>
 
-<!-- FOOTER (opsional, tapi di template Word ada printed from) -->
 <tr>
     <td class="bt0 p1 right small" style="border:0;">
         Printed from <?= v($data, 'printed_from', 'esikatERP') ?> | <?= v($data, 'printed_date', '') ?> | <?= v($data, 'printed_time', '') ?>
