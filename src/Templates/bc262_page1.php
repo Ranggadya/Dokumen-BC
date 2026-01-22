@@ -1,7 +1,7 @@
 <?php
 
 /** @var array $data */
-/** @var callable $v (didefinisikan di print_b261.php) */
+/** @var callable $v (didefinisikan di print_b261.php atau print_bc262.php) */
 ?>
 <style>
     @page {
@@ -95,28 +95,6 @@
         letter-spacing: 0.2px;
     }
 
-    .titleSmall {
-        font-size: 9pt;
-        font-weight: 700;
-    }
-
-    .boxTitle {
-        font-weight: 700;
-    }
-
-    .label {
-        width: 28mm;
-    }
-
-    .sep {
-        width: 2.2mm;
-        text-align: center;
-    }
-
-    .val {
-        width: auto;
-    }
-
     .mini {
         font-size: 7.4pt;
     }
@@ -131,42 +109,11 @@
         height: 3.2mm;
         border: 0.5pt solid #000;
         vertical-align: middle;
-        margin-right: 1mm;
+        margin: 0 1mm 0 1mm;
     }
 
     .check.on {
         background: #000;
-    }
-
-    .gridNo {
-        width: 6mm;
-        text-align: center;
-    }
-
-    .gridHS {
-        width: 36mm;
-    }
-
-    .gridNegara {
-        width: 20mm;
-    }
-
-    .gridTarif {
-        width: 35mm;
-    }
-
-    .gridSatuan {
-        width: 30mm;
-    }
-
-    .gridNilai {
-        width: 22mm;
-    }
-
-    .noteLine {
-        text-align: center;
-        padding: 4mm 0;
-        font-size: 8pt;
     }
 
     .footerLine {
@@ -190,15 +137,17 @@
     }
 </style>
 
+<!-- JUDUL: BC 2.6.2 -->
 <div class="titleWrap center">
-    <div class="titleBig">PEMBERITAHUAN PENGELUARAN BARANG DARI</div>
+    <div class="titleBig">PEMBERITAHUAN PEMASUKAN KEMBALI BARANG YANG DIKELUARKAN DARI</div>
     <div class="titleBig">TEMPAT PENIMBUNAN BERIKAT DENGAN JAMINAN</div>
 </div>
 <table class="bc27-mini">
     <tr>
-        <td>BC 2.6.1</td>
+        <td>BC 2.6.2</td>
     </tr>
 </table>
+
 <table>
     <tr>
         <td class="b p0">
@@ -230,41 +179,44 @@
                     </td>
                 </tr>
 
+
+                <!-- A. TUJUAN PEMASUKAN (BC 2.6.2) -->
                 <tr>
-                    <td class="b p08" colspan="2" style="border-top:0; padding-top: 0;">
+                    <td class="b p08" colspan="2" style="border-top:0; padding-top:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
-                                <td class="mini bold" style="border:none; padding:0.5mm 0; width:30mm;">A. JENIS TRANSAKSI</td>
+                                <td class="mini bold" style="border:none; padding:0.5mm 0; width:30mm;">A. TUJUAN PEMASUKAN</td>
                                 <td class="mini center" style="border:none; padding:0.5mm 0; width:3mm;">:</td>
                                 <td class="mini" style="border:none; padding:0.5mm 0; white-space:nowrap;">
-                                    1. Diperbaiki
-                                    <span class="check <?= (v($data, 'trx_diperbaiki', '') === 'checked') ? 'on' : '' ?>"></span>
-                                    2. Disubkontrakkan
-                                    <span class="check <?= (v($data, 'trx_disubkontrakkan', '') === 'checked') ? 'on' : '' ?>"></span>
-                                    3. Dipinjamkan
-                                    <span class="check <?= (v($data, 'trx_dipinjamkan', '') === 'checked') ? 'on' : '' ?>"></span>
-                                    4. Lainnya
-                                    <span class="check <?= (v($data, 'trx_lainnya', '') === 'checked') ? 'on' : '' ?>"></span>
+                                    1. Eks Diperbaiki
+                                    <span class="check <?= (v($data, 'tujuan_eks_diperbaiki', '') === 'checked') ? 'on' : '' ?>"></span>
+                                    2. Eks Disubkontrakkan
+                                    <span class="check <?= (v($data, 'tujuan_eks_disubkontrakkan', '') === 'checked') ? 'on' : '' ?>"></span>
+                                    3. Eks Dipinjamkan
+                                    <span class="check <?= (v($data, 'tujuan_eks_dipinjamkan', '') === 'checked') ? 'on' : '' ?>"></span>
+                                    4.
+                                    <span class="check <?= (v($data, 'tujuan_lainnya', '') === 'checked') ? 'on' : '' ?>"></span>
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
 
+                <!-- B. DATA PEMBERITAHUAN -->
                 <tr>
                     <td class="b bt0 br0 p08" style="width:50%;">
-                        <div class="boxTitle">B. DATA PEMBERITAHUAN</div>
+                        <div class="bold">B. DATA PEMBERITAHUAN</div>
                     </td>
-                    <td class="b bt0 bl0 p08" style="width:50%;">
-                        &nbsp;
-                    </td>
+                    <td class="b bt0 bl0 p08" style="width:50%;">&nbsp;</td>
                 </tr>
+
+                <!-- BLOK KIRI + KANAN -->
                 <tr>
                     <!-- KOLOM KIRI -->
                     <td style="width:50%; border:1px solid #000; border-top:0; border-right:1px solid #000; padding:0; vertical-align:top;">
                         <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
 
-                            <!-- ROW AREA 1: Pengusaha TPB -->
+                            <!-- Pengusaha TPB -->
                             <tr>
                                 <td style="padding:2mm; border-bottom:1px solid #000;">
                                     <div style="font-weight:700; font-size:8pt; margin-bottom:1mm;">Pengusaha TPB</div>
@@ -273,34 +225,32 @@
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:26mm; white-space:nowrap;">1. NPWP</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pengusaha_npwp']) ? $data['pengusaha_npwp'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'pengusaha_npwp', '') ?></td>
                                         </tr>
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:26mm; white-space:nowrap;">2. Nama</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pengusaha_nama']) ? $data['pengusaha_nama'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'pengusaha_nama', '') ?></td>
                                         </tr>
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:26mm; white-space:nowrap;">3. Alamat</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pengusaha_alamat']) ? $data['pengusaha_alamat'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'pengusaha_alamat', '') ?></td>
                                         </tr>
-
-                                        <!-- 4: No + Tgl (1 baris 6 kolom, tanpa float, tanpa colgroup) -->
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; white-space:nowrap;">4. No. dan Tgl. izin TPB</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0; width:30%;"><?= isset($data['izin_tpb_no']) ? $data['izin_tpb_no'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0; width:30%;"><?= v($data, 'izin_tpb_no', '') ?></td>
 
-                                            <td style="border:none; padding:0.5mm 0 0.5mm 3mm; white-space:nowrap;">Tgl</td>
+                                            <td style="border:none; padding:0.5mm 0 0.5mm 1mm; white-space:nowrap;">Tgl</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['izin_tpb_tgl']) ? $data['izin_tpb_tgl'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'izin_tpb_tgl', '') ?></td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
 
-                            <!-- ROW AREA 2: Pengirim Barang -->
+                            <!-- Pengirim Barang -->
                             <tr>
                                 <td style="padding:2mm; border-bottom:1px solid #000;">
                                     <div style="font-weight:700; font-size:8pt; margin-bottom:1mm;">Pengirim Barang</div>
@@ -309,23 +259,23 @@
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:26mm; white-space:nowrap;">5. NPWP</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pengirim_npwp']) ? $data['pengirim_npwp'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'pengirim_npwp', '') ?></td>
                                         </tr>
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:26mm; white-space:nowrap;">6. Nama</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pengirim_nama']) ? $data['pengirim_nama'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'pengirim_nama', '') ?></td>
                                         </tr>
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:26mm; white-space:nowrap;">7. Alamat</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pengirim_alamat']) ? $data['pengirim_alamat'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'pengirim_alamat', '') ?></td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
 
-                            <!-- ROW AREA 3: Pemilik Barang -->
+                            <!-- Pemilik Barang -->
                             <tr>
                                 <td style="padding:2mm;">
                                     <div style="font-weight:700; font-size:8pt; margin-bottom:1mm;">Pemilik Barang</div>
@@ -334,17 +284,17 @@
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:26mm; white-space:nowrap;">8. NPWP</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pemilik_npwp']) ? $data['pemilik_npwp'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'pemilik_npwp', '') ?></td>
                                         </tr>
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:26mm; white-space:nowrap;">9. Nama</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pemilik_nama']) ? $data['pemilik_nama'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'pemilik_nama', '') ?></td>
                                         </tr>
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:26mm; white-space:nowrap;">10. Alamat</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pemilik_alamat']) ? $data['pemilik_alamat'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'pemilik_alamat', '') ?></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -357,7 +307,7 @@
                     <td style="width:50%; border:1px solid #000; border-top:0; border-left:0; padding:0; vertical-align:top;">
                         <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
 
-                            <!-- ROW AREA 1: D. DIISI OLEH BEA DAN CUKAI -->
+                            <!-- D. DIISI OLEH BEA DAN CUKAI -->
                             <tr>
                                 <td style="padding:2mm; border-bottom:1px solid #000;">
                                     <div style="font-size:8pt; font-weight:700; margin-bottom:1mm;">D. DIISI OLEH BEA DAN CUKAI</div>
@@ -366,104 +316,97 @@
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:32mm; white-space:nowrap;">Nomor Pendaftaran</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['nomor_pendaftaran']) ? $data['nomor_pendaftaran'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'nomor_pendaftaran', '-') ?></td>
                                         </tr>
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:32mm; white-space:nowrap;">Tanggal</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['tanggal_pendaftaran']) ? $data['tanggal_pendaftaran'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'tanggal_pendaftaran', '-') ?></td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
 
-                            <!-- ROW AREA 2: Dokumen Pelengkap Pabean -->
+                            <!-- Dokumen Pelengkap Pabean (BC 2.6.2: 11/12/13 berbeda) -->
                             <tr>
                                 <td style="padding:2mm; border-bottom:1px solid #000;">
                                     <div style="font-weight:700; font-size:8pt; margin-bottom:1mm;">Dokumen Pelengkap Pabean</div>
+
                                     <table style="width:100%; border-collapse:collapse; font-size:7.5pt; line-height:1.15;">
-
-                                        <!-- 11: Packing List + Tgl -->
+                                        <!-- 11 -->
                                         <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:42mm;">11. Packing List</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0; width:25mm;"><?= isset($data['packing_list']) ? $data['packing_list'] : '' ?></td>
-                                            <td style="border:none; padding:0.5mm 0; width:10mm;">Tgl.</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['packing_list_tgl']) ? $data['packing_list_tgl'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0; width:34mm; white-space:nowrap;">11. Packing List</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0; width:26mm;"><?= v($data, 'packing_list_no', '') ?></td>
+
+                                            <td style="border:none; padding:0.5mm 0 0.5mm 2mm; width:9mm; white-space:nowrap;">Tgl.</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'packing_list_tgl', '') ?></td>
                                         </tr>
 
-                                        <!-- 12: Header -->
+                                        <!-- 12 -->
                                         <tr>
-                                            <td colspan="6" style="border:none; padding:0.5mm 0;">12. Pemenuhan Persyaratan/Fasilitas Impor</td>
+                                            <td style="border:none; padding:0.5mm 0; width:34mm; white-space:nowrap;">12. Surat Keputusan</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0; width:26mm;"><?= v($data, 'dok12_surat_keputusan_no', '') ?></td>
+
+                                            <td style="border:none; padding:0.5mm 0 0.5mm 2mm; width:9mm; white-space:nowrap;">Tgl.</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'dok12_surat_keputusan_tgl', '') ?></td>
                                         </tr>
 
-                                        <!-- 12: No + Tgl -->
+                                        <!-- 13 -->
                                         <tr>
-                                            <td style="border:none; padding:0.5mm 0; padding-left:6mm; width:10mm;">No</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0; width:25mm;"><?= isset($data['pemenuhan_no']) ? $data['pemenuhan_no'] : '' ?></td>
-                                            <td style="border:none; padding:0.5mm 0; width:10mm;">Tgl.</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['pemenuhan_tgl']) ? $data['pemenuhan_tgl'] : '' ?></td>
-                                        </tr>
+                                            <td style="border:none; padding:0.5mm 0; width:34mm; white-space:nowrap;">13. Dokumen BC</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0; width:26mm;"><?= v($data, 'dok13_bc_no', '') ?></td>
 
-                                        <!-- 13: Header -->
-                                        <tr>
-                                            <td colspan="6" style="border:none; padding:0.5mm 0;">13. Surat Keputusan/Dokumen Lainnya</td>
-                                        </tr>
-
-                                        <!-- 13: No + Tgl -->
-                                        <tr>
-                                            <td style="border:none; padding:0.5mm 0; padding-left:6mm; width:10mm;">No</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0; width:25mm;"><?= isset($data['skep_no']) ? $data['skep_no'] : '' ?></td>
-                                            <td style="border:none; padding:0.5mm 0; width:10mm;">Tgl.</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['skep_tgl']) ? $data['skep_tgl'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0 0.5mm 2mm; width:9mm; white-space:nowrap;">Tgl.</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'dok13_bc_tgl', '') ?></td>
                                         </tr>
                                     </table>
                                 </td>
-
                             </tr>
 
-                            <!-- ROW AREA 3: 14-16 -->
+                            <!-- 14-16 -->
                             <tr>
                                 <td style="padding:2mm; border-bottom:1px solid #000;">
                                     <table style="width:100%; border-collapse:collapse; font-size:7.5pt; line-height:1.15;">
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:20mm; white-space:nowrap;">14. Valuta</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['valuta']) ? $data['valuta'] : '-' ?> &nbsp;&nbsp; (<?= isset($data['valuta_code']) ? $data['valuta_code'] : '' ?>)</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'valuta', '-') ?></td>
                                         </tr>
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:20mm; white-space:nowrap;">15. NDPBM</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= isset($data['ndpbm']) ? $data['ndpbm'] : '0.00' ?></td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'ndpbm', '0.00') ?></td>
                                         </tr>
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:20mm; white-space:nowrap;">16. Nilai CIF</td>
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
                                             <td style="border:none; padding:0.5mm 0;">
-                                                <?= isset($data['nilai_cif']) ? $data['nilai_cif'] : '0.00' ?><br>
-                                                <?= isset($data['nilai_cif_rp']) ? $data['nilai_cif_rp'] : 'Rp 0.00' ?>
+                                                <?= v($data, 'nilai_cif', '0.00') ?><br>
+                                                <?= v($data, 'nilai_cif_rp', 'Rp 0.00') ?>
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
 
-                            <!-- ROW AREA 4: Jenis Sarana Pengangkut -->
+                            <!-- 17 -->
                             <tr>
                                 <td style="padding:2mm;">
-                                    <div style="font-size:8pt; text-align:center; font-weight:700;">Jenis Sarana Pengangkut</div>
-                                    <div style="font-size:8pt; margin-top:1mm;"><?= isset($data['jenis_sarana_angkut']) ? $data['jenis_sarana_angkut'] : '' ?></div>
+                                    <div style="font-size:8pt; text-align:center; font-weight:700;">17. Jenis Sarana Pengangkut</div>
+                                    <div style="font-size:8pt; margin-top:1mm;"><?= v($data, 'jenis_sarana_angkut', '') ?></div>
                                 </td>
                             </tr>
 
                         </table>
                     </td>
                 </tr>
+
                 <!-- LANJUTAN BARIS: BLOK 18-21 (revisi posisi 19, center "0", tanpa garis pemisah 20-21) -->
                 <tr>
                     <td colspan="2" style="border:1px solid #000; border-top:0; padding:0; vertical-align:top;">
@@ -542,123 +485,95 @@
                         </table>
                     </td>
                 </tr>
-                <!-- Grid header 22-27 -->
+                <!-- Grid header (BC 2.6.2 umumnya lebih ringkas 22-25) -->
                 <tr>
                     <td colspan="2" class="b bt0 p0">
                         <table style="width:100%; table-layout:fixed;">
                             <tr>
-                                <td class="b p06 mini" style="width: 8mm; height: 15
-                                mm;">
-                                    22. No
-                                </td>
-                                <td class="b p06 mini" style="width: 80mm;">
+                                <td class="b p06 mini" style="width: 8mm; height:10mm;">22. No</td>
+                                <td class="b p06 mini" style="width: 90mm;">
                                     23. - Pos Tarif/HS<br>
                                     - Kode Barang<br>
                                     - Uraian Jumlah Barang Secara Lengkap, Merek, Tipe, Ukuran
                                 </td>
-                                <td class="b p06 mini" style="width: 22mm;">
-                                    24. Negara Asal Barang
-                                </td>
-                                <td class="b p06 mini" style="width: 22mm;">
-                                    25. Tarif dan Fasilitas BM, BMT, Cukai, PPN, PPnBM, PPh
-                                </td>
-                                <td class="b p06 mini" style="width: 22mm;">
-                                    26. Jumlah dan Jenis Satuan Berat Bersih (Kg)
-                                </td>
-                                <td class="b p06 mini" style="width: 22mm;">
-                                    27. Nilai CIF
-                                </td>
+                                <td class="b p06 mini" style="width: 35mm;">24. Jumlah dan Jenis Satuan<br>Berat Bersih (Kg)</td>
+                                <td class="b p06 mini" style="width: 35mm;">25. Nilai CIF</td>
                             </tr>
                         </table>
                     </td>
                 </tr>
+
                 <!-- Area Jenis Barang -->
                 <tr>
-                    <td colspan="2"
-                        class="b bt0 center"
-                        style="height:25mm; vertical-align:middle; padding:0;">
-
+                    <td colspan="2" class="b bt0 center" style="height:25mm; vertical-align:middle; padding:0;">
                         <div style="text-align:center; font-size:8pt;">
                             --------------- <?= v($data, 'jumlah_jenis_barang', '0') ?> Jenis barang. Lihat lembar lanjutan. ---------------
                         </div>
-
                     </td>
                 </tr>
-                <!-- Data Penyesuaian Jaminan + Data Jaminan -->
+
+                <!-- Data Penyesuaian Jaminan (BC 2.6.2: 26-32) + Data Jaminan (33-38) -->
                 <tr>
                     <td colspan="2" class="b bt0 p0">
                         <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
                             <tr>
-
-                                <!-- LEFT (40%): JANGAN pakai class b biar tidak double dengan border utama -->
+                                <!-- LEFT 40% -->
                                 <td style="width:40%; border:none; border-right:0.5pt solid #000; padding:0; vertical-align:top;">
                                     <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
-
-                                        <!-- HEADER -->
                                         <tr>
                                             <td colspan="2" class="b p06 center bold mini">Data Penyesuaian Jaminan</td>
                                         </tr>
-
-                                        <!-- Sub Header -->
                                         <tr>
                                             <td class="b bt0 p06 mini bold center" style="width:55%;">Jenis Pungutan</td>
                                             <td class="b bt0 p06 mini bold center" style="width:45%;">Jumlah</td>
                                         </tr>
-
-                                        <!-- ROWS -->
                                         <tr>
-                                            <td class="b bt0 p06 mini">28. Bea Masuk</td>
-                                            <td class="b bt0 p06 mini right"><?= v($data, 'p28_bea_masuk', '0') ?></td>
+                                            <td class="b bt0 p06 mini">26. Bea Masuk</td>
+                                            <td class="b bt0 p06 mini right"><?= v($data, 'p26_bea_masuk', '0') ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="b bt0 p06 mini">29. Bea Masuk</td>
-                                            <td class="b bt0 p06 mini right"><?= v($data, 'p29_bea_masuk', '0') ?></td>
+                                            <td class="b bt0 p06 mini">27. Bea Masuk</td>
+                                            <td class="b bt0 p06 mini right"><?= v($data, 'p27_bea_masuk', '0') ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="b bt0 p06 mini">30. Cukai</td>
-                                            <td class="b bt0 p06 mini right"><?= v($data, 'p30_cukai', '0') ?></td>
+                                            <td class="b bt0 p06 mini">28. Cukai</td>
+                                            <td class="b bt0 p06 mini right"><?= v($data, 'p28_cukai', '0') ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="b bt0 p06 mini">31. PPN</td>
-                                            <td class="b bt0 p06 mini right"><?= v($data, 'p31_ppn', '0') ?></td>
+                                            <td class="b bt0 p06 mini">29. PPN</td>
+                                            <td class="b bt0 p06 mini right"><?= v($data, 'p29_ppn', '0') ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="b bt0 p06 mini">32. PPnBM</td>
-                                            <td class="b bt0 p06 mini right"><?= v($data, 'p32_ppnbm', '0') ?></td>
+                                            <td class="b bt0 p06 mini">30. PPnBM</td>
+                                            <td class="b bt0 p06 mini right"><?= v($data, 'p30_ppnbm', '0') ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="b bt0 p06 mini">33. PPh</td>
-                                            <td class="b bt0 p06 mini right"><?= v($data, 'p33_pph', '0') ?></td>
+                                            <td class="b bt0 p06 mini">31. PPh</td>
+                                            <td class="b bt0 p06 mini right"><?= v($data, 'p31_pph', '0') ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="b bt0 p06 mini">34. Jumlah Total</td>
-                                            <td class="b bt0 p06 mini right"><?= v($data, 'p34_total', '0') ?></td>
+                                            <td class="b bt0 p06 mini">32. Jumlah Total</td>
+                                            <td class="b bt0 p06 mini right"><?= v($data, 'p32_total', '0') ?></td>
                                         </tr>
-
                                     </table>
                                 </td>
 
-                                <!-- RIGHT (60%): JANGAN pakai class b biar tidak double -->
+                                <!-- RIGHT 60% -->
                                 <td style="width:60%; border:none; padding:0; vertical-align:top;">
                                     <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
-
-                                        <!-- HEADER -->
                                         <tr>
-                                            <!-- header cukup border bawah dari cell header (tidak perlu border luar lagi) -->
                                             <td class="b p06 center bold mini">Data Jaminan</td>
                                         </tr>
-
-                                        <!-- ISI -->
                                         <tr>
                                             <td class="p08" style="border:none;">
                                                 <table style="width:100%; border-collapse:collapse;" class="tiny">
                                                     <tr>
-                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">35. Jenis Jaminan</td>
+                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">33. Jenis Jaminan</td>
                                                         <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
                                                         <td style="border:none; padding:0.5mm 0;"><?= v($data, 'jenis_jaminan', '') ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">36. Nomor Jaminan</td>
+                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">34. Nomor Jaminan</td>
                                                         <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
                                                         <td style="border:none; padding:0.5mm 0;">
                                                             <?= v($data, 'nomor_jaminan', '-') ?>
@@ -666,22 +581,22 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">37. Nilai Jaminan</td>
+                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">35. Nilai Jaminan</td>
                                                         <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
                                                         <td style="border:none; padding:0.5mm 0;"><?= v($data, 'nilai_jaminan', '0') ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">38. Tanggal Jatuh Tempo</td>
+                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">36. Tanggal Jatuh Tempo</td>
                                                         <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
                                                         <td style="border:none; padding:0.5mm 0;"><?= v($data, 'jatuh_tempo', '-') ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">39. Penjamin</td>
+                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">37. Penjamin</td>
                                                         <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
                                                         <td style="border:none; padding:0.5mm 0;"><?= v($data, 'penjamin', '') ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">40. Nomor dan Tanggal Bukti Penerimaan Jaminan</td>
+                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">38. Nomor dan Tanggal Bukti Penerimaan Jaminan</td>
                                                         <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
                                                         <td style="border:none; padding:0.5mm 0;">
                                                             <?= v($data, 'bukti_jaminan_no_tgl', '') ?>
@@ -691,7 +606,6 @@
                                                 </table>
                                             </td>
                                         </tr>
-
                                     </table>
                                 </td>
 
@@ -699,6 +613,7 @@
                         </table>
                     </td>
                 </tr>
+
                 <!-- Bottom: C and E blocks -->
                 <tr>
                     <td colspan="2" class="b bt0 p0">

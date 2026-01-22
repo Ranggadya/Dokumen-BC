@@ -104,7 +104,6 @@
         margin-top: 1.5mm;
     }
 
-
     .bc27-mini {
         width: 100%;
         border-collapse: collapse;
@@ -124,9 +123,9 @@
 <!-- Judul tanpa border -->
 <div class="titleWrap center">
     <div class="titleBig">LEMBAR LANJUTAN DOKUMEN PELENGKAP PABEAN</div>
-    <div class="titleBig">PEMBERITAHUAN PENGELUARAN BARANG DARI</div>
+    <div class="titleBig">PEMBERITAHUAN PEMASUKAN KEMBALI BARANG YANG DIKELUARKAN DARI
+    </div>
     <div class="titleBig">TEMPAT PENIMBUNAN BERIKAT DENGAN JAMINAN</div>
-
 </div>
 
 <table class="bc27-mini">

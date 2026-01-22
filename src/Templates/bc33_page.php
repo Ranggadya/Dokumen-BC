@@ -557,9 +557,6 @@
                             </tr>
                             <tr>
                                 <td style="padding: 1.2mm 1.6mm;">
-                                    <!-- ======================
-         20-21 INVOICE / PACKING LIST
-         ====================== -->
                                     <table style="width:100%; border-collapse:collapse; font-size:6pt; line-height:1.15;">
                                         <tr>
                                             <td style="border:none; padding:0.5mm 2mm 0.5mm 0; white-space:nowrap;">20. Invoice</td>
@@ -584,9 +581,7 @@
 
                                     <div style="height:1.4mm;"></div>
 
-                                    <!-- ======================
-         22 DOKUMEN PERSYARATAN
-         ====================== -->
+            
                                     <div style="font-weight:bold; font-size:6pt; line-height:1.15; padding-bottom:0.9mm;">22. Dokumen Persyaratan</div>
 
                                     <table style="width:100%; border-collapse:collapse; font-size:6pt; line-height:1.15;">
@@ -609,9 +604,6 @@
 
                                     <div style="height:1.4mm;"></div>
 
-                                    <!-- ======================
-         23 DOKUMEN FASILITAS FISKAL
-         ====================== -->
                                     <div style="font-weight:bold; font-size:6pt; line-height:1.15; padding-bottom:0.9mm;">23. Dokumen Fasilitas Fiskal di Bidang</div>
 
                                     <table style="width:100%; border-collapse:collapse; font-size:6pt; line-height:1.15;">
