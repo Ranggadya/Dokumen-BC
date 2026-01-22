@@ -136,13 +136,13 @@
 
     /* Kolom label kiri */
     .top-lbl {
-        width: 32mm;
+        width: 25mm;
         white-space: nowrap;
     }
 
     /* Kolom ":" yang fix, supaya semua ":" sejajar */
     .top-colon {
-        width: 4mm;
+        width: 2mm;
         text-align: center;
     }
 
@@ -340,7 +340,7 @@
 
     .l-label {
         width: 42mm;
-        /* sesuai style Anda */
+
         text-align: left;
         white-space: nowrap;
     }
@@ -351,6 +351,7 @@
         text-align: center;
         /* ':' di tengah kolom colon biar stabil */
         white-space: nowrap;
+        padding-left: 20mm;
     }
 
     .l-value {
@@ -397,7 +398,7 @@
 
     .input-box-inline {
         display: inline-block;
-        height: 6mm;
+        height: 4mm;
         width: 25mm;
         border: 0.6pt solid #000;
         background: #fff;
@@ -471,7 +472,6 @@
         padding: 0;
         border: 0;
         font-size: 7pt;
-        font-weight: bold;
         text-align: right;
         line-height: 1;
     }
@@ -508,21 +508,27 @@
                     <td class="top-val"><?= v($data, 'nomor_pengajuan') ?></td>
                     <td class="top-page" style="font-size: x-small;">Halaman ke-1 dari 2</td>
                 </tr>
-
                 <!-- ROW 2: A. Tujuan (kiri) -->
                 <tr>
-                    <td class="top-lbl">A. Tujuan</td>
-                    <td class="top-colon">:</td>
-                    <td class="top-val tujuan-wrap" colspan="2">
-                        <span class="tujuan-box"></span>
-                        1. Kawasan Berikat&nbsp;&nbsp;2. Gudang Berikat&nbsp;&nbsp;3. TPPB&nbsp;&nbsp;4. TBB&nbsp;&nbsp;5. TLB&nbsp;&nbsp;6. KDUB&nbsp;&nbsp;7. PLB&nbsp;&nbsp;8. Lainnya
+                    <td class="top-lbl" style="vertical-align: middle;">A. Tujuan</td>
+                    <td class="top-colon" style="vertical-align: middle;">:</td>
+                    <td colspan="2" style="padding: 0; vertical-align: middle;">
+                        <table style="width:100%; border-collapse:collapse;">
+                            <tr>
+                                <td style="border:none; padding:0; width:6mm; vertical-align:middle;">
+                                    <div style="border:1px solid #000; width:5mm; height:4mm;"></div>
+                                </td>
+                                <td style="border:none; padding:0 0 0 1mm; vertical-align:middle;">
+                                    1. Kawasan Berikat&nbsp;&nbsp;2. Gudang Berikat&nbsp;&nbsp;3. TPPB&nbsp;&nbsp;4. TBB&nbsp;&nbsp;5. TLB&nbsp;&nbsp;6. KDUB&nbsp;&nbsp;7. PLB&nbsp;&nbsp;8. Lainnya
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
 </table>
-
 <table class="bc23-main">
     <tr>
         <!-- Bagian B: DATA PEMBERITAHUAN PEMASOK -->
@@ -535,26 +541,55 @@
             </div>
         </td>
 
-        <td colspan="4">
-            <div class="bd-title">D. DIISI OLEH BEA DAN CUKAI</div>
-            <div class="d-content">
-                <div class="d-field-row no-tgl">
-                    <span class="d-label">No. dan Tgl.</span><span class="d-colon">:</span><span class="input-boxes"><span class="input-box large"></span><span class="input-box large"></span></span>
-                </div>
+        <!-- Bagian D: DIISI OLEH BEA DAN CUKAI -->
+        <td colspan="4" style="border: 1px solid #000; padding: 5px;">
+            <!-- Baris 1: Judul D -->
+            <div class="label-bold" style="margin-bottom: 2mm;">D. DIISI OLEH BEA DAN CUKAI</div>
 
-                <!-- Kantor Pabean Bongkar dengan kotak kecil di kanan -->
-                <div class="d-field-row kantor">
-                    <span class="d-label">Kantor Pabean Bongkar</span><span class="d-colon">:</span><span class="input-boxes"><span class="input-box small"></span></span>
-                </div>
+            <!-- Baris 2: No. dan Tgl. -->
+            <table class="left-grid" style="width: 100%; margin-bottom: 0;">
+                <tr>
+                    <td class="l-label" style="width: 40mm; padding-bottom: 0; ">No. dan Tgl.</td>
+                    <td class="l-colon" style="width: 3mm; padding-bottom: 0;">:</td>
+                    <td class="l-value" style="padding: 0;">
+                        <table style="width: 98%; border-collapse: collapse; margin: 0; margin-right: -10px;">
+                            <tr>
+                                <td style="width: 50%; border: 1px solid #000; height: 4mm;"></td>
+                                <td style="width: 50%; border-top: 1px solid #000; border-bottom: 1px solid #000; border-right: 1px solid #000; height: 4mm;"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
 
-                <!-- Kantor Pabean dengan kotak kecil di kanan -->
-                <div class="d-field-row kantor">
-                    <span class="d-label">Kantor Pabean</span><span class="d-colon">:</span><span class="input-boxes"><span class="input-box small"></span></span>
-                </div>
-            </div>
+            <!-- Baris 3: Kantor Pabean Bongkar & Kantor Pabean -->
+            <table class="left-grid" style="width: 100%; margin-bottom: 0;">
+                <tr>
+                    <td class="l-label" style="width: 40mm; padding-bottom: 0;">Kantor Pabean Bongkar</td>
+                    <td class="l-colon" style="width: 3mm; padding-bottom: 0;">:</td>
+                    <td class="l-value" style="padding: 0;">
+                        <table style="width: 40%; border-collapse: collapse; margin: 0; margin-left: auto; margin-right:-5px;">
+                            <tr>
+                                <td style="border: 1px solid #000; height: 4mm;"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="l-label" style="width: 40mm; padding-bottom: 0;">Kantor Pabean</td>
+                    <td class="l-colon" style="width: 3mm; padding-bottom: 0;">:</td>
+                    <td class="l-value" style="padding: 0;">
+                        <table style="width: 40%; border-collapse: collapse; margin: 0; margin-left: auto; margin-right:-5px;">
+                            <tr>
+                                <td style="border: 1px solid #000; height: 4mm;"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
-
     <!-- BARIS 1: IMPORTIR / PENGUSAHA TPB + KOLOM KANAN (rowspan 3) -->
     <tr>
         <td colspan="3">
@@ -592,71 +627,75 @@
                 </tr>
             </table>
         </td>
-
-
         <td colspan="4" rowspan="3">
-            <table class="right-grid">
+            <table style="width: 100%; border-collapse: collapse;">
                 <!-- 16. Invoice -->
                 <tr>
-                    <td class="r-label">16. Invoice</td>
-                    <td class="r-colon">:</td>
-                    <td class="r-value"><?= v($data, 'invoice_no') ?></td>
-                    <td class="r-tgl">Tgl. <?= v($data, 'invoice_tgl') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:28mm;">16. Invoice</td>
+                    <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                    <td style="border:none; padding:0.5mm 0; width:30mm;"><?= v($data, 'invoice_no') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:8mm;">Tgl.</td>
+                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'invoice_tgl') ?></td>
                 </tr>
 
                 <!-- 17. Fasilitas Impor -->
                 <tr>
-                    <td class="r-label">17. Fasilitas Impor</td>
-                    <td class="r-colon">:</td>
-                    <td class="r-value" colspan="2"><?= v($data, 'fasilitas_impor') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:28mm;">17. Fasilitas Impor</td>
+                    <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                    <td colspan="3" style="border:none; padding:0.5mm 0;"><?= v($data, 'fasilitas_impor') ?></td>
                 </tr>
 
                 <!-- 18. Surat Keputusan -->
                 <tr>
-                    <td class="r-label">18. Surat Keputusan</td>
-                    <td class="r-colon">:</td>
-                    <td class="r-value"><?= v($data, 'sk_no') ?></td>
-                    <td class="r-tgl">Tgl. <?= v($data, 'sk_tgl') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:28mm;">18. Surat Keputusan</td>
+                    <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                    <td style="border:none; padding:0.5mm 0; width:30mm;"><?= v($data, 'sk_no') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:8mm;">Tgl.</td>
+                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'sk_tgl') ?></td>
                 </tr>
 
                 <!-- Slash separator -->
                 <tr>
-                    <td colspan="4">/</td>
+                    <td colspan="5" style="border:none; padding:0.5mm 0; text-align: left;">/</td>
                 </tr>
 
                 <!-- Tgl. kosong -->
                 <tr>
-                    <td colspan="3"></td>
-                    <td class="r-tgl">Tgl.</td>
+                    <td colspan="3" style="border:none; padding:0.5mm 0;"></td>
+                    <td style="border:none; padding:0.5mm 0; width:8mm;">Tgl.</td>
+                    <td style="border:none; padding:0.5mm 0;"></td>
                 </tr>
 
                 <!-- 19. LC -->
                 <tr>
-                    <td class="r-label">19. LC</td>
-                    <td class="r-colon">:</td>
-                    <td class="r-value"><?= v($data, 'lc_no') ?></td>
-                    <td class="r-tgl">Tgl. <?= v($data, 'lc_tgl') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:28mm;">19. LC</td>
+                    <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                    <td style="border:none; padding:0.5mm 0; width:30mm;"><?= v($data, 'lc_no') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:8mm;">Tgl.</td>
+                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'lc_tgl') ?></td>
                 </tr>
 
                 <!-- 20. BL / AWB -->
                 <tr>
-                    <td class="r-label">20. BL / AWB</td>
-                    <td class="r-colon">:</td>
-                    <td class="r-value"><?= v($data, 'bl_awb_no') ?></td>
-                    <td class="r-tgl">Tgl. <?= v($data, 'bl_awb_tgl') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:28mm;">20. BL / AWB</td>
+                    <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                    <td style="border:none; padding:0.5mm 0; width:30mm;"><?= v($data, 'bl_awb_no') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:8mm;">Tgl.</td>
+                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'bl_awb_tgl') ?></td>
                 </tr>
 
                 <!-- 21. BC 1.1 -->
                 <tr>
-                    <td class="r-label">21. BC 1.1</td>
-                    <td class="r-colon">:</td>
-                    <td class="r-value"><?= v($data, 'bc11_no') ?></td>
-                    <td class="r-tgl">Tgl. <?= v($data, 'bc11_tgl') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:28mm;">21. BC 1.1</td>
+                    <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                    <td style="border:none; padding:0.5mm 0; width:30mm;"><?= v($data, 'bc11_no') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:8mm;">Tgl.</td>
+                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'bc11_tgl') ?></td>
                 </tr>
 
                 <!-- Pos & Sub Pos -->
                 <tr>
-                    <td colspan="4">Pos : <?= v($data, 'bc11_pos') ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sub Pos: <?= v($data, 'bc11_subpos') ?></td>
+                    <td colspan="5" style="border:none; padding:0.5mm 0; text-align: center;">Pos : <?= v($data, 'bc11_pos') ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sub Pos: <?= v($data, 'bc11_subpos') ?></td>
                 </tr>
             </table>
 
@@ -691,19 +730,19 @@
         </td>
     </tr>
     <tr>
-        <td colspan="3">
+        <td colspan="3" style="border: 1px solid #000; padding: 10px; padding-bottom: 0;">
             <div class="label-bold">PPKJ</div>
 
-            <table class="left-grid">
+            <table class="left-grid" style="width: 100%;">
                 <tr>
-                    <td class="l-label">8. NPWP</td>
-                    <td class="l-colon">:</td>
+                    <td class="l-label" style="width: 40mm;">8. NPWP</td>
+                    <td class="l-colon" style="width: 3mm;">:</td>
                     <td class="l-value"><?= v($data, 'ppjk_npwp') ?></td>
                 </tr>
 
                 <tr>
-                    <td class="l-label">9. Nama, Alamat</td>
-                    <td class="l-colon">:</td>
+                    <td class="l-label" style="width: 40mm;">9. Nama, Alamat</td>
+                    <td class="l-colon" style="width: 3mm;">:</td>
                     <td class="l-value"></td>
                 </tr>
             </table>
@@ -712,58 +751,182 @@
                 <?= v($data, 'ppjk_nama_alamat') ?>
             </div>
 
-            <table class="left-grid">
+            <table class="left-grid" style="width: 100%; margin-bottom: 0;">
                 <tr>
-                    <td class="l-label">10. No dan tgl NP-PPJK</td>
-                    <td class="l-colon">:</td>
-                    <td class="l-value">
-                        <span class="input-box-inline"></span>
-                        <span class="input-box-inline"></span>
+                    <td class="l-label" style="width: 40mm; padding-bottom: 0;">10. No dan tgl NP-PPJK</td>
+                    <td class="l-colon" style="width: 3mm; padding-bottom: 0;">:</td>
+                    <td class="l-value" style="padding: 0;">
+                        <table style="width: 100%; border-collapse: collapse; margin: 0; margin-right: -10px;">
+                            <tr>
+                                <td class="input-box-inline" style="width: 50%; border-left: 1px solid #000; border-bottom: 1px solid #000; height: 5mm;"></td>
+                                <td class="input-box-inline" style="width: 50%; border-left: 1px solid #000; border-bottom: 1px solid #000; border-right: 1px solid #000; height: 5mm;"></td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
-
-    <!-- BLOK 11-28 (TANPA KOLOM SPACER / KOLOM KE-3 DIHILANGKAN) -->
     <tr>
-        <td colspan="3" style="padding:2mm;">
-            <div>11. CARA PENGANGKUTAN : <?= v($data, 'cara_pengangkutan') ?></div>
+        <!-- 11. CARA PENGANGKUTAN -->
+        <td colspan="3" class="cell-tight" style="padding:0;">
+            <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                <tr>
+                    <!-- subkolom kiri: teks -->
+                    <td style="border:none; padding:0.8mm 1.2mm; vertical-align:top; width:70%;">
+                        <div style="line-height:5mm;">
+                            11. CARA PENGANGKUTAN : <?= v($data, 'cara_pengangkutan') ?>
+                        </div>
+                        <div style="height:5mm; line-height:5mm; white-space:nowrap;">&nbsp;</div>
+                    </td>
+
+                    <!-- subkolom kanan: KOTAK -->
+                    <td style="border-left:0.5pt solid #000; padding:0; width:26%; vertical-align:bottom;">
+                        <table style="width:100%; border-collapse:collapse; table-layout:fixed; padding-left:2mm;">
+                            <tr>
+                                <td style="height:5mm; border-top:0.5pt solid #000; border-bottom:0.5pt solid #000; border-right:0.5pt solid #000; padding-left:2mm;">
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </td>
-        <td colspan="4" style="padding:2mm;">
-            <div>22. TEMPAT PENIMBUNAN : <?= v($data, 'tempat_penimbunan') ?></div>
+
+        <!-- 22. TEMPAT PENIMBUNAN -->
+        <td colspan="4" class="cell-tight" style="padding:0;">
+            <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                <tr>
+                    <!-- subkolom kiri: teks -->
+                    <td style="border:none; padding:0.8mm 1.2mm; vertical-align:top; width:70%;">
+                        <div style="line-height:5mm;">
+                            22. TEMPAT PENIMBUNAN : <?= v($data, 'tempat_penimbunan') ?>
+                        </div>
+                        <div style="height:5mm; line-height:5mm; white-space:nowrap;">&nbsp;</div>
+                    </td>
+
+                    <!-- subkolom kanan: KOTAK -->
+                    <td style="border-left:0.5pt solid #000; padding:0; width:25%; vertical-align:bottom;">
+                        <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                            <tr>
+
+                                <td style="height:5mm; border-top:0.5pt solid #000; border-bottom:0.5pt solid #000; border-right:0.5pt solid #000;">
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
-
     <tr>
-        <!-- kiri 50% -->
-        <td colspan="3" class="cell-tight" style="height:5mm;">
-            <div>12. Nama Sarana Pengangkut &amp; No. Voy/Flight dan Bendera</div>
-            <div>/</div>
+        <!-- KIRI 50% (colspan=3) : DIPECAH jadi 2 subkolom: teks + kotak -->
+        <td colspan="3" class="cell-tight" style="height:5mm; padding:0;">
+            <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                <tr>
+                    <!-- subkolom kiri: teks 12 -->
+                    <td style="border:none; padding:0.8mm 1.2mm; vertical-align:top; width:70%; padding-right:0.2mm;">
+                        <div style="height:5mm; line-height:5mm; white-space:nowrap;">
+                            12. Nama Sarana Pengangkut &amp; No. Voy/Flight dan Bendera
+                        </div>
+                        <div style="height:5mm; line-height:5mm; white-space:nowrap;">/</div>
+                    </td>
 
+                    <!-- subkolom kanan: KOTAK (3 kotak vertikal seperti contoh kanan 13-15) -->
+                    <td style="border-left:0.5pt solid #000; padding:0; padding-bottom:0; width:16%; vertical-align:bottom; border-bottom:0;">
+                        <table style="width:100%; border-collapse:collapse; table-layout:fixed; margin-bottom:-0.9pt; padding-bottom:1mm;">
+                            <tr>
+                                <td style="height:4mm; line-height:5mm; text-align:center; border-top:0.5pt solid #000; border-bottom:0.5pt solid #000; padding-bottom:1mm;">
+                                    <?= v($data, 'kotak_12_3', '') ?>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </td>
 
-        <!-- kanan subkolom kiri 25% -->
-        <td colspan="2" class="cell-tight" style="height:5mm;">
-            <div>23. Valuta:</div>
-            <div><?= v($data, 'valuta', '') ?></div>
+        <!-- 23. Valuta -->
+        <td colspan="2" class="cell-tight" style="padding:0; vertical-align:top;">
+            <table style="width: 100%; min-height:15mm; border-collapse:collapse; table-layout:fixed;">
+                <tr>
+                    <td style="border:none; padding:0.8mm 1.2mm; vertical-align:top; width:70%;">
+                        <div style="height:5mm; line-height:5mm; white-space:nowrap;">
+                            23. Valuta
+                            <span style="display:inline-block; width:4mm; margin-left:2mm; text-align:center; vertical-align:middle;">:</span>
+                            <?= v($data, 'valuta') ?>
+                        </div>
+                        <div style="height:5mm; line-height:5mm; white-space:nowrap;">&nbsp;</div>
+                    </td>
+
+                    <!-- subkolom kanan: KOTAK -->
+                    <td style="border-left:0.5pt solid #000; padding:0; width:46%; vertical-align:bottom;">
+                        <table style="width:100%; border-collapse:collapse; table-layout:fixed; padding-left:2mm;">
+                            <tr>
+                                <td style="height:4mm; border-top:0.5pt solid #000; border-bottom:0.5pt solid #000; border-right:0.5pt solid #000; padding-left:2mm;">
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </td>
 
-        <!-- kanan subkolom kanan 25% -->
-        <td colspan="2" class="cell-tight" style="height:5mm;">
-            <div>
-                24. NDPBM:
+        <!-- KANAN 25% (24) : normal, tanpa kotak -->
+        <td colspan="2" class="cell-tight" style="padding:0.8mm 1.2mm; vertical-align:top;">
+            <div style="white-space:nowrap;">
+                24. NDPBM
+                <span style="display:inline-block; width:4mm; margin-left:2mm; text-align:center;">:</span>
                 <span class="rightval"><?= v($data, 'ndpbm', '0.00') ?></span>
             </div>
         </td>
     </tr>
 
     <tr>
-        <!-- kiri 50% -->
-        <td colspan="3" class="cell-tight" style="height:6mm;">
-            <div>13. Pelabuhan Muat:</div>
-            <div>14. Pelabuhan Transit:</div>
-            <div>15. Pelabuhan:</div>
+        <td colspan="3" class="cell-tight" style="padding:0; vertical-align:top;">
+            <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                <tr>
+                    <!-- subkolom kiri: teks 13-15 -->
+                    <!-- subkolom kiri: teks 13-15 -->
+                    <td style="border:none; padding:0.8mm 1.2mm; vertical-align:top;">
+                        <table style="width:100%; border-collapse:collapse; line-height:1;">
+                            <tr>
+                                <td style="border:none; padding:0; height:4mm; line-height:4mm; white-space:nowrap; width:auto;">13. Pelabuhan Muat</td>
+                                <td style="border:none; padding:0; width:2mm; height:4mm; line-height:4mm;">:</td>
+                                <td style="border:none; padding:0; height:4mm;"></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none; padding:0; height:4mm; line-height:4mm; white-space:nowrap; width:auto;">14. Pelabuhan Transit</td>
+                                <td style="border:none; padding:0; width:2mm; height:4mm; line-height:4mm;">:</td>
+                                <td style="border:none; padding:0; height:4mm;"></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none; padding:0; height:4mm; line-height:4mm; white-space:nowrap; width:auto;">15. Pelabuhan</td>
+                                <td style="border:none; padding:0; width:2mm; height:4mm; line-height:4mm;">:</td>
+                                <td style="border:none; padding:0; height:4mm;"></td>
+                            </tr>
+                        </table>
+                    </td>
+
+                    <!-- subkolom kanan: 3 kotak -->
+                    <td style="border:none; padding:0; width:18mm; vertical-align:top;">
+                        <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+                            <tr>
+                                <td style="height:5mm; padding:0; border:0.5pt solid #000;"></td>
+                            </tr>
+                            <tr>
+                                <td style="height:5mm; padding:0; border:0.5pt solid #000; border-top:0;"></td>
+                            </tr>
+                            <tr>
+                                <td style="height:5mm; padding:0; border:0.5pt solid #000; border-top:0;"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </td>
 
         <!-- kanan subkolom kiri 25% -->
@@ -781,6 +944,7 @@
             <div>Rp. <span class="rightval"><?= v($data, 'nilai_cif_rp', '0.00') ?></span></div>
         </td>
     </tr>
+
     <!-- KEMASAN (29-32 + F) -->
     <tr>
         <td colspan="7" style="padding:0; border:none;">
@@ -802,6 +966,8 @@
                                 <td style="border: none; padding: 0; width: 50%; vertical-align: top; font-size: 7pt;">
                                     30. Jumlah dan Jenis Kemasan
                                 </td>
+
+
                             </tr>
                         </table>
 
