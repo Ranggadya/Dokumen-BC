@@ -331,7 +331,6 @@
         padding: 0;
         border: 0;
         font-size: 7pt;
-        font-weight: bold;
         text-align: right;
         line-height: 1;
     }
@@ -427,7 +426,7 @@
                 <!-- Baris 3 Kanan: G (sejajar dengan 2. Kantor Tujuan) -->
                 <tr>
                     <td class="right-col no-border-left section-g-cell">
-                        <div style="margin-bottom: 1.5mm; font-weight: bold;">
+                        <div style="margin-bottom: 1.5mm;">
                             G. KOLOM KHUSUS BEA CUKAI
                         </div>
                         <table class="field-table-g">

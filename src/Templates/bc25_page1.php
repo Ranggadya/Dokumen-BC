@@ -410,60 +410,89 @@
                                     </table>
                                 </td>
                             </tr>
+                            <!-- Area 1: 19. Valuta & 20. NDPBM (2 kolom sejajar dengan garis pemisah) -->
+                            <tr>
+                                <td style="padding:2mm; border-bottom:0.5pt solid #000;">
+                                    <table style="width:100%; border-collapse:collapse; font-size:7.5pt; line-height:1.15; margin:-2mm; padding:0;">
+                                        <tr>
+                                            <!-- Kolom Kiri: 19. Valuta -->
+                                            <td style="width:50%; border:none; border-right:0.5pt solid #000; padding:1mm; vertical-align:top;">
+                                                <table style="width:100%; border-collapse:collapse;">
+                                                    <tr>
+                                                        <td style="border:none; padding:0.5mm 0; width:4mm;">19. Valuta</td>
 
-                            <!-- 19-25 (Valuta, NDPBM, Nilai CIF, Harga Penyerahan, Uang Muka, Diskon, Dasar Pengenaan + pajak) -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border:none; padding:0; text-align:right;"><?= v($data, 'valuta', '-') ?></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+
+                                            <!-- Kolom Kanan: 20. NDPBM -->
+                                            <td style="width:50%; border:none; padding:1mm; vertical-align:top;">
+                                                <table style="width:100%; border-collapse:collapse;">
+                                                    <tr>
+                                                        <td style="border:none; padding:0.5mm 0; width:20mm;">20. NDPBM</td>
+
+                                                    <tr>
+                                                        <td style="border:none; padding:0; text-align:right;"><?= v($data, 'valuta', '-') ?></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- Area 2: 21. Nilai CIF & 22. Harga Penyerahan -->
                             <tr>
                                 <td style="padding:2mm; border-bottom:0.5pt solid #000;">
                                     <table style="width:100%; border-collapse:collapse; font-size:7.5pt; line-height:1.15;">
                                         <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:20mm;">19. Valuta</td>
-                                            <td style="border:none; padding:0.5mm 1.2mm; width:2mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0; width:18mm;"><?= $v($data, 'valuta', '-') ?></td>
-
-                                            <td style="border:none; padding:0.5mm 0; width:18mm;">20. NDPBM</td>
-                                            <td style="border:none; padding:0.5mm 1.2mm; width:2mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;"><?= $v($data, 'ndpbm', '0.00') ?></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:20mm;">21. Nilai CIF</td>
-                                            <td style="border:none; padding:0.5mm 1.2mm; width:2mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;" colspan="4"><?= $v($data, 'nilai_cif', '0.00') ?></td>
+                                            <td style="border:none; padding:0.5mm 0; width:30mm;">21. Nilai CIF</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'nilai_cif', '0.00') ?></td>
                                         </tr>
                                         <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:20mm;">22. Harga Penyerahan</td>
-                                            <td style="border:none; padding:0.5mm 1.2mm; width:2mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;" colspan="4"><?= $v($data, 'harga_penyerahan', '0.00') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:20mm;">23. Uang Muka</td>
-                                            <td style="border:none; padding:0.5mm 1.2mm; width:2mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;" colspan="4"><?= $v($data, 'uang_muka', '0.00') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:20mm;">24. Diskon</td>
-                                            <td style="border:none; padding:0.5mm 1.2mm; width:2mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;" colspan="4"><?= $v($data, 'diskon', '0.00') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:20mm;">25. Dasar Pengenaan</td>
-                                            <td style="border:none; padding:0.5mm 1.2mm; width:2mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;" colspan="4"><?= $v($data, 'dasar_pengenaan', '0.00') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:20mm;">&nbsp;&nbsp;- PPN Pajak (0%)</td>
-                                            <td style="border:none; padding:0.5mm 1.2mm; width:2mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;" colspan="4"><?= $v($data, 'ppn_pajak', '0.00') ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:20mm;">&nbsp;&nbsp;- PPNBM Pajak (0%)</td>
-                                            <td style="border:none; padding:0.5mm 1.2mm; width:2mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0;" colspan="4"><?= $v($data, 'ppnbm_pajak', '0.00') ?></td>
+                                            <td style="border:none; padding:0.5mm 0; width:30mm;">22. Harga Penyerahan</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'harga_penyerahan', '0.00') ?></td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
 
+                            <!-- Area 3: 23. Uang Muka, 24. Diskon, 25. Dasar Pengenaan + Pajak -->
+                            <tr>
+                                <td style="padding:2mm; border-bottom:0.5pt solid #000;">
+                                    <table style="width:100%; border-collapse:collapse; font-size:7.5pt; line-height:1.15; ">
+                                        <tr>
+                                            <td style="border:none; padding:0.5mm 0; width:30mm;">23. Uang Muka</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'uang_muka', '0.00') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none; padding:0.5mm 0; width:30mm;">24. Diskon</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'diskon', '0.00') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none; padding:0.5mm 0; width:30mm;">25. Dasar Pengenaan</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'dasar_pengenaan', '0.00') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none; padding:0.5mm 0 0.5mm 4mm; width:30mm;">- PPN Pajak (0%)</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'ppn_pajak', '0.00') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none; padding:0.5mm 0 0.5mm 4mm; width:30mm;">- PPNBM Pajak (0%)</td>
+                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0;"><?= v($data, 'ppnbm_pajak', '0.00') ?></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
                         </table>
                     </td>
 
@@ -472,7 +501,7 @@
                     <td colspan="2" style="border:1px solid #000; border:0; padding:0; vertical-align:top;">
                         <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
                             <tr>
-                                <!-- AREA KIRI: 18 + 19 (SATU BIDANG) -->
+                                <!-- AREA KIRI: 18 (SATU BIDANG) -->
                                 <td style="width:80%; border-right:1px solid #000; padding:0; vertical-align:top; height:22mm;">
                                     <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
                                         <tr>
@@ -481,7 +510,7 @@
                                                 <div style="font-size:8pt;">26. Nomor, Ukuran dan Tipe Peti Kemas</div>
                                             </td>
 
-                                            <!-- 19  -->
+                                            <!-- 27  -->
                                             <td style="width:50%; border:none; padding:0; vertical-align:top;">
                                                 <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
                                                     <tr>
@@ -515,32 +544,39 @@
                                         </tr>
                                     </table>
                                 </td>
-
-                                <!-- AREA KANAN: 20 & 21  -->
+                                <!-- AREA KANAN: 28, 29 & 30  -->
+                                <!-- AREA KANAN: 28, 29 & 30  -->
                                 <td style="width:20%; padding:0; vertical-align:top; height:22mm;">
                                     <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
-                                        <!-- 20  -->
+                                        <!-- Baris 1: 28. Jenis Sarana Pengangkut -->
                                         <tr>
-                                            <td style="padding:1.2mm; height:11mm; vertical-align:top; border:none;">
-                                                <div style="font-size:8pt;">28. Berat Kotor (Kg)</div>
-                                                <div style="font-size:9pt; margin-top:1.2mm; padding-left:6mm;">
-                                                    <?= isset($data['berat_kotor']) ? $data['berat_kotor'] : '0.0000' ?>
+                                            <td style="padding:1.2mm; height:11mm; vertical-align:top; border:none; border-bottom:0.5pt solid #000;">
+                                                <div style="font-size:8pt;">28. Jenis Sarana Pengangkut</div>
+                                                <div style="font-size:9pt; margin-top:1.2mm;">
+                                                    <?= v($data, 'jenis_sarana_pengangkut', '-') ?>
                                                 </div>
                                             </td>
                                         </tr>
 
-                                        <!-- 21 -->
+                                        <!-- Baris 2: 29 & 30 dalam satu area -->
+                                        <!-- Baris 2: 29 & 30 dalam satu area -->
                                         <tr>
                                             <td style="padding:1.2mm; height:11mm; vertical-align:top; border:none;">
-                                                <div style="font-size:8pt;">29. Berat Bersih (Kg)</div>
-                                                <div style="font-size:9pt; margin-top:1.2mm; padding-left:6mm;">
-                                                    <?= isset($data['berat_bersih']) ? $data['berat_bersih'] : '0.0000' ?>
+                                                <!-- 29. Berat Kotor -->
+                                                <div style="font-size:8pt;">29. Berat Kotor (Kg)</div>
+                                                <div style="font-size:9pt; margin-top:0.5mm; text-align:right">
+                                                    <div style="float:right;"><?= v($data, 'berat_kotor', '0.0000') ?></div>
+                                                </div>
+
+                                                <!-- 30. Berat Bersih -->
+                                                <div style="font-size:8pt; margin-top:1mm; clear:both;">30. Berat Bersih</div>
+                                                <div style="font-size:9pt; margin-top:0.5mm;">
+                                                    <div style="float:right;"><?= v($data, 'berat_bersih', '0.0000') ?></div>
                                                 </div>
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
-
                             </tr>
                         </table>
                     </td>
@@ -552,18 +588,18 @@
                         <table style="width:100%; table-layout:fixed; border-left:0;">
                             <tr>
                                 <td class="b p06 mini" style="width:8mm; height:15mm; border-left:0;">31.<br>No</td>
-                                <td class="b p06 mini" style="width:86mm;">
+                                <td class="b p06 mini" style="width:8mm;">
                                     32. - Pos Tarif/HS<br>
                                     - Kode Barang<br>
                                     - Uraian barang secara lengkap, merk, tipe, ukuran, spesifikasi lain<br>
                                     - Fasilitas Impor<br>
                                     - Surat Keputusan/Dokumen Lainnya
                                 </td>
-                                <td class="b p06 mini" style="width:20mm;">
+                                <td class="b p06 mini" style="width:25mm;">
                                     33. - Kategori Barang<br>
                                     - Kondisi Barang
                                 </td>
-                                <td class="b p06 mini" style="width:26mm;">
+                                <td class="b p06 mini" style="width:25mm;">
                                     34. - Tarif dan Fasilitas<br>
                                     - BM - BMT<br>
                                     - Cukai<br>
@@ -576,7 +612,7 @@
                                     - Berat Bersih (Kg)<br>
                                     - Jumlah dan Jenis Kemasan
                                 </td>
-                                <td class="b p06 mini" style="width:26mm; border-right:0;">
+                                <td class="b p06 mini" style="width:25mm; border-right:0;">
                                     36. - Nilai CIF<br>
                                     - Harga<br>
                                     - Harga Penyerahan
@@ -733,7 +769,7 @@
                                                     <tr>
                                                         <td style="border:none; vertical-align:middle; font-size:7.5pt;">
                                                             Pembayaran&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <span style="border:1px solid #000; padding:1mm 3mm; font-weight:bold;">1</span>
+                                                            <span style="display:inline-block; border:1px solid #000; padding:3mm 5mm; font-weight:bold; text-align:center; min-width:10mm;">1</span>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;1. Bank&nbsp;&nbsp;&nbsp;&nbsp;2. Pos&nbsp;&nbsp;&nbsp;&nbsp;3. Kantor Pabean
                                                         </td>
                                                     </tr>

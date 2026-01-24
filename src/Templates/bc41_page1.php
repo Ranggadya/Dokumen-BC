@@ -538,7 +538,6 @@
         </td>
     </tr>
 
-    <!-- Header Kolom barang (No / Uraian / 32 / 33) - Kotak kecil -->
     <tr>
         <td colspan="2" style="padding:0; border:0.6pt solid #000;">
             <table style="width:100%; border-collapse:collapse;">

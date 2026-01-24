@@ -699,7 +699,7 @@
                 <!-- Baris 3 Kanan: G (sejajar dengan 2. Kantor Tujuan) -->
                 <tr>
                     <td class="right-col no-border-left section-g-cell">
-                        <div style="margin-bottom: 1.5mm; font-weight: bold;">
+                        <div style="margin-bottom: 1.5mm;">
                             G. KOLOM KHUSUS BEA CUKAI
                         </div>
                         <table class="field-table-g">
@@ -996,12 +996,12 @@
 
                     <!-- Panel B total 25% (28,29,30) -->
                     <col style="width: 12%;"> <!-- 28 -->
-                    <col style="width: 14%;"> <!-- 29 -->
-                    <col style="width: 11%;"> <!-- 30 -->
+                    <col style="width: 16%;"> <!-- 29 -->
+                    <col style="width: 9%;"> <!-- 30 -->
                 </colgroup>
 
                 <!-- Baris 1: Judul Panel A dan Panel B -->
-                <tr class="row-head">
+                <tr class="row-head" style="border-top: none;">
                     <td class="hdr">DATA PENGANGKUTAN</td>
                     <td class="hdr-center" colspan="3">SEGEL (DIISI OLEH BEA DAN CUKAI)</td>
                 </tr>
@@ -1043,7 +1043,7 @@
                         </div>
                     </td>
                     <td>
-                        <span class="nowrap">29.</span> Jenis
+                        <span class="nowrap" style="padding: 1mm;">29.</span> Jenis
                         <div style="margin-top:1.2pt;">
                             <?= v($data, 'jenis_segel') ?>
                         </div>
@@ -1087,7 +1087,7 @@
     </tr>
     <tr>
         <td class="p0">
-            <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+            <table style="width:100%; border-collapse:collapse; table-layout:fixed; border:0.5pt solid #000;">
                 <tr>
                     <td class="p1" style="width:33.33%;">33. Volume (m3) : <?= v($data, 'volume') ?></td>
                     <td class="p1" style="width:33.33%;">34. Berat Kotor : <?= v($data, 'berat_kotor') ?></td>
