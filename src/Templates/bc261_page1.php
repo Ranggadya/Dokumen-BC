@@ -293,7 +293,7 @@
                                             <td style="border:none; padding:0.5mm 0; width:30%;"><?= isset($data['izin_tpb_no']) ? $data['izin_tpb_no'] : '' ?></td>
 
                                             <td style="border:none; padding:0.5mm 0 0.5mm 3mm; white-space:nowrap;">Tgl</td>
-                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                        
                                             <td style="border:none; padding:0.5mm 0;"><?= isset($data['izin_tpb_tgl']) ? $data['izin_tpb_tgl'] : '' ?></td>
                                         </tr>
                                     </table>
@@ -385,11 +385,11 @@
 
                                         <!-- 11: Packing List + Tgl -->
                                         <tr>
-                                            <td style="border:none; padding:0.5mm 0; width:42mm;">11. Packing List</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0; width:25mm;"><?= isset($data['packing_list']) ? $data['packing_list'] : '' ?></td>
-                                            <td style="border:none; padding:0.5mm 0; width:10mm;">Tgl.</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
+                                            <td style="border:none; padding:0.5mm 0; width:25mm;">11. Packing List</td>
+                                            <td style="border:none; padding:0.5mm 2mm; width:0.5mm; text-align:left;">:</td>
+                                            <td style="border:none; padding:0.5mm 0; width:5mm; text-align:left;" ><?= isset($data['packing_list']) ? $data['packing_list'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0; width:5mm; text-align:left; padding-left:-5mm;">Tgl.</td>
+                                
                                             <td style="border:none; padding:0.5mm 0;"><?= isset($data['packing_list_tgl']) ? $data['packing_list_tgl'] : '' ?></td>
                                         </tr>
 
@@ -400,11 +400,11 @@
 
                                         <!-- 12: No + Tgl -->
                                         <tr>
-                                            <td style="border:none; padding:0.5mm 0; padding-left:6mm; width:10mm;">No</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0; width:25mm;"><?= isset($data['pemenuhan_no']) ? $data['pemenuhan_no'] : '' ?></td>
-                                            <td style="border:none; padding:0.5mm 0; width:10mm;">Tgl.</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
+                                            <td style="border:none; padding:0.5mm 0; padding-left:6mm; width:10mm;">No &nbsp;:</td>
+                                            
+                                            <td style="border:none; padding:0.5mm 0; width:38mm;"><?= isset($data['pemenuhan_no']) ? $data['pemenuhan_no'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0; width:5mm;">Tgl.</td>
+                                            
                                             <td style="border:none; padding:0.5mm 0;"><?= isset($data['pemenuhan_tgl']) ? $data['pemenuhan_tgl'] : '' ?></td>
                                         </tr>
 
@@ -415,11 +415,11 @@
 
                                         <!-- 13: No + Tgl -->
                                         <tr>
-                                            <td style="border:none; padding:0.5mm 0; padding-left:6mm; width:10mm;">No</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                            <td style="border:none; padding:0.5mm 0; width:25mm;"><?= isset($data['skep_no']) ? $data['skep_no'] : '' ?></td>
-                                            <td style="border:none; padding:0.5mm 0; width:10mm;">Tgl.</td>
-                                            <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
+                                            <td style="border:none; padding:0.5mm 0; padding-left:6mm; width:10mm;">No &nbsp;:</td>
+                                        
+                                            <td style="border:none; padding:0.5mm 0; width:38mm;"><?= isset($data['skep_no']) ? $data['skep_no'] : '' ?></td>
+                                            <td style="border:none; padding:0.5mm 0; width:5mm;">Tgl.</td>
+                                            
                                             <td style="border:none; padding:0.5mm 0;"><?= isset($data['skep_tgl']) ? $data['skep_tgl'] : '' ?></td>
                                         </tr>
                                     </table>
@@ -497,6 +497,7 @@
                                                 line-height:8mm;
                                                 margin:0;
                                                 padding:0;
+
                                             ">
                                                                 <?= isset($data['jumlah_kemasan']) ? $data['jumlah_kemasan'] : '0' ?>
                                                             </div>

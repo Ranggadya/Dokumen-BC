@@ -123,14 +123,14 @@
 <!-- Judul tanpa border -->
 <div class="titleWrap center">
     <div class="titleBig">LEMBAR LANJUTAN DOKUMEN PELENGKAP PABEAN</div>
-    <div class="titleBig">PEMBERITAHUAN PEMASUKAN KEMBALI BARANG YANG DIKELUARKAN DARI
+    <div class="titleBig">PEMBERITAHUAN IMPOR BARANG DARI TEMPAT PENIMBUNAN BERIKAT
     </div>
-    <div class="titleBig">TEMPAT PENIMBUNAN BERIKAT DENGAN JAMINAN</div>
+
 </div>
 
 <table class="bc27-mini">
     <tr>
-        <td>BC 2.6.2</td>
+        <td>BC 2.5</td>
     </tr>
 </table>
 
@@ -140,20 +140,22 @@
         <td class="b p08 tiny">
             <table style="width:100%; border-collapse:collapse;">
                 <tr>
-                    <td style="border:none; padding:0.5mm 0; width:30mm;">Kantor Pabean</td>
+                    <td style="border:none; padding:0.5mm 0; width:30mm; padding-left:1mm;">Kantor Pabean</td>
                     <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
                     <td style="border:none; padding:0.5mm 0;"><?= v($data, 'kantor_pabean', '-') ?></td>
                 </tr>
                 <tr>
-                    <td style="border:none; padding:0.5mm 0; width:30mm;">Nomor Pengajuan</td>
+                    <td style="border:none; padding:0.5mm 0; width:30mm;  padding-left:1mm;">Nomor Pengajuan</td>
                     <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
                     <td style="border:none; padding:0.5mm 0;"><?= v($data, 'nomor_pengajuan', '-') ?></td>
                 </tr>
                 <tr>
-                    <td style="border:none; padding:0.5mm 0; width:30mm;">Nomor Pendaftaran</td>
+                    <td style="border:none; padding:0.5mm 0; width:20mm;  padding-left:1mm;">Nomor Pendaftaran</td>
                     <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
-                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'nomor_pendaftaran2', '-') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:55mm;"><?= v($data, 'nomor_pendaftaran2', '-') ?></td>
+                    <td style="border:none; padding:0.5mm 0 0.5mm 3mm; white-space:nowrap; text-align:left;">Tanggal</td>
                 </tr>
+
             </table>
         </td>
     </tr>
@@ -164,22 +166,23 @@
             <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
                 <!-- HEADER -->
                 <tr>
-                    <td class="b p06 center bold mini" style="width:10mm; padding: 1.5mm 3.0mm;">No</td>
+                    <td class="p06 center mini" style="width:10mm; padding: 1.5mm 3.0mm; border-right:0.5pt solid #000;">No</td>
 
                     <!-- Jenis Dokumen dibuat paling lebar + padding lebih besar -->
-                    <td class="b bold mini"
+                    <td class="mini"
                         style="
-                            width:65mm;
+                            width:45mm;
                             padding: 1.5mm 3.0mm; 
                             text-align:center;
                             white-space:nowrap;
                             font-size:8pt;
+                            border-right:0.5pt solid #000;
                         ">
                         Jenis Dokumen
                     </td>
 
-                    <td class="b p06 center bold mini" style="width:45mm; font-size:8pt; padding: 1.5mm 3.0mm;">Nomor Dokumen</td>
-                    <td class="b p06 center bold mini" style="width:35mm; font-size:8pt; padding: 1.5mm 3.0mm;">Tanggal Dokumen</td>
+                    <td class="p06 center mini" style="width:45mm; font-size:8pt; padding: 1.5mm 3.0mm; border-right:0.5pt solid #000;">Nomor Dokumen</td>
+                    <td class="p06 center mini" style="width:45mm; font-size:8pt; padding: 1.5mm 3.0mm; border-right:0.5pt solid #000;">Tanggal Dokumen</td>
                 </tr>
             </table>
         </td>
@@ -191,13 +194,17 @@
     <tr>
         <td class="b bt0 p08">
             <div class="bold">C. Pengesahan Pengusaha TPB</div>
-            <div class="tiny" style="margin-top: 1mm;">
-                Dengan ini saya menyatakan bertanggung jawab atas kebenaran hal-hal yang diberitahukan dalam pemberitahuan pabean ini.
-            </div>
-
-            <table style="width:100%; border-collapse:collapse; margin-top:3mm;" class="tiny">
+            <table>
                 <tr>
-                    <td style="border:none; padding:0.5mm 0; width:50mm;">Tempat, Tanggal</td>
+                    <td style="border:none; padding:0.5mm 0; width:50mm; padding-left:3mm;">Dengan ini saya menyatakan bertanggung jawab atas kebenaran hal-hal yang diberitahukan dalam pemberitahuan pabean ini.</td>
+                </tr>
+            </table>
+
+
+            <table style="width:100%; border-collapse:collapse; margin-top:0;" class="tiny">
+
+                <tr>
+                    <td style="border:none; padding:0.5mm 0; width:50mm; padding-left:3mm;">Tempat, Tanggal</td>
                     <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
                     <td style="border:none; padding:0.5mm 0;">
                         <?= v($data, 'c_tempat', '') ?><?= v($data, 'c_tempat', '') ? ', ' : '' ?><?= v($data, 'c_tanggal', '') ?>
@@ -205,21 +212,21 @@
                 </tr>
 
                 <tr>
-                    <td style="border:none; padding:0.5mm 0; width:50mm;">Nama Lengkap</td>
+                    <td style="border:none; padding:0.5mm 0; width:50mm; padding-left:3mm;">Nama Lengkap</td>
                     <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
                     <td style="border:none; padding:0.5mm 0;"><?= v($data, 'c_nama_lengkap', '') ?></td>
                 </tr>
 
                 <tr>
-                    <td style="border:none; padding:0.5mm 0; width:50mm;">Jabatan</td>
+                    <td style="border:none; padding:0.5mm 0; width:50mm; padding-left:3mm;">Jabatan</td>
                     <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
                     <td style="border:none; padding:0.5mm 0;"><?= v($data, 'c_jabatan', '') ?></td>
                 </tr>
 
                 <tr>
-                    <td style="border:none; padding:0.5mm 0; width:50mm;">Tanda Tangan dan Stempel Perusahaan</td>
+                    <td style="border:none; padding:0.5mm 0; width:50mm; padding-left:3mm;">Tanda Tangan dan Stempel Perusahaan</td>
                     <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
-                    <td style="border:none; padding:0.5mm 0; height:16mm;">&nbsp;</td>
+                    <td style="border:none; padding:0.5mm 0; height:10mm;">&nbsp;</td>
                 </tr>
             </table>
         </td>

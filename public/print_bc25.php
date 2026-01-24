@@ -5,7 +5,7 @@ declare(strict_types=1);
 // public/print_bc25.php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Optional helpers
+// Optional helpers (kalau ada)
 $helpersPath = __DIR__ . '/../src/Support/helpers.php';
 if (is_file($helpersPath)) {
     require_once $helpersPath;
@@ -16,18 +16,32 @@ if (!function_exists('v')) {
     function v(array $data, string $key, string $default = '-'): string
     {
         $val = $data[$key] ?? $default;
-        if ($val === null) return $default;
+
+        if ($val === null) {
+            return $default;
+        }
+
+        // dukung angka, boolean, dll
+        if (is_bool($val)) {
+            return $val ? '1' : '0';
+        }
+
+        if (is_array($val)) {
+            // kalau array dipaksa string, lebih aman json
+            return json_encode($val, JSON_UNESCAPED_UNICODE) ?: $default;
+        }
+
         $val = (string)$val;
         return $val === '' ? $default : $val;
     }
 }
 
-// Closure helper biar konsisten dengan template (bisa dipakai $v($data,'key'))
+// Closure helper biar konsisten di template (bisa dipakai $v($data,'key'))
 $v = static function (array $data, string $key, string $default = '-'): string {
     return v($data, $key, $default);
 };
 
-// ====== DATA CONTOH (ganti dari DB / request) ======
+// ====== DATA CONTOH (ganti ambil dari DB / request) ======
 $data = [
     // Header
     'kantor_pabean'   => '-',
@@ -83,75 +97,75 @@ $data = [
     'surat_keputusan_tgl' => '',
 
     // 19-25
-    'valuta'          => '-',
-    'ndpbm'           => '0.00',
-    'nilai_cif'       => '0.00',
+    'valuta'           => '-',
+    'ndpbm'            => '0.00',
+    'nilai_cif'        => '0.00',
     'harga_penyerahan' => '0.00',
-    'uang_muka'       => '0.00',
-    'diskon'          => '0.00',
-    'dasar_pengenaan' => '0.00',
-    'ppn_pajak'       => '0.00',
-    'ppnbm_pajak'     => '0.00',
+    'uang_muka'        => '0.00',
+    'diskon'           => '0.00',
+    'dasar_pengenaan'  => '0.00',
+    'ppn_pajak'        => '0.00',
+    'ppnbm_pajak'      => '0.00',
 
     // 26-30
-    'peti_kemas'        => '',
-    'kemasan'           => '',
-    'jumlah_kemasan'    => '0',
+    'peti_kemas'          => '',
+    'kemasan'             => '',
+    'jumlah_kemasan'      => '0',
     'jenis_sarana_angkut' => '-',
-    'berat_kotor'       => '0.0000',
-    'berat_bersih'      => '0.0000',
+    'berat_kotor'         => '0.0000',
+    'berat_bersih'        => '0.0000',
 
-    // Jenis barang info (dipakai di strip)
+    // strip jenis barang info
     'jumlah_jenis_barang' => '0',
 
-    // 37-43 Pungutan
-    'p37_bm_dibayar' => '0',
-    'p37_bm_dibebaskan' => '0',
-    'p37_bm_ditanggung' => '0',
+    // 37-43 Pungutan (contoh)
+    'p37_bm_dibayar'        => '0',
+    'p37_bm_dibebaskan'     => '0',
+    'p37_bm_ditanggung'     => '0',
     'p37_bm_sudah_dilunasi' => '0',
-    'p37_bm_wajib_bayar' => '0',
+    'p37_bm_wajib_bayar'    => '0',
 
-    'p38_bmt_dibayar' => '0',
-    'p38_bmt_dibebaskan' => '0',
-    'p38_bmt_ditanggung' => '0',
+    'p38_bmt_dibayar'        => '0',
+    'p38_bmt_dibebaskan'     => '0',
+    'p38_bmt_ditanggung'     => '0',
     'p38_bmt_sudah_dilunasi' => '0',
-    'p38_bmt_wajib_bayar' => '0',
+    'p38_bmt_wajib_bayar'    => '0',
 
-    'p39_cukai_dibayar' => '0',
-    'p39_cukai_dibebaskan' => '0',
-    'p39_cukai_ditanggung' => '0',
+    'p39_cukai_dibayar'        => '0',
+    'p39_cukai_dibebaskan'     => '0',
+    'p39_cukai_ditanggung'     => '0',
     'p39_cukai_sudah_dilunasi' => '0',
-    'p39_cukai_wajib_bayar' => '0',
+    'p39_cukai_wajib_bayar'    => '0',
 
-    'p40_ppn_dibayar' => '0',
-    'p40_ppn_dibebaskan' => '0',
-    'p40_ppn_ditanggung' => '0',
+    'p40_ppn_dibayar'        => '0',
+    'p40_ppn_dibebaskan'     => '0',
+    'p40_ppn_ditanggung'     => '0',
     'p40_ppn_sudah_dilunasi' => '0',
-    'p40_ppn_wajib_bayar' => '0',
+    'p40_ppn_wajib_bayar'    => '0',
 
-    'p40a_ppn_lokal_dibayar' => '0',
-    'p40a_ppn_lokal_dibebaskan' => '0',
-    'p40a_ppn_lokal_ditanggung' => '0',
+    'p40a_ppn_lokal_dibayar'        => '0',
+    'p40a_ppn_lokal_dibebaskan'     => '0',
+    'p40a_ppn_lokal_ditanggung'     => '0',
     'p40a_ppn_lokal_sudah_dilunasi' => '0',
-    'p40a_ppn_lokal_wajib_bayar' => '0',
+    'p40a_ppn_lokal_wajib_bayar'    => '0',
 
-    'p41_ppnbm_dibayar' => '0',
-    'p41_ppnbm_dibebaskan' => '0',
-    'p41_ppnbm_ditanggung' => '0',
+    'p41_ppnbm_dibayar'        => '0',
+    'p41_ppnbm_dibebaskan'     => '0',
+    'p41_ppnbm_ditanggung'     => '0',
     'p41_ppnbm_sudah_dilunasi' => '0',
-    'p41_ppnbm_wajib_bayar' => '0',
+    'p41_ppnbm_wajib_bayar'    => '0',
 
-    'p42_pph_dibayar' => '0',
-    'p42_pph_dibebaskan' => '0',
-    'p42_pph_ditanggung' => '0',
+    'p42_pph_dibayar'        => '0',
+    'p42_pph_dibebaskan'     => '0',
+    'p42_pph_ditanggung'     => '0',
     'p42_pph_sudah_dilunasi' => '0',
-    'p42_pph_wajib_bayar' => '0',
+    'p42_pph_wajib_bayar'    => '0',
 
-    'p43_total_dibayar' => '0',
-    'p43_total_dibebaskan' => '0',
-    'p43_total_ditanggung' => '0',
+    'p43_total_dibayar'        => '0',
+    'p43_total_dibebaskan'     => '0',
+    'p43_total_ditanggung'     => '0',
     'p43_total_sudah_dilunasi' => '0',
-    'p43_total_wajib_bayar' => '0',
+    'p43_total_wajib_bayar'    => '0',
 
     // C. Pengesahan
     'c_tempat'       => '',
@@ -172,7 +186,6 @@ $data = [
 $mpdf = new \Mpdf\Mpdf([
     'mode' => 'utf-8',
     'format' => 'A4',
-    // Ikutin pendekatan kamu: margin ketat (form sensitif)
     'margin_left'   => 8,
     'margin_right'  => 8,
     'margin_top'    => 8,
@@ -181,21 +194,39 @@ $mpdf = new \Mpdf\Mpdf([
 
 $mpdf->SetTitle('BC 2.5 - ' . v($data, 'nomor_pengajuan'));
 $mpdf->SetAuthor('System');
+$mpdf->SetDisplayMode('fullpage');
 
 // ====== TEMPLATE PATH ======
 $page1Path = __DIR__ . '/../src/Templates/bc25_page1.php';
+$page2Path = __DIR__ . '/../src/Templates/bc25_page2.php';
 
 if (!is_file($page1Path)) {
     http_response_code(500);
     exit("Template tidak ditemukan: {$page1Path}");
 }
+if (!is_file($page2Path)) {
+    http_response_code(500);
+    exit("Template tidak ditemukan: {$page2Path}");
+}
 
 // ====== RENDER PAGE 1 ======
-ob_start();
-require $page1Path; // $data dan $v terbawa ke scope template
-$html1 = ob_get_clean();
+$data['halaman'] = '1';
+$data['halaman_total'] = $data['halaman_total'] ?? '2';
 
+ob_start();
+require $page1Path; // bawa $data dan $v ke scope template
+$html1 = ob_get_clean();
 $mpdf->WriteHTML($html1);
+
+// ====== RENDER PAGE 2 ======
+$mpdf->AddPage(); // add page setelah page 1 ditulis
+
+$data['halaman'] = '2';
+
+ob_start();
+require $page2Path;
+$html2 = ob_get_clean();
+$mpdf->WriteHTML($html2);
 
 // ====== OUTPUT ======
 $filenameSafe = preg_replace('/[^0-9A-Za-z\-]/', '_', v($data, 'nomor_pengajuan', 'BC25'));

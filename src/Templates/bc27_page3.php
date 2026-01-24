@@ -110,7 +110,7 @@
 
     .eDate {
         margin-top: 12mm;
-        text-align: center;
+        text-align: left;
         /* tanggal di tengah bawah text */
     }
 
@@ -333,7 +333,7 @@
                     </td>
 
                     <!-- Baris 1 Kanan: Halaman (sejajar dengan NOMOR) -->
-                    <td class="right-col no-border-left no-border-bottom halaman-cell">
+                    <td class="right-col no-border-left no-border-bottom halaman-cell" style="text-align: right;">
                         <div class="halaman">Halaman ke-3 dari 3</div>
                     </td>
                 </tr>
@@ -343,9 +343,9 @@
                     <td class="right-col no-border-left no-border-top section-d-cell">
                         <table class="field-table-right">
                             <tr>
-                                <td class="field-label-right">D. JENIS TRANSAKSI</td>
-                                <td class="field-sep-right">:</td>
-                                <td class="field-value-right"><?= v($data, 'jenis_transaksi', '-') ?></td>
+                                <td style="border:none; padding:0.5mm 0; width:32mm; white-space:nowrap;">D. JENIS TRANSAKSI</td>
+                                <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                <td style="border:none; padding:0.5mm 0;"><?= v($data, 'jenis_transaksi', '-') ?></td>
                             </tr>
                         </table>
                     </td>
@@ -359,14 +359,14 @@
                         </div>
                         <table class="field-table-g">
                             <tr>
-                                <td class="field-label-g indent-label">Nomor Pendaftaran</td>
-                                <td class="field-sep-g">:</td>
-                                <td class="field-value-g"><?= v($data, 'nomor_pendaftaran', '') ?></td>
+                                <td style="border:none; padding:0.5mm 0; width:32mm; white-space:nowrap;">Nomor Pendaftaran</td>
+                                <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                <td style="border:none; padding:0.5mm 0;"><?= v($data, 'nomor_pendaftaran', '') ?></td>
                             </tr>
                             <tr>
-                                <td class="field-label-g indent-label">Tanggal</td>
-                                <td class="field-sep-g">:</td>
-                                <td class="field-value-g"><?= v($data, 'tanggal_pendaftaran', '') ?></td>
+                                <td style="border:none; padding:0.5mm 0; width:32mm; white-space:nowrap;">Tanggal</td>
+                                <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                <td style="border:none; padding:0.5mm 0;"><?= v($data, 'tanggal_pendaftaran', '') ?></td>
                             </tr>
                         </table>
                     </td>
@@ -380,7 +380,7 @@
             <table class="docTable" style="width:100%; table-layout:fixed;">
                 <tr>
                     <td class="center" style="width:4%;">No</td>
-                    <td class="center mid" style="width:41%; padding:0.9mm;">JENIS DOKUMEN</td>
+                    <td class="center mid" style="width:41%; padding:1.2mm;">JENIS DOKUMEN</td>
                     <td class="center mid" style="width:37%;">NOMOR</td>
                     <td class="center rightc" style="width:18%;">TANGGAL</td>
                 </tr>
