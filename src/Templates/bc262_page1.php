@@ -490,7 +490,7 @@
                     <td colspan="2" class="b bt0 p0">
                         <table style="width:100%; table-layout:fixed;">
                             <tr>
-                                <td class="b p06 mini" style="width: 8mm; height:10mm;">22. No</td>
+                                <td class="b p06 mini" style="width: 8mm; height:12mm;">22. No</td>
                                 <td class="b p06 mini" style="width: 90mm;">
                                     23. - Pos Tarif/HS<br>
                                     - Kode Barang<br>
@@ -505,7 +505,7 @@
 
                 <!-- Area Jenis Barang -->
                 <tr>
-                    <td colspan="2" class="b bt0 center" style="height:25mm; vertical-align:middle; padding:0;">
+                    <td colspan="2" class="b bt0 center" style="height:23mm; vertical-align:middle; padding:0;">
                         <div style="text-align:center; font-size:8pt;">
                             --------------- <?= v($data, 'jumlah_jenis_barang', '0') ?> Jenis barang. Lihat lembar lanjutan. ---------------
                         </div>
@@ -573,9 +573,9 @@
                                                         <td style="border:none; padding:0.5mm 0;"><?= v($data, 'jenis_jaminan', '') ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="border:none; padding:0.5mm 0; width:32mm;">34. Nomor Jaminan</td>
+                                                        <td style="border:none; padding:0.5mm 0; width:30mm;">36. Nomor Jaminan</td>
                                                         <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                                        <td style="border:none; padding:0.5mm 0;">
+                                                        <td style="border:none; padding:0.5mm 0; text-align:center;">
                                                             <?= v($data, 'nomor_jaminan', '-') ?>
                                                             <span style="float:right;">Tanggal: <?= v($data, 'tgl_jaminan', '-') ?></span>
                                                         </td>
@@ -598,7 +598,9 @@
                                                     <tr>
                                                         <td style="border:none; padding:0.5mm 0; width:32mm;">38. Nomor dan Tanggal Bukti Penerimaan Jaminan</td>
                                                         <td style="border:none; padding:0.5mm 2mm; width:3mm; text-align:center;">:</td>
-                                                        <td style="border:none; padding:0.5mm 0;">
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border:none; padding:0.5mm 0; text-align:right">
                                                             <?= v($data, 'bukti_jaminan_no_tgl', '') ?>
                                                             <span style="float:right;">Tanggal : <?= v($data, 'bukti_jaminan_tgl', '-') ?></span>
                                                         </td>
