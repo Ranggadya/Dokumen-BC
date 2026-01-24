@@ -131,7 +131,7 @@
 
 <table class="bc27-mini">
     <tr>
-        <td>BC 2.6.2</td>
+        <td>BC 2.6.1</td>
     </tr>
 </table>
 

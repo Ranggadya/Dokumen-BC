@@ -147,7 +147,6 @@
         padding: 0;
         border: 0;
         font-size: 7pt;
-        font-weight: bold;
         text-align: right;
         line-height: 1;
     }
@@ -160,7 +159,7 @@
 </div>
 <table class="bc27-mini">
     <tr>
-        <td>BC 2.7</td>
+        <td>BC 2.3</td>
     </tr>
 </table>
 <table class="main-table">

@@ -172,14 +172,9 @@
                             <tr>
                                 <td class="mini bold" style="border:none; padding:0.5mm 0; width:30mm;">A. Jenis TPB</td>
                                 <td class="mini center" style="border:none; padding:0.5mm 0; width:3mm;">:</td>
-                                <td class="mini" style="border:none; padding:0.5mm 0; white-space:nowrap;">
-                                    1. Kawasan Berikat <span class="check <?= ($v($data, 'tpb_1', '') === 'checked') ? 'on' : '' ?>"></span>
-                                    2. Gudang Berikat <span class="check <?= ($v($data, 'tpb_2', '') === 'checked') ? 'on' : '' ?>"></span>
-                                    3. TPPB <span class="check <?= ($v($data, 'tpb_3', '') === 'checked') ? 'on' : '' ?>"></span>
-                                    4. TBB <span class="check <?= ($v($data, 'tpb_4', '') === 'checked') ? 'on' : '' ?>"></span>
-                                    5. TLB <span class="check <?= ($v($data, 'tpb_5', '') === 'checked') ? 'on' : '' ?>"></span>
-                                    6. KDUB <span class="check <?= ($v($data, 'tpb_6', '') === 'checked') ? 'on' : '' ?>"></span>
-                                    7. Lainnya <span class="check <?= ($v($data, 'tpb_7', '') === 'checked') ? 'on' : '' ?>"></span>
+                                <td class="" style="border:none; padding:0.5mm 0;">
+                                    <span style="display:inline-block; border:1px solid #000; width:5mm; height:4mm; vertical-align:middle; margin-right:2mm;"> &nbsp;&nbsp;&nbsp; </span>
+                                    &nbsp; 1. Kawasan Berikat&nbsp;&nbsp;&nbsp;&nbsp;2. Gudang Berikat&nbsp;&nbsp;&nbsp;&nbsp;3. TPPB&nbsp;&nbsp;&nbsp;&nbsp;4. TBB&nbsp;&nbsp;&nbsp;&nbsp;5. TLB&nbsp;&nbsp;&nbsp;&nbsp;6. KDUB&nbsp;&nbsp;&nbsp;&nbsp;7. Lainnya
                                 </td>
                             </tr>
                         </table>
@@ -582,10 +577,11 @@
                     </td>
                 </tr>
 
-                <!-- Header Grid 31-36 -->
+                <!-- Tabel Barang: Header + Data -->
                 <tr>
                     <td colspan="2" class="b bt0 p0" style="border-left: 0; border-right: 0; border-bottom: 0;">
-                        <table style="width:100%; table-layout:fixed; border-left:0;">
+                        <table style="width:100%; table-layout:fixed; border-collapse:collapse;">
+                            <!-- Baris 1: Header 31-36 -->
                             <tr>
                                 <td class="b p06 mini" style="width:8mm; height:15mm; border-left:0;">31.<br>No</td>
                                 <td class="b p06 mini" style="width:8mm;">
@@ -618,16 +614,48 @@
                                     - Harga Penyerahan
                                 </td>
                             </tr>
-                        </table>
-                    </td>
-                </tr>
 
-                <!-- Area Jenis Barang (teks strip) -->
-                <tr>
-                    <td colspan="2" class="b bt0 center" style="height:25mm; vertical-align:middle; padding:0; border-left:0; border-right:0;">
-                        <div class="noteLine">
-                            --------------- <?= $v($data, 'jumlah_jenis_barang', '0') ?> Jenis barang. Lihat lembar lanjutan. ---------------
-                        </div>
+                            <!-- Baris 2: Data No 1 -->
+                            <tr>
+                                <td class="b p06 mini" style="width:8mm; height:15mm; border-left:0;">1.</td>
+                                <td class="b p06 mini" style="width:8mm;">
+                                    Pos Tarif/HS : 55162200<br>
+                                    Kode Barang : BARANG23V<br>
+                                    ASDASD, Merk: ASDASD, Tipe: ASDASD,<br>
+                                    Ukuran: ASDASD, Lain-lain: ASDASD<br>
+                                    Dokumen<br>
+                                    --
+                                </td>
+                                <td class="b p06 mini" style="width:25mm;">
+                                    Kategori :<br>
+                                    BARANG MODAL<br>
+                                    Kondisi :<br>
+                                    TIDAK RUSAK
+                                </td>
+                                <td class="b p06 mini" style="width:25mm;">
+                                    BM 1 100 <br>
+                                    PPH 15 100 <br>
+                                    PPN 11 100 <br>
+                                    PPNBM 1 100 <br>
+                                </td>
+                                <td class="b p06 mini" style="width:24mm;">
+                                    Sat : 123,123.0000<br>
+                                    KGM(KILOGRAM)<br>
+                                    Berat Bersih :<br>
+                                    123.0000<br>
+                                    Kemasan : 123123<br>
+                                    7A
+                                </td>
+                                <td class="b p06 mini" style="width:25mm; border-right:0;">
+                                    CIF (dalam ):<br>
+                                    123,123.00<br>
+                                    Harga Penyerahan :<br>
+                                    1,231,234.00<br>
+                                    Kode Perhitungan :<br>
+                                    Harga Pemasukan
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
 
@@ -769,9 +797,10 @@
                                                     <tr>
                                                         <td style="border:none; vertical-align:middle; font-size:7.5pt;">
                                                             Pembayaran&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <span style="display:inline-block; border:1px solid #000; padding:3mm 5mm; font-weight:bold; text-align:center; min-width:10mm;">1</span>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;1. Bank&nbsp;&nbsp;&nbsp;&nbsp;2. Pos&nbsp;&nbsp;&nbsp;&nbsp;3. Kantor Pabean
+                                                            <span style="display:inline-block; border:1px solid #000; width:5mm; height:4mm; vertical-align:middle; margin-right:2mm;"> &nbsp;1&nbsp; </span>
+                                                            &nbsp; 1. Bank &nbsp;&nbsp;&nbsp; 2. Pos &nbsp;&nbsp;&nbsp; 3. Kantor Pabean
                                                         </td>
+
                                                     </tr>
                                                 </table>
                                                 <div style="margin-top:3mm; font-size:7.5pt;">

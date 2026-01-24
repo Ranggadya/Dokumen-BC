@@ -515,12 +515,11 @@
                     <td colspan="2" style="padding: 0; vertical-align: middle;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
-                                <td style="border:none; padding:0; width:6mm; vertical-align:middle;">
-                                    <div style="border:1px solid #000; width:5mm; height:4mm;"></div>
+                                <td class="" style="border:none; padding:0.5mm 0;">
+                                    <span style="display:inline-block; border:1px solid #000; width:5mm; height:4mm; vertical-align:middle; margin-right:2mm;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                                    &nbsp; 1. Kawasan Berikat&nbsp;&nbsp;2. Gudang Berikat&nbsp;&nbsp;3. TPPB&nbsp;&nbsp;4. TBB&nbsp;&nbsp;5. TLB&nbsp;&nbsp;6. KDUB&nbsp;&nbsp;7. PLB&nbsp;&nbsp;8. Lainnya
                                 </td>
-                                <td style="border:none; padding:0 0 0 1mm; vertical-align:middle;">
-                                    1. Kawasan Berikat&nbsp;&nbsp;2. Gudang Berikat&nbsp;&nbsp;3. TPPB&nbsp;&nbsp;4. TBB&nbsp;&nbsp;5. TLB&nbsp;&nbsp;6. KDUB&nbsp;&nbsp;7. PLB&nbsp;&nbsp;8. Lainnya
-                                </td>
+                            
                             </tr>
                         </table>
                     </td>

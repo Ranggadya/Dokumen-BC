@@ -448,7 +448,6 @@
         padding: 0;
         border: 0;
         font-size: 7pt;
-        font-weight: bold;
         text-align: right;
         line-height: 1;
     }
@@ -679,7 +678,7 @@
 
                     <!-- Baris 1 Kanan: Halaman (sejajar dengan NOMOR) -->
                     <td class="right-col no-border-left no-border-bottom halaman-cell" style="text-align:right">
-                        <div class="halaman">Halaman ke-3 dari 3</div>
+                        <div class="halaman">Halaman ke-1 dari 3</div>
                     </td>
                 </tr>
 
@@ -860,10 +859,10 @@
         <td class="b1 bt0 p0">
             <table>
                 <tr>
-                    <td class="b1 bt0 p1">RIWAYAT BARANG</td>
+                    <td class=" bt0 p1">RIWAYAT BARANG</td>
                 </tr>
                 <tr>
-                    <td class="b1 bt0 p1">
+                    <td class=" bt0 p1" style="border-top: 0.5pt solid #000;">
                         <table class="kv-tight">
                             <tr>
                                 <td style="width:6mm;">19.</td>
@@ -903,13 +902,13 @@
         <td class="b1 bt0 p0">
             <table>
                 <tr>
-                    <td class="b1 bt0 p1">DATA PERDAGANGAN</td>
+                    <td class=" bt0 p1">DATA PERDAGANGAN</td>
                 </tr>
                 <tr>
-                    <td class="b1 bt0 p0">
+                    <td class="bt0 p0">
                         <table>
                             <tr>
-                                <td class="b1 bt0 bl0 p1" style="width:50%; vertical-align:top;">
+                                <td class="bt0 bl0 p1" style="width:50%; vertical-align:top; border-top:0.5pt solid #000;">
                                     <table class="kv-tight">
                                         <tr>
                                             <td style="width:6mm;">20.</td>
@@ -944,7 +943,7 @@
                                     </table>
                                 </td>
 
-                                <td class="b1 bt0 br0 p1" style="width:50%; vertical-align:top;">
+                                <td class=" bt0 br0 p1" style="width:50%; vertical-align:top; border-top:0.5pt solid #000; border-left:0.5pt solid #000;">
                                     <table class="kv-tight">
                                         <tr>
                                             <td style="width:6mm;">25.</td>
