@@ -62,7 +62,7 @@
     }
 
     .titleBC {
-        font-size: 11.5pt;
+        font-size: 10.5pt;
         font-weight: bold;
         padding: 2mm 2mm;
     }
@@ -93,8 +93,8 @@
 <table class="b1">
     <!-- TOP TITLE BAR -->
     <tr>
-        <td class="b1 center titleBC" style="width:18%;">BC 4.0</td>
-        <td class="b1 center" style="width:82%; padding: 2.0mm 2.0mm;">
+        <td class="b1 center titleBC" style="width:11%;">BC 4.0</td>
+        <td class="b1 center" style="width:89%; padding: 2.0mm 2.0mm;">
             <div class="titleMain">
                 PEMBERITAHUAN PEMASUKAN BARANG ASAL TEMPAT LAIN DALAM DAERAH PABEAN KE
             </div>
@@ -113,7 +113,7 @@
                 <!-- BARIS 1: Nomor Pengajuan | Info Halaman -->
                 <tr>
                     <!-- Kolom Kiri Baris 1: Nomor Pengajuan -->
-                    <td style="width:49%; border:none; vertical-align:top;">
+                    <td style="width:49%; border:none; vertical-align:top; padding-bottom:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; width:45mm;">Nomor Pengajuan</td>
@@ -124,7 +124,7 @@
                     </td>
 
                     <!-- Kolom Kanan Baris 1: Info Halaman -->
-                    <td style="width:51%; border:none; padding:1.8mm; text-align:right; vertical-align:top;">
+                    <td style="width:51%; border:none; padding:0.5mm; text-align:right; vertical-align:top;">
                         Halaman ke-1 dari 2
                     </td>
                 </tr>
@@ -132,7 +132,7 @@
                 <!-- BARIS 2: A, B, C | Section F -->
                 <tr>
                     <!-- Kolom Kiri Baris 2: A, B, C -->
-                    <td style="width:49%; border:none; border-right:0.6pt solid #000; vertical-align:top;">
+                    <td style="width:49%; border:none; border-right:0.6pt solid #000; vertical-align:top; padding-top:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; width:45mm;">A. KANTOR PABEAN</td>
@@ -154,7 +154,7 @@
 
                     <!-- Kolom Kanan Baris 2: Section F -->
                     <td style="width:51%; border:none; border-top:0.6pt solid #000; padding:0mm; vertical-align:top;">
-                        <div style="border-left:0.6pt solid #000; padding:1.5mm; height:100%;">
+                        <div style="border-left:0.6pt solid #000; padding:1mm; height:100%;">
                             <table style="width:100%; border-collapse:collapse;">
                                 <tr>
                                     <td style="border:none; padding-bottom:0.8mm;">F. KOLOM KHUSUS BEA CUKAI</td>
@@ -280,7 +280,7 @@
             <table style="width:100%; border-collapse:collapse;">
                 <tr>
                     <!-- KIRI -->
-                    <td style="width:50%; border:none; padding:0; vertical-align:top;">
+                    <td style="width:45%; border:none; padding:0; vertical-align:top;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; padding:0.5mm 1.5mm; width:28mm;">11. Packing List</td>
@@ -314,14 +314,20 @@
                     </td>
 
                     <!-- KANAN -->
-                    <td style="width:50%; border:none; padding:0; vertical-align:top;">
+                    <td style="width:55%; border:none; padding:0; vertical-align:top;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; padding:0.5mm 1.5mm; width:45mm;">14. Surat Keputusan/Persetujuan</td>
                                 <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
                                 <td style="border:none; padding:0.5mm 0; width:25mm;"><?= v($data, 'sk_persetujuan_no', '') ?></td>
-                                <td style="border:none; padding:0.5mm 0; width:8mm;">tgl.</td>
-                                <td style="border:none; padding:0.5mm 1.5mm;"><?= v($data, 'sk_persetujuan_tgl', '') ?></td>
+                                
+                            </tr>
+                            <tr>
+                                <td style="border:none; padding:0.5mm 1.5mm;"></td>
+                                <td style="border:none; padding:0.5mm 0;"></td>
+                                <td style="border:none; padding:0.5mm 0; width:25mm;"><?= v($data, 'dok_no_15_2', '') ?></td>
+                                <td style="border:none; padding:0.5mm 0; width:8mm;">tgl. -</td>
+
                             </tr>
                             <tr>
                                 <td style="border:none; padding:0.5mm 1.5mm; width:45mm;">15. Jenis / nomor / tanggal dokumen</td>
@@ -331,9 +337,9 @@
                             <tr>
                                 <td style="border:none; padding:0.5mm 1.5mm;"></td>
                                 <td style="border:none; padding:0.5mm 0;"></td>
-                                <td style="border:none; padding:0.5mm 0; width:25mm;"><?= v($data, 'dok_no_15_2', '-') ?></td>
-                                <td style="border:none; padding:0.5mm 0; width:8mm;">tgl.</td>
-                                <td style="border:none; padding:0.5mm 1.5mm;"><?= v($data, 'dok_tgl_15', '-') ?></td>
+                                <td style="border:none; padding:0.5mm 0; width:25mm;"><?= v($data, 'dok_no_15_2', '') ?></td>
+                                <td style="border:none; padding:0.5mm 0; width:8mm;">tgl. -</td>
+
                             </tr>
                             <tr>
                                 <td style="border:none; height:4mm;" colspan="5"></td>
@@ -414,7 +420,7 @@
         <td class="b1" colspan="2" style="padding:0;">
             <table style="width:100%; border-collapse:collapse;">
                 <tr>
-                    <td style="width:50%; border:none; padding:0; vertical-align:top;">
+                    <td style="width:45%; border:none; padding:0; vertical-align:top;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; padding:0.5mm 1.5mm; width:35mm;">22. Jenis Kemasan</td>
@@ -429,7 +435,7 @@
                         </table>
                     </td>
 
-                    <td style="width:50%; border:none; padding:0; vertical-align:top;">
+                    <td style="width:55%; border:none; padding:0; vertical-align:top;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; padding:0.5mm 1.5mm; width:40mm;">24. Jumlah Kemasan</td>

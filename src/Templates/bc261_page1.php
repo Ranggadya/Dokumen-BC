@@ -240,9 +240,9 @@
                                     <span style="display:inline-block; border:1px solid #000; width:5mm; height:4mm; vertical-align:middle; margin-right:2mm;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
                                     &nbsp; 1. Diperbaiki&nbsp;&nbsp;2. Disubkontrakkan&nbsp;&nbsp;3. Dipinjamkan&nbsp;&nbsp;4. Lainnya&nbsp;&nbsp;
                                 </td>
-                            <tr>
-
                             </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
         </td>

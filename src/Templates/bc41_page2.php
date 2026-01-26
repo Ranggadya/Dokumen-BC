@@ -62,8 +62,8 @@
     }
 
     .titleBC {
-        font-size: 12.5pt;
-        font-weight: bold;
+        font-size: 14.5pt;
+        font-weight: 700;
         padding: 2.0mm;
     }
 
@@ -127,7 +127,7 @@
 <table class="b1">
     <!-- TITLE -->
     <tr>
-        <td class="b1 center titleBC" style="width:18%; padding-top: 2mm;">BC 4.1</td>
+        <td class="b1 center titleBC" style="width:18%; padding-top: 4mm; text-align: center;">BC 4.1</td>
         <td class="b1 center" style="width:82%; padding: 2.0mm 1.0mm;">
             <div class="title2">LEMBAR LANJUTAN</div>
             <div class="title2">DOKUMEN PELENGKAP PABEAN</div>

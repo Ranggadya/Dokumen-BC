@@ -62,8 +62,8 @@
     }
 
     .titleBC {
-        font-size: 11.5pt;
-        font-weight: bold;
+        font-size: 14.5pt;
+        font-weight: 700;
         padding: 2mm 2mm;
     }
 
@@ -130,8 +130,8 @@
 <table class="b1">
     <!-- TOP TITLE BAR -->
     <tr>
-        <td class="b1 center titleBC" style="width:18%;">BC 4.1</td>
-        <td class="b1 center" style="width:82%; padding: 2.0mm 2.0mm;">
+        <td class="b1 center titleBC" style="width:18%; padding: 3.0mm 3.0mm;">BC 4.1</td>
+        <td class="b1 center" style="width:82%; padding: 4.0mm 4.0mm;">
             <div class="titleMain">PEMBERITAHUAN PENGELUARAN KEMBALI BARANG ASAL TEMPAT LAIN DALAM DAERAH</div>
         </td>
     </tr>
@@ -148,7 +148,7 @@
                 <!-- BARIS 1: Nomor Pengajuan | Info Halaman -->
                 <tr>
                     <!-- Kolom Kiri Baris 1: Nomor Pengajuan -->
-                    <td style="width:49%; border:none; vertical-align:top;">
+                    <td style="width:49%; border:none; vertical-align:top; padding-bottom:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; width:45mm;">Nomor Pengajuan</td>
@@ -167,7 +167,7 @@
                 <!-- BARIS 2: A, B, C | Section F -->
                 <tr>
                     <!-- Kolom Kiri Baris 2: A, B, C -->
-                    <td style="width:49%; border:none; border-right:0.6pt solid #000; vertical-align:top;">
+                    <td style="width:49%; border:none; border-right:0.6pt solid #000; vertical-align:top; padding-top:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; width:45mm;">A. KANTOR PABEAN</td>
@@ -336,7 +336,7 @@
                             </tr>
                             <tr>
                                 <td style="border: none; padding: 0.5mm 1.5mm; width: 30mm;">Uang Muka</td>
-                                <td style="border: none; padding: 0.5mm 1.5mm;"><?= v($data, 'uang_muka_tgl', '-') ?></td>
+                                <td style="border: none; padding: 0.5mm 0;"><?= v($data, 'uang_muka_tgl', '-') ?></td>
                             </tr>
                         </table>
                     </td>
@@ -348,21 +348,26 @@
                                 <td style="border: none; padding: 0.5mm 1.5mm; width: 45mm;">14. Surat Keputusan/Persetujuan</td>
                                 <td style="border: none; padding: 0.5mm 0; width: 2mm;">:</td>
                                 <td style="border: none; padding: 0.5mm 0; width: 25mm;"></td>
-                                <td style="border: none; padding: 0.5mm 0; width: 8mm;">tgl.</td>
-                                <td style="border: none; padding: 0.5mm 1.5mm;"><?= v($data, 'sk_persetujuan_tgl', '') ?></td>
-                            </tr>
-                            <tr></tr>
-                            <tr>
-                                <td style="border: none; padding: 0.5mm 1.5mm; width: 45mm;">15. Jenis / nomor / tanggal dokumen</td>
-                                <td style="border: none; padding: 0.5mm 0; width: 2mm;">:</td>
-                                <td style="border: none; padding: 0.5mm 1.5mm;" colspan="3"><?= v($data, 'dok_jenis_nomor_tgl', '-') ?></td>
+                            
                             </tr>
                             <tr>
                                 <td style="border: none; padding: 0.5mm 1.5mm;"></td>
                                 <td style="border: none; padding: 0.5mm 0;"></td>
-                                <td style="border: none; padding: 0.5mm 0; width: 25mm;"></td>
+                                <td style="border: none; padding: 0.5mm 0; width: 15mm;"></td>
                                 <td style="border: none; padding: 0.5mm 0; width: 8mm;">tgl.</td>
                                 <td style="border: none; padding: 0.5mm 1.5mm;"><?= v($data, 'dok_tgl_15', '-') ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none; padding: 0.5mm 1.5mm; width: 50mm;">15. Jenis / nomor / tanggal dokumen</td>
+                                <td style="border: none; padding: 0.5mm 0; width: 2mm;">:</td>
+                                <td style="border: none; padding: 0.5mm 1.5mm;" colspan="3"><?= v($data, 'dok_jenis_nomor_tgl', '-') ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border: none; padding: 0.2mm 0.5mm;"></td>
+                                <td style="border: none; padding: 0.2mm 0;"></td>
+                                <td style="border: none; padding: 0.2mm 0; width: 15mm;"></td>
+                                <td style="border: none; padding: 0.2mm 0; width: 5mm; text-align: left;">tgl.</td>
+                                <td style="border: none; padding: 0.2mm 1.5mm;"><?= v($data, 'dok_tgl_15', '-') ?></td>
                             </tr>
                             <tr>
                                 <td style="border: none; height: 4mm;" colspan="5"></td>
@@ -381,9 +386,9 @@
         <td class="b1" colspan="2" style="padding:0;">
             <table style="width: 100%; border-collapse: collapse;">
                 <tr>
-                    <td style="border: none; padding: 0.5mm 1.5mm; width: 50mm;">16. Nomor dan tanggal BC 4.0 asal</td>
+                    <td style="border: none; padding: 0.5mm 1.5mm; width: 55mm;">16. Nomor dan tanggal BC 4.0 asal</td>
                     <td style="border: none; padding: 0.5mm 1.5mm;"><?= v($data, 'bc40_nomor', '') ?></td>
-                    <td style="border: none; padding: 0.5mm 1.5mm; width: 25mm; text-align: center;">Tgl.</td>
+                    <td style="border: none; padding: 0.5mm 1.5mm; width: 25mm; text-align: center; text-align:left;">Tgl.</td>
                     <td style="border: none; padding: 0.5mm 1.5mm;"><?= v($data, 'bc40_tgl', '') ?></td>
                 </tr>
             </table>
