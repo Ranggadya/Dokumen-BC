@@ -158,7 +158,7 @@
                         </table>
                     </td>
 
-                    <td class="b bl0 p08" style="width:30%; border:0;">
+                    <td class="b bl0 p08" style="width:30%; border:0; text-align:right; padding-bottom:0;">
                         <div class="right mini">
                             Halaman ke-<?= $v($data, 'halaman', '1') ?> dari <?= $v($data, 'halaman_total', '2') ?>
                         </div>

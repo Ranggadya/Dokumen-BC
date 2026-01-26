@@ -164,18 +164,19 @@
 </table>
 <table class="main-table">
     <!-- Section: Nomor Pengajuan & Nomor Pendaftaran -->
+    <!-- Section: Nomor Pengajuan & Nomor Pendaftaran -->
     <tr>
-        <td colspan="3" class="section-nomor">
-            <table class="nomor-table">
+        <td colspan="3" class="b p08 tiny">
+            <table style="width:100%; border-collapse:collapse;">
                 <tr>
-                    <td class="field-label-nomor">Nomor Pengajuan</td>
-                    <td class="field-sep-nomor">:</td>
-                    <td class="field-value-nomor"><?= v($data, 'nomor_pengajuan') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:30mm; padding-left:1mm;">Nomor Pengajuan</td>
+                    <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
+                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'nomor_pengajuan', '-') ?></td>
                 </tr>
                 <tr>
-                    <td class="field-label-nomor">Nomor Pendaftaran</td>
-                    <td class="field-sep-nomor">:</td>
-                    <td class="field-value-nomor"><?= v($data, 'nomor_pendaftaran') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:30mm; padding-left:1mm;">Nomor Pendaftaran</td>
+                    <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
+                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'nomor_pendaftaran', '-') ?></td>
                 </tr>
             </table>
         </td>
@@ -189,35 +190,46 @@
     </tr>
 
     <!-- Section C: PENGESAHAN PENGUSAHA TPB - area lebih besar -->
+    <!-- Section C: PENGESAHAN PENGUSAHA TPB -->
     <tr>
-        <td colspan="3" class="section-c">
-            <div class="section-c-title">C. PENGESAHAN PENGUSAHA TPB</div>
+        <td colspan="3" class="b bt0 p08">
+            <div class="bold">C. PENGESAHAN PENGUSAHA TPB</div>
 
-            <div class="section-c-text">
-                Dengan ini saya menyatakan bertanggung jawab atas kebenaran hal-hal yang diberitahukan dalam pemberitahuan pabean ini.
-            </div>
-
-            <table class="field-c-table">
+            <table>
                 <tr>
-                    <td class="field-label-c indent-label-c">Tempat, Tanggal <span>:</span></td>
-                    <td class="field-value-c">, <?= v($data, 'tanggal_pengesahan', '16-01-2026') ?></td>
-                </tr>
-                <tr>
-                    <td class="field-label-c indent-label-c">Nama Lengkap <span>:</span></td>
-                    <td class="field-value-c"><?= v($data, 'nama_lengkap') ?></td>
-                </tr>
-                <tr>
-                    <td class="field-label-c indent-label-c">Jabatan <span>:</span></td>
-
-                    <td class="field-value-c"><?= v($data, 'jabatan') ?></td>
+                    <td style="border:none; padding:0.5mm 0; width:200mm; padding-left:3mm;">
+                        Dengan ini saya menyatakan bertanggung jawab atas kebenaran hal-hal yang diberitahukan dalam pemberitahuan pabean ini.
+                    </td>
                 </tr>
             </table>
 
-            <div style="margin-top: 5mm;">
-                <span style="padding-left: 5mm;">Tanda Tangan dan Stempel Perusahaan :</span>
-            </div>
+            <table style="width:100%; border-collapse:collapse; margin-top:0;" class="tiny">
+                <tr>
+                    <td style="border:none; padding:0.5mm 0; width:50mm; padding-left:3mm;">Tempat, Tanggal</td>
+                    <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
+                    <td style="border:none; padding:0.5mm 0;">
+                        <?= v($data, 'tempat_pengesahan', '') ?><?= v($data, 'tempat_pengesahan', '') ? ', ' : '' ?><?= v($data, 'tanggal_pengesahan', '16-01-2026') ?>
+                    </td>
+                </tr>
 
-            <div style="height: 35mm;"></div>
+                <tr>
+                    <td style="border:none; padding:0.5mm 0; width:50mm; padding-left:3mm;">Nama Lengkap</td>
+                    <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
+                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'nama_lengkap', '') ?></td>
+                </tr>
+
+                <tr>
+                    <td style="border:none; padding:0.5mm 0; width:50mm; padding-left:3mm;">Jabatan</td>
+                    <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
+                    <td style="border:none; padding:0.5mm 0;"><?= v($data, 'jabatan', '') ?></td>
+                </tr>
+
+                <tr>
+                    <td style="border:none; padding:0.5mm 0; width:50mm; padding-left:3mm;">Tanda Tangan dan Stempel Perusahaan</td>
+                    <td style="border:none; padding:0.5mm 0; width:3mm; text-align:center;">:</td>
+                    <td style="border:none; padding:0.5mm 0; height:15mm;">&nbsp;</td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>
