@@ -168,7 +168,7 @@
                         </table>
                     </td>
 
-                    <td class="b bl0 p08" style="width:30%; border-bottom:0;">
+                    <td class="b bl0 p08" style="width:30%; border-bottom:0; padding-right:5mm;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td class="right mini" style="border:none; padding:0.5mm 0;">
@@ -242,8 +242,8 @@
                                             <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
                                             <td style="border:none; padding:0.5mm 0; width:30%;"><?= v($data, 'izin_tpb_no', '') ?></td>
 
-                                            <td style="border:none; padding:0.5mm 0 0.5mm 1mm; white-space:nowrap;">Tgl</td>
-                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            <td style="border:none; padding:0.5mm 0 0.5mm 1mm; white-space:nowrap;">Tgl :</td>
+                                            
                                             <td style="border:none; padding:0.5mm 0;"><?= v($data, 'izin_tpb_tgl', '') ?></td>
                                         </tr>
                                     </table>
@@ -340,7 +340,7 @@
                                             <td style="border:none; padding:0.5mm 0; width:26mm;"><?= v($data, 'packing_list_no', '') ?></td>
 
                                             <td style="border:none; padding:0.5mm 0 0.5mm 2mm; width:9mm; white-space:nowrap;">Tgl.</td>
-                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                           
                                             <td style="border:none; padding:0.5mm 0;"><?= v($data, 'packing_list_tgl', '') ?></td>
                                         </tr>
 
@@ -351,7 +351,7 @@
                                             <td style="border:none; padding:0.5mm 0; width:26mm;"><?= v($data, 'dok12_surat_keputusan_no', '') ?></td>
 
                                             <td style="border:none; padding:0.5mm 0 0.5mm 2mm; width:9mm; white-space:nowrap;">Tgl.</td>
-                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            
                                             <td style="border:none; padding:0.5mm 0;"><?= v($data, 'dok12_surat_keputusan_tgl', '') ?></td>
                                         </tr>
 
@@ -362,7 +362,7 @@
                                             <td style="border:none; padding:0.5mm 0; width:26mm;"><?= v($data, 'dok13_bc_no', '') ?></td>
 
                                             <td style="border:none; padding:0.5mm 0 0.5mm 2mm; width:9mm; white-space:nowrap;">Tgl.</td>
-                                            <td style="border:none; padding:0.5mm 0; width:2mm;">:</td>
+                                            
                                             <td style="border:none; padding:0.5mm 0;"><?= v($data, 'dok13_bc_tgl', '') ?></td>
                                         </tr>
                                     </table>
@@ -371,7 +371,7 @@
 
                             <!-- 14-16 -->
                             <tr>
-                                <td style="padding:2mm; border-bottom:1px solid #000;">
+                                <td style="padding:1mm; padding-left: 2mm;border-bottom:1px solid #000;">
                                     <table style="width:100%; border-collapse:collapse; font-size:7.5pt; line-height:1.15;">
                                         <tr>
                                             <td style="border:none; padding:0.5mm 0; width:20mm; white-space:nowrap;">14. Valuta</td>
@@ -651,7 +651,7 @@
 
                                     <!-- Area tanda tangan -->
                                     <div style="margin-top:2mm; font-size:7.5pt;">
-                                        Tanda Tangan dan Stempel Perusahaan
+                                        Tanda Tangan dan Stempel Perusahaan :
                                     </div>
 
                                     <!-- Tinggikan area tanda tangan -->

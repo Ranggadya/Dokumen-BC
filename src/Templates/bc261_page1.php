@@ -219,7 +219,7 @@
                         </table>
                     </td>
 
-                    <td class="b bl0 p08" style="width:30%; border-bottom:0;">
+                    <td class="b bl0 p08" style="width:30%; border-bottom:0; padding-right:5mm;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td class="right mini" style="border:none; padding:0.5mm 0;">
@@ -735,7 +735,7 @@
 
                         <!-- Area tanda tangan -->
                         <div style="margin-top:2mm; font-size:7.5pt;">
-                            Tanda Tangan dan Stempel Perusahaan
+                            Tanda Tangan dan Stempel Perusahaan :
                         </div>
 
                         <!-- Tinggikan area tanda tangan -->

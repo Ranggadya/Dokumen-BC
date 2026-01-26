@@ -779,7 +779,7 @@
                                         </tr>
                                     </table>
 
-                                    <div style="margin-top:2mm; font-size:7.5pt;">Tanda Tangan dan Stempel</div>
+                                    <div style="margin-top:2mm; font-size:7.5pt;">Tanda Tangan dan Stempel :</div>
                                     <div style="height:18mm;"></div>
                                 </td>
                                 <!-- E -->
