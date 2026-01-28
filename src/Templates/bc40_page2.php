@@ -127,7 +127,7 @@
 <table class="b1">
     <!-- TITLE -->
     <tr>
-        <td class="b1 center titleBC" style="width:18%;">BC 4.1</td>
+        <td class="b1 center titleBC" style="width:18%; padding-top:4mm;">BC 4.1</td>
         <td class="b1 center" style="width:82%; padding: 2.0mm 1.0mm;">
             <div class="title2">LEMBAR LANJUTAN</div>
             <div class="title2">DOKUMEN PELENGKAP PABEAN</div>
@@ -164,7 +164,7 @@
                 <!-- BARIS 2: A, B, C | Section F -->
                 <tr>
                     <!-- Kolom Kiri Baris 2: A, B, C -->
-                    <td style="width:49%; border:none; border-right:0.6pt solid #000; vertical-align:top;">
+                    <td style="width:49%; border:none; border-right:0.6pt solid #000; vertical-align:top; padding-top:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; width:45mm;">A. KANTOR PABEAN</td>

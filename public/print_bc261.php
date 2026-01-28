@@ -2,16 +2,24 @@
 
 declare(strict_types=1);
 
-// public/print_bc261.php
+// =======================================================
+// BC 2.6.1 PRINT RUNNER (STABLE VERSION)
+// =======================================================
+
+// Amankan output dari awal (anti "Data has already been sent")
+ob_start();
+ini_set('display_errors', '0');
+error_reporting(E_ALL);
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Kalau Anda punya helper di src/Support/helpers.php, pakai require_once agar aman
+// Helper
 $helpersPath = __DIR__ . '/../src/Support/helpers.php';
 if (is_file($helpersPath)) {
     require_once $helpersPath;
 }
 
-// Fallback kalau helpers.php tidak punya v()
+// Fallback v()
 if (!function_exists('v')) {
     function v(array $data, string $key, string $default = '-'): string
     {
@@ -21,24 +29,23 @@ if (!function_exists('v')) {
     }
 }
 
-// ====== DATA (contoh). Ganti ini ambil dari DB / request Anda ======
+// =======================================================
+// DATA (MOCK / DB)
+// =======================================================
 $data = [
-    // Header
     'nomor_pengajuan' => '000261-317253-20260117-00002',
     'kantor_pabean'   => '-',
 
-    // halaman
     'halaman'       => '1',
     'halaman_total' => '2',
 
-    // A. Jenis transaksi (opsional: tandai salah satu)
-    // isi dengan 'checked' kalau mau dianggap aktif (di template bisa dipakai)
-    'trx_diperbaiki'       => 'checked',
-    'trx_disubkontrakkan'  => '',
-    'trx_dipinjamkan'      => '',
-    'trx_lainnya'          => '',
+    // A. Jenis Transaksi
+    'trx_diperbaiki'      => 'checked',
+    'trx_disubkontrakkan' => '',
+    'trx_dipinjamkan'     => '',
+    'trx_lainnya'         => '',
 
-    // B. Data pemberitahuan
+    // B. Data Pemberitahuan
     'pengusaha_npwp'   => '',
     'pengusaha_nama'   => '',
     'pengusaha_alamat' => '',
@@ -59,7 +66,7 @@ $data = [
     'packing_list'        => '',
     'packing_list_tgl'    => '',
     'pemenuhan_no'        => '',
-    'pemenuhan_tgl'       => '',
+    'pemenuhanan_tgl'     => '',
     'skep_no'             => '',
     'skep_tgl'            => '',
     'valuta'              => '-',
@@ -75,9 +82,10 @@ $data = [
     'berat_bersih'               => '0.0000',
 
     // 22–27
-    'jenis_barang_info' => '--------------- 0 Jenis barang. Lihat lembar lanjutan. ---------------',
+    'jenis_barang_info' =>
+    '--------------- 0 Jenis barang. Lihat lembar lanjutan. ---------------',
 
-    // 28–34 Data Penyesuaian Jaminan
+    // 28–34
     'p28_bea_masuk' => '0',
     'p29_bea_masuk' => '0',
     'p30_cukai'     => '0',
@@ -86,7 +94,7 @@ $data = [
     'p33_pph'       => '0',
     'p34_total'     => '0',
 
-    // 35–40 Data Jaminan
+    // 35–40
     'jenis_jaminan'        => '',
     'nomor_jaminan'        => '-',
     'tgl_jaminan'          => '-',
@@ -106,53 +114,60 @@ $data = [
     'printed_app'      => 'esikatERP',
     'printed_datetime' => date('d-M-Y | H:i'),
 
-    // Page 2 (lembar lanjutan dokumen pelengkap pabean)
+    // Page 2
     'nomor_pendaftaran2' => '-',
-    'dokumen_list' => [
-        // ['no'=>'1', 'jenis'=>'Packing List', 'nomor'=>'...', 'tanggal'=>'...'],
-    ],
+    'dokumen_list' => [],
 ];
 
-// ====== MPDF SETUP ======
+// =======================================================
+// MPDF SETUP (SAMAKAN DENGAN TEMPLATE)
+// =======================================================
 $mpdf = new \Mpdf\Mpdf([
     'mode' => 'utf-8',
     'format' => 'A4',
-    // biasanya form sangat sensitif; margin kamu bisa samakan dengan yang sudah berhasil
-    'margin_left' => 8,
-    'margin_right' => 8,
-    'margin_top' => 8,
+    // Samakan dengan @page di template BC 2.6.1
+    'margin_left'   => 5,
+    'margin_right'  => 5,
+    'margin_top'    => 6,
     'margin_bottom' => 8,
 ]);
 
 $mpdf->SetTitle('BC 2.6.1 - ' . v($data, 'nomor_pengajuan'));
 $mpdf->SetAuthor('System');
 
-// ====== INCLUDE TEMPLATE PATH (src/Template) ======
+// =======================================================
+// TEMPLATE
+// =======================================================
 $page1Path = __DIR__ . '/../src/Templates/bc261_page1.php';
 $page2Path = __DIR__ . '/../src/Templates/bc261_page2.php';
 
-if (!is_file($page1Path)) {
+if (!is_file($page1Path) || !is_file($page2Path)) {
     http_response_code(500);
-    exit("Template tidak ditemukan: {$page1Path}");
-}
-if (!is_file($page2Path)) {
-    http_response_code(500);
-    exit("Template tidak ditemukan: {$page2Path}");
+    exit('Template BC 2.6.1 tidak ditemukan');
 }
 
-// Render page 1
+// Page 1
 ob_start();
-require $page1Path; // $data ikut terbawa karena scope file include
-$html1 = ob_get_clean();
-$mpdf->WriteHTML($html1);
+require $page1Path;
+$mpdf->WriteHTML(ob_get_clean());
 
-// Render page 2
+// Page 2
 $mpdf->AddPage();
 ob_start();
 require $page2Path;
-$html2 = ob_get_clean();
-$mpdf->WriteHTML($html2);
+$mpdf->WriteHTML(ob_get_clean());
 
-// Output inline (browser)
-$filenameSafe = preg_replace('/[^0-9A-Za-z\-]/', '_', v($data, 'nomor_pengajuan'));
+// =======================================================
+// OUTPUT (PASTI AMAN)
+// =======================================================
+while (ob_get_level() > 0) {
+    ob_end_clean();
+}
+
+$filenameSafe = preg_replace(
+    '/[^0-9A-Za-z\-]/',
+    '_',
+    v($data, 'nomor_pengajuan')
+);
+
 $mpdf->Output("BC261_{$filenameSafe}.pdf", \Mpdf\Output\Destination::INLINE);

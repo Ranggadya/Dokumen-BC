@@ -194,17 +194,13 @@
     <div class="titleBig">PEMBERITAHUAN PENGELUARAN BARANG DARI</div>
     <div class="titleBig">TEMPAT PENIMBUNAN BERIKAT DENGAN JAMINAN</div>
 </div>
-<table class="bc27-mini">
-    <tr>
-        <td>BC 2.6.1</td>
-    </tr>
-</table>
+
 <table>
     <tr>
-        <td class="b p0">
-            <table>
+        <td class="b p0" colspan="2">
+            <table style="width:100%; border-collapse:collapse; table-layout:fixed; ">
                 <tr>
-                    <td class="b br0 p08" style="width:70%; border-bottom:0; padding-bottom:0;">
+                    <td class="b br0 p08" style="width:70%; border:0; padding-bottom:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td class="mini" style="border:none; padding:0.5mm 0; width:30mm;">Kantor Pabean</td>
@@ -219,7 +215,7 @@
                         </table>
                     </td>
 
-                    <td class="b bl0 p08" style="width:30%; border-bottom:0; padding-right:5mm;">
+                    <td class="b bl0 p08" style="width:30%;  padding-right:5mm; border:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td class="right mini" style="border:none; padding:0.5mm 0;">
@@ -231,7 +227,7 @@
                 </tr>
 
                 <tr>
-                    <td class="b p08" colspan="2" style="border-top:0; padding-top: 0;">
+                    <td class="b p08" colspan="2" style="border-top:0; padding-top: 0; border-bottom:0; border-left:0; border-right:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td class="mini bold" style="border:none; padding:0.5mm 0; width:30mm;">A. JENIS TRANSAKSI</td>
@@ -247,7 +243,6 @@
             </table>
         </td>
     </tr>
-
     <tr>
         <td class="b bt0 br0 p08" style="width:50%;">
             <div class="boxTitle">B. DATA PEMBERITAHUAN</div>
@@ -758,9 +753,7 @@
     </tr>
 
 </table>
-</td>
-</tr>
-</table>
+
 
 <div class="footerLine">
     Rangkap ke -1 / 2 / 3: Pengusaha TPB / KPPBC Pengawas / Penerima Barang

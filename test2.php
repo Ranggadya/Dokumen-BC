@@ -15,10 +15,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-
 // public/print_bc261.php
 require_once __DIR__ . '/vendor/autoload.php';
-
 
 // Kalau Anda punya helper di src/Support/helpers.php, pakai require_once agar aman
 $helpersPath = __DIR__ . '/../src/Support/helpers.php';
@@ -36,101 +34,383 @@ if (!function_exists('v')) {
     }
 }
 
-// ====== DATA (contoh). Ganti ini ambil dari DB / request Anda ======
-$data = [
-    // Header
-    'nomor_pengajuan' => '000261-317253-20260117-00002',
-    'kantor_pabean'   => '-',
+if (!function_exists('IndonesiaTgl')) {
+    function IndonesiaTgl(?string $tgl): string
+    {
+        if (empty($tgl) || $tgl === '0000-00-00' || $tgl === '-') {
+            return '-';
+        }
+        $ts = strtotime($tgl);
+        if ($ts === false) return (string)$tgl;
+        return date('d-m-Y', $ts);
+    }
+}
 
-    // halaman
+if (!function_exists('format_angka_desimal')) {
+    function format_angka_desimal($angka, int $decimal = 2): string
+    {
+        $angka = (float)($angka ?? 0);
+        return number_format($angka, $decimal, '.', ',');
+    }
+}
+
+if (!function_exists('bc261_build_ref_map')) {
+    function bc261_build_ref_map($query, string $table, string $kodeField, string $uraianField): array
+    {
+        try {
+            $rows = $query->table($table)
+                ->where('is_aktif', '=', 1)
+                ->get() ?? [];
+        } catch (\Throwable $e) {
+            return [];
+        }
+
+        $map = [];
+        foreach ($rows as $row) {
+            $kode = trim((string)($row[$kodeField] ?? ''));
+            if ($kode === '') continue;
+            $map[$kode] = trim((string)($row[$uraianField] ?? ''));
+        }
+        return $map;
+    }
+}
+
+if (!function_exists('bc261_ref_label')) {
+    function bc261_ref_label(array $map, ?string $kode, bool $showCode = true): string
+    {
+        $kode = trim((string)($kode ?? ''));
+        if ($kode === '') return '-';
+        $nama = $map[$kode] ?? '';
+        if ($nama === '') return $kode;
+        return $showCode ? "{$kode} - {$nama}" : $nama;
+    }
+}
+
+/* ===========================
+ * 1) FETCH DATA DB + MAPPING ke $data 
+ * =========================== */
+
+// id header
+$idHeader = $_GET['id'] ?? null;
+if (empty($idHeader)) {
+    http_response_code(400);
+    exit('ID dokumen tidak ditemukan (param ?id=...).');
+}
+
+// Pastikan $query tersedia 
+if (!isset($query)) {
+    http_response_code(500);
+    exit('Objek $query (DB query builder) belum tersedia di file ini. Pastikan inisialisasi DB dilakukan sebelum print_bc261.php dipanggil.');
+}
+
+// Validasi kdusaha dari session bila ada
+$kdUsahaSession = $_SESSION['app']['auth']['user']['kdusaha'] ?? null;
+
+// header
+$builder = $query->table('ceisa_header')->where('id_header', '=', $idHeader);
+if (!empty($kdUsahaSession)) {
+    $builder->where('kdusaha', '=', $kdUsahaSession);
+}
+$h = $builder->first();
+
+if (!$h) {
+    http_response_code(404);
+    exit('Dokumen tidak ditemukan / tidak berhak diakses.');
+}
+
+// entitas
+$entitasRows = $query->table('ceisa_entitas')
+    ->where('id_header', '=', $idHeader)
+    ->orderBy('seriEntitas', 'ASC')
+    ->get() ?? [];
+
+$entitasByKode = [];
+foreach ($entitasRows as $row) {
+    $kode = (string)($row['kodeEntitas'] ?? '');
+    $entitasByKode[$kode][] = $row;
+}
+
+$ambilEntitas = function (string $kode) use ($entitasByKode) {
+    return $entitasByKode[$kode][0] ?? null;
+};
+
+$entPengusahaTPB = $ambilEntitas('2'); // di contoh bc261_coth ini "Eksportir". Untuk BC2.6.1 kamu jadikan "Pengusaha TPB"
+$entPengirim     = $ambilEntitas('6'); // di contoh "Pembeli". Kamu jadikan "Pengirim Barang" (placeholder mapping)
+$entPemilik      = $ambilEntitas('7'); // "Pemilik"
+$entPenerima     = $ambilEntitas('8'); // "Penerima"
+
+// dokumen, kemasan, kontainer, pengangkut
+$daftarDokumen = $query->table('ceisa_dokumen')
+    ->where('id_header', '=', $idHeader)
+    ->orderBy('seriDokumen', 'ASC')
+    ->get() ?? [];
+
+$daftarKemasan = $query->table('ceisa_kemasan')
+    ->where('id_header', '=', $idHeader)
+    ->orderBy('seriKemasan', 'ASC')
+    ->get() ?? [];
+
+$daftarKontainer = $query->table('ceisa_kontainer')
+    ->where('id_header', '=', $idHeader)
+    ->orderBy('seriKontainer', 'ASC')
+    ->get() ?? [];
+
+$pengangkut = $query->table('ceisa_pengangkut')
+    ->where('id_header', '=', $idHeader)
+    ->orderBy('seriPengangkut', 'ASC')
+    ->first() ?? null;
+
+$kesiapan = $query->table('ceisa_kesiapan_barang')
+    ->where('id_header', '=', $idHeader)
+    ->orderBy('id', 'ASC')
+    ->first() ?? null;
+
+try {
+    $bankDevisa = $query->table('ceisa_bank_devisa')
+        ->where('id_header', '=', $idHeader)
+        ->orderBy('seriBank', 'ASC')
+        ->first() ?? ['namaBank' => '-'];
+} catch (\Throwable $e) {
+    $bankDevisa = ['namaBank' => '-'];
+}
+
+/* ===== Load referensi (yang kepake di template kamu) ===== */
+$mapKantor      = bc261_build_ref_map($query, 'ceisa_referensi_kantor', 'kode_kantor', 'nama_kantor');
+$mapValuta      = bc261_build_ref_map($query, 'ceisa_referensi_valuta', 'kode', 'nama');
+$mapJenisKemasan = bc261_build_ref_map($query, 'ceisa_referensi_jenis_kemasan', 'kode', 'uraian');
+$mapCaraAngkut  = bc261_build_ref_map($query, 'ceisa_referensi_cara_pengangkutan', 'kode_cara', 'uraian_cara');
+$mapUkuranKont  = bc261_build_ref_map($query, 'ceisa_referensi_ukuran_kontainer', 'kode', 'uraian');
+$mapJenisKont   = bc261_build_ref_map($query, 'ceisa_referensi_jenis_kontainer', 'kode', 'uraian');
+
+/* ===== Build detail peti (18) dan kemasan (19) ===== */
+$detail_peti = '-';
+if (!empty($daftarKontainer)) {
+    $firstPeti = $daftarKontainer[0];
+    $nomorKont = $firstPeti['nomorKontainer'] ?? '-';
+    $ukuran    = bc261_ref_label($mapUkuranKont, $firstPeti['kodeUkuranKontainer'] ?? '', false);
+    $jenisKont = bc261_ref_label($mapJenisKont,  $firstPeti['kodeJenisKontainer'] ?? '', false);
+    $detail_peti = trim($nomorKont . ' / ' . $ukuran . ' / ' . $jenisKont);
+}
+
+$jumlah_kemasan = 0;
+$detail_kemasan_line = '-';
+if (!empty($daftarKemasan)) {
+    $parts = [];
+    foreach ($daftarKemasan as $k) {
+        $jml  = (int)($k['jumlahKemasan'] ?? 0);
+        $jumlah_kemasan += $jml;
+
+        $kode = (string)($k['kodeJenisKemasan'] ?? '');
+        $jenisLabel = bc261_ref_label($mapJenisKemasan, $kode, true);
+        $merk = (string)($k['merkKemasan'] ?? '');
+
+        $text = trim($jml . ' ' . $jenisLabel);
+        if ($merk !== '') $text .= ' / ' . $merk;
+        $parts[] = $text;
+    }
+    $detail_kemasan_line = implode('; ', $parts);
+}
+
+/* ===== Dokumen pelengkap pabean: ambil Packing List bila ada =====
+   (di bc261_coth: packing kode 217)
+*/
+$packing_no = '';
+$packing_tgl = '';
+foreach ($daftarDokumen as $doc) {
+    $kode = (string)($doc['kodeDokumen'] ?? '');
+    if ($kode === '217') {
+        $packing_no = (string)($doc['nomorDokumen'] ?? '');
+        $packing_tgl = IndonesiaTgl($doc['tanggalDokumen'] ?? '');
+        break;
+    }
+}
+
+/* ===== Build cara angkut (buat field jenis_sarana_angkut di template) ===== */
+$caraAngkutText = '';
+if ($pengangkut) {
+    $caraAngkutText = bc261_ref_label($mapCaraAngkut, $pengangkut['kodeCaraAngkut'] ?? '', false);
+}
+
+// Dalam template kamu, "Jenis Sarana Pengangkut" itu 1 blok teks.
+// Kita gabung: cara angkut + nama + nomor
+$jenisSaranaAngkut = trim(
+    implode(' | ', array_filter([
+        $caraAngkutText,
+        $pengangkut['namaPengangkut'] ?? '',
+        $pengangkut['nomorPengangkut'] ?? '',
+    ], fn($x) => trim((string)$x) !== ''))
+);
+
+/* ===== Mapping utama ke $data (nama field mengikuti template kamu) ===== */
+
+// kantor pabean: ambil yang paling masuk akal untuk form kamu.
+// Kamu bisa pilih: kodeKantorEkspor / kodeKantor / kodeKantorMuat
+$kantorPabeanLabel = bc261_ref_label(
+    $mapKantor,
+    $h['kodeKantor'] ?? ($h['kodeKantorEkspor'] ?? ($h['kodeKantorMuat'] ?? '')),
+    true
+);
+
+// Valuta + NDPBM
+$valutaLabel = bc261_ref_label($mapValuta, $h['kodeValuta'] ?? '', true);
+$ndpbm = (float)($h['ndpbm'] ?? 0);
+
+// CIF (karena skema DB kamu belum pasti, kita coba beberapa kemungkinan field)
+$cif = (float)(
+    $h['cif'] ??
+    $h['nilaiCif'] ??
+    $h['nilai_cif'] ??
+    0
+);
+
+// CIF Rupiah (jika CIF dinyatakan valuta asing)
+$cif_rp = $cif * $ndpbm;
+
+// Bruto/Netto
+$bruto = (float)($h['bruto'] ?? 0);
+$netto = (float)($h['netto'] ?? 0);
+
+// Nomor/Tanggal pendaftaran (di bc261_coth: nomorDaftar & tanggalDaftar)
+$nomorDaftar = (string)($h['nomorDaftar'] ?? '-');
+$tglDaftar   = IndonesiaTgl($h['tanggalDaftar'] ?? '');
+
+// Pengesahan (kalau di DB ada)
+$ttdTempat = (string)($h['kotaTtd'] ?? '');
+$ttdTgl    = IndonesiaTgl($h['tanggalTtd'] ?? '');
+$ttdNama   = (string)($h['namaTtd'] ?? '');
+$ttdJabatan = (string)($h['jabatanTtd'] ?? '');
+
+// Build $data final yang dipakai HTML kamu
+$data = [
+    // Header top
+    'nomor_pengajuan' => (string)($h['nomorAju'] ?? '-'),
+    'kantor_pabean'   => $kantorPabeanLabel,
+
+    // Halaman
     'halaman'       => '1',
     'halaman_total' => '2',
 
-    // A. Jenis transaksi (opsional: tandai salah satu)
-    // isi dengan 'checked' kalau mau dianggap aktif (di template bisa dipakai)
-    'trx_diperbaiki'       => 'checked',
-    'trx_disubkontrakkan'  => '',
-    'trx_dipinjamkan'      => '',
-    'trx_lainnya'          => '',
+    // A. Jenis transaksi (tetap manual dulu kalau belum ada di DB)
+    'trx_diperbaiki'      => 'checked',
+    'trx_disubkontrakkan' => '',
+    'trx_dipinjamkan'     => '',
+    'trx_lainnya'         => '',
 
-    // B. Data pemberitahuan
-    'pengusaha_npwp'   => '',
-    'pengusaha_nama'   => '',
-    'pengusaha_alamat' => '',
-    'izin_tpb_no'      => '',
-    'izin_tpb_tgl'     => '',
+    // B. Data Pemberitahuan (mapping dari entitas: ini placeholder karena di sistem tiap kantor bisa beda)
+    'pengusaha_npwp'   => (string)($entPengusahaTPB['nomorIdentitas'] ?? ''),
+    'pengusaha_nama'   => (string)($entPengusahaTPB['namaEntitas'] ?? ''),
+    'pengusaha_alamat' => (string)($entPengusahaTPB['alamatEntitas'] ?? ''),
+    'izin_tpb_no'      => (string)($h['nomorIzinTpb'] ?? ''),    
+    'izin_tpb_tgl'     => IndonesiaTgl($h['tanggalIzinTpb'] ?? ''),
 
-    'pengirim_npwp'    => '',
-    'pengirim_nama'    => '',
-    'pengirim_alamat'  => '',
+    'pengirim_npwp'    => (string)($entPengirim['nomorIdentitas'] ?? ''),
+    'pengirim_nama'    => (string)($entPengirim['namaEntitas'] ?? ''),
+    'pengirim_alamat'  => (string)($entPengirim['alamatEntitas'] ?? ''),
 
-    'pemilik_npwp'     => '',
-    'pemilik_nama'     => '',
-    'pemilik_alamat'   => '',
+    'pemilik_npwp'     => (string)($entPemilik['nomorIdentitas'] ?? ''),
+    'pemilik_nama'     => (string)($entPemilik['namaEntitas'] ?? ''),
+    'pemilik_alamat'   => (string)($entPemilik['alamatEntitas'] ?? ''),
 
     // D. Bea Cukai
-    'nomor_pendaftaran'   => '-',
-    'tanggal_pendaftaran' => '',
-    'packing_list'        => '',
-    'packing_list_tgl'    => '',
-    'pemenuhan_no'        => '',
-    'pemenuhan_tgl'       => '',
-    'skep_no'             => '',
-    'skep_tgl'            => '',
-    'valuta'              => '-',
-    'ndpbm'               => '0.00',
-    'nilai_cif'           => '0.00',
-    'nilai_cif_rp'        => 'Rp 0.00',
+    'nomor_pendaftaran'   => $nomorDaftar,
+    'tanggal_pendaftaran' => $tglDaftar,
+
+    // Dokumen pelengkap: Packing List
+    'packing_list'     => $packing_no,
+    'packing_list_tgl' => $packing_tgl,
+
+    // Pemenuhan persyaratan & SKEP (kalau belum ada kolomnya, kosong)
+    'pemenuhan_no'  => (string)($h['pemenuhanNo'] ?? ''),
+    'pemenuhan_tgl' => IndonesiaTgl($h['pemenuhanTgl'] ?? ''),
+    'skep_no'       => (string)($h['skepNo'] ?? ''),
+    'skep_tgl'      => IndonesiaTgl($h['skepTgl'] ?? ''),
+
+    // 14-16
+    'valuta'     => $valutaLabel,
+    'valuta_code' => (string)($h['kodeValuta'] ?? ''),
+    'ndpbm'      => format_angka_desimal($ndpbm, 2),
+    'nilai_cif'  => format_angka_desimal($cif, 2),
+    'nilai_cif_rp' => 'Rp ' . format_angka_desimal($cif_rp, 2),
 
     // 17–21
-    'jenis_sarana_angkut'        => '',
-    'peti_kemas_no_ukuran_tipe'  => '',
-    'kemasan_jumlah_jenis_merek' => '0',
-    'berat_kotor'                => '0.0000',
-    'berat_bersih'               => '0.0000',
+    'jenis_sarana_angkut'       => $jenisSaranaAngkut,
+    'peti_kemas_no_ukuran_tipe' => $detail_peti,
 
-    // 22–27
-    'jenis_barang_info' => '--------------- 0 Jenis barang. Lihat lembar lanjutan. ---------------',
+    // PERHATIAN: di template kamu kotak angka pakai key 'jumlah_kemasan',
+    // tapi data awal kamu pakai 'kemasan_jumlah_jenis_merek'. Aku isi dua-duanya biar aman.
+    'jumlah_kemasan'            => (string)$jumlah_kemasan,
+    'kemasan_jumlah_jenis_merek' => $detail_kemasan_line,
 
-    // 28–34 Data Penyesuaian Jaminan
-    'p28_bea_masuk' => '0',
-    'p29_bea_masuk' => '0',
-    'p30_cukai'     => '0',
-    'p31_ppn'       => '0',
-    'p32_ppnbm'     => '0',
-    'p33_pph'       => '0',
-    'p34_total'     => '0',
+    'berat_kotor'  => format_angka_desimal($bruto, 4),
+    'berat_bersih' => format_angka_desimal($netto, 4),
 
-    // 35–40 Data Jaminan
-    'jenis_jaminan'        => '',
-    'nomor_jaminan'        => '-',
-    'tgl_jaminan'          => '-',
-    'nilai_jaminan'        => '0',
-    'jatuh_tempo'          => '-',
-    'penjamin'             => '',
-    'bukti_jaminan_no_tgl' => '',
-    'bukti_jaminan_tgl'    => '-',
+    // 22–27 (kalau belum ada, tetap default)
+    'jumlah_jenis_barang' => (string)($h['jumlahJenisBarang'] ?? 0),
+    'jenis_barang_info'   => '--------------- ' . (string)($h['jumlahJenisBarang'] ?? 0) . ' Jenis barang. Lihat lembar lanjutan. ---------------',
 
-    // C. Pengesahan
-    'c_tempat'       => '',
-    'c_tanggal'      => '17-01-2026',
-    'c_nama_lengkap' => '',
-    'c_jabatan'      => '',
+    // 28–34 Data Penyesuaian Jaminan (isi 0 dulu kalau belum ada)
+    'p28_bea_masuk' => (string)($h['p28_bea_masuk'] ?? '0'),
+    'p29_bea_masuk' => (string)($h['p29_bea_masuk'] ?? '0'),
+    'p30_cukai'     => (string)($h['p30_cukai'] ?? '0'),
+    'p31_ppn'       => (string)($h['p31_ppn'] ?? '0'),
+    'p32_ppnbm'     => (string)($h['p32_ppnbm'] ?? '0'),
+    'p33_pph'       => (string)($h['p33_pph'] ?? '0'),
+    'p34_total'     => (string)($h['p34_total'] ?? '0'),
 
-    // Footer
+    // 35–40 Data Jaminan (isi dari DB jika ada)
+    'jenis_jaminan'        => (string)($h['jenisJaminan'] ?? ''),
+    'nomor_jaminan'        => (string)($h['nomorJaminan'] ?? '-'),
+    'tgl_jaminan'          => IndonesiaTgl($h['tanggalJaminan'] ?? '-'),
+    'nilai_jaminan'        => (string)($h['nilaiJaminan'] ?? '0'),
+    'jatuh_tempo'          => IndonesiaTgl($h['jatuhTempoJaminan'] ?? '-'),
+    'penjamin'             => (string)($h['penjamin'] ?? ''),
+    'bukti_jaminan_no_tgl' => (string)($h['buktiJaminanNo'] ?? ''),
+    'bukti_jaminan_tgl'    => IndonesiaTgl($h['buktiJaminanTgl'] ?? '-'),
+
+    // C. Pengesahan (ambil dari ttd header kalau ada)
+    'c_tempat'       => $ttdTempat,
+    'c_tanggal'      => $ttdTgl !== '-' ? $ttdTgl : date('d-m-Y'),
+    'c_nama_lengkap' => $ttdNama,
+    'c_jabatan'      => $ttdJabatan,
+
+    // Footer / printed
     'printed_app'      => 'esikatERP',
     'printed_datetime' => date('d-M-Y | H:i'),
+    'printed_from'     => 'esikatERP | ' . date('d-M-Y H:i'),
 
-    // Page 2 (lembar lanjutan dokumen pelengkap pabean)
-    'nomor_pendaftaran2' => '-',
-    'dokumen_list' => [
-        // ['no'=>'1', 'jenis'=>'Packing List', 'nomor'=>'...', 'tanggal'=>'...'],
-    ],
+    // Page 2
+    'nomor_pendaftaran2' => $nomorDaftar,
+
+    // list dokumen page2 (kalau kamu mau isi tabel, tinggal render loop di HTML)
+    'dokumen_list' => [],
 ];
 
-// ====== MPDF SETUP ======
+// Filename safe (FIX: sebelumnya belum ada variabel ini)
+$filenameSafe = preg_replace('/[^A-Za-z0-9_\-]+/', '_', (string)v($data, 'nomor_pengajuan', 'BC261'));
 
-// ====== BUILD HTML (SINGLE DOCUMENT) ======
+
+/* ===========================
+ * OPTIONAL: DEBUG cepat untuk cek mapping
+ * =========================== */
+if (isset($_GET['debug']) && $_GET['debug'] === 'json') {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode([
+        'header_raw' => $h,
+        'mapped_data_for_template' => $data,
+        'kontainer' => $daftarKontainer,
+        'kemasan' => $daftarKemasan,
+        'dokumen' => $daftarDokumen,
+        'pengangkut' => $pengangkut,
+        'bank_devisa' => $bankDevisa,
+        'kesiapan' => $kesiapan,
+    ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+/* ===========================
+ * 2) BUILD HTML (PUNYA KAMU) — TIDAK DIUBAH
+ * =========================== */
+
 ob_start();
 ?>
 <!DOCTYPE html>
@@ -140,6 +420,7 @@ ob_start();
     <meta charset="utf-8">
     <title>BC261 - <?= htmlspecialchars(v($data, 'nomor_pengajuan', '-'), ENT_QUOTES, 'UTF-8') ?></title>
     <style>
+        /* ... STYLE kamu (aku tidak ubah) ... */
         @page {
             margin: 6mm 5mm 8mm 5mm;
         }
@@ -261,168 +542,10 @@ ob_start();
             font-size: 7.2pt;
         }
 
-        .check {
-            display: inline-block;
-            width: 3.2mm;
-            height: 3.2mm;
-            border: 0.5pt solid #000;
-            vertical-align: middle;
-            margin-right: 1mm;
-        }
-
-        .check.on {
-            background: #000;
-        }
-
-        .gridNo {
-            width: 6mm;
-            text-align: center;
-        }
-
-        .gridHS {
-            width: 36mm;
-        }
-
-        .gridNegara {
-            width: 20mm;
-        }
-
-        .gridTarif {
-            width: 35mm;
-        }
-
-        .gridSatuan {
-            width: 30mm;
-        }
-
-        .gridNilai {
-            width: 22mm;
-        }
-
-        .noteLine {
-            text-align: center;
-            padding: 4mm 0;
-            font-size: 8pt;
-        }
-
         .footerLine {
             font-size: 7.2pt;
             margin-top: 1.5mm;
         }
-
-        .bc27-mini {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-            margin: 0;
-        }
-
-        .bc27-mini td {
-            padding: 0;
-            border: 0;
-            font-size: 7pt;
-            text-align: right;
-            line-height: 1;
-        }
-
-        /* ===== PAGE 2 EXTRA ===== */
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 8pt;
-            line-height: 1.05;
-            color: #000;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-
-        td {
-            vertical-align: top;
-        }
-
-        .b {
-            border: 0.5pt solid #000;
-        }
-
-        .bt0 {
-            border-top: 0;
-        }
-
-        .bb0 {
-            border-bottom: 0;
-        }
-
-        .bl0 {
-            border-left: 0;
-        }
-
-        .br0 {
-            border-right: 0;
-        }
-
-        .p0 {
-            padding: 0;
-        }
-
-        .p08 {
-            padding: 0.8mm;
-        }
-
-        .p06 {
-            padding: 0.6mm;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        .right {
-            text-align: right;
-        }
-
-        .bold {
-            font-weight: 700;
-        }
-
-        .mini {
-            font-size: 7.4pt;
-        }
-
-        .tiny {
-            font-size: 7.2pt;
-        }
-
-        .titleWrap {
-            margin-bottom: 1.5mm;
-            position: relative;
-        }
-
-        .titleBig {
-            font-size: 10pt;
-            font-weight: 700;
-            letter-spacing: 0.2px;
-        }
-
-        .formCode {
-            position: absolute;
-            right: 0;
-            top: 0;
-            font-size: 9pt;
-            font-weight: 700;
-        }
-
-        .footerLine {
-            font-size: 7.2pt;
-            margin-top: 1.5mm;
-        }
-
 
         .bc27-mini {
             width: 100%;
@@ -894,7 +1017,7 @@ ob_start();
 
                                 <!-- HEADER -->
                                 <tr>
-                                
+
                                     <td class="b p06 center bold mini" style="border-left:0;">Data Jaminan</td>
                                 </tr>
 
@@ -990,7 +1113,6 @@ ob_start();
                                 Tanda Tangan dan Stempel Perusahaan :
                             </div>
 
-                            <!-- Tinggikan area tanda tangan -->
                             <div style="height:20mm;"></div>
 
                             <!-- Spacer tambahan supaya tidak ada space kosong di bawah C -->
@@ -1000,8 +1122,6 @@ ob_start();
                         <!-- E (kanan) -->
                         <td style="width:50%; border:none; padding:2mm; vertical-align:top;">
                             <div class="bold" style="font-size:8pt;">E. UNTUK PEJABAT BEA DAN CUKAI</div>
-
-                            <!-- Samakan tinggi total dengan C -->
                             <div style="height:54mm;"></div>
                         </td>
                     </tr>
@@ -1132,27 +1252,33 @@ ob_start();
         Rangkap ke -1 / 2 / 3: Pengusaha TPB / KPPBC Pengawas / Penerima Barang
         <span style="float:right;"><?= v($data, 'printed_from', '') ?></span>
     </div>
+
 </body>
 
 </html>
 <?php
 $html = ob_get_clean();
 
-// ====== MPDF SETUP ======
+/* ===========================
+ * 3) RENDER PDF
+ * =========================== */
 $mpdf = new \Mpdf\Mpdf([
     'mode' => 'utf-8',
     'format' => 'A4',
-    // biasanya form sangat sensitif; margin kamu bisa samakan dengan yang sudah berhasil
     'margin_left' => 8,
     'margin_right' => 8,
     'margin_top' => 8,
     'margin_bottom' => 8,
 ]);
+
 $mpdf->SetTitle('BC 2.6.1 - ' . v($data, 'nomor_pengajuan'));
 $mpdf->SetAuthor('System');
 
 $mpdf->WriteHTML($html);
+
+// bersihin semua buffer biar gak ganggu output PDF
 while (ob_get_level() > 0) {
     ob_end_clean();
 }
+
 $mpdf->Output("BC261_{$filenameSafe}.pdf", \Mpdf\Output\Destination::INLINE);

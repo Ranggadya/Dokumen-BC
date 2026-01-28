@@ -164,7 +164,7 @@
                 <!-- BARIS 2: A, B, C | Section F -->
                 <tr>
                     <!-- Kolom Kiri Baris 2: A, B, C -->
-                    <td style="width:49%; border:none; border-right:0.6pt solid #000; vertical-align:top;">
+                    <td style="width:49%; border:none; border-right:0.6pt solid #000; vertical-align:top; padding-top:0;">
                         <table style="width:100%; border-collapse:collapse;">
                             <tr>
                                 <td style="border:none; width:45mm;">A. KANTOR PABEAN</td>
