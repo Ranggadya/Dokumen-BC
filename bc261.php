@@ -212,7 +212,6 @@ if (!empty($daftarKemasan)) {
 }
 
 /* ===== Dokumen pelengkap pabean: ambil Packing List bila ada =====
-   (di bc261_coth: packing kode 217)
 */
 $packing_no = '';
 $packing_tgl = '';
@@ -231,7 +230,6 @@ if ($pengangkut) {
     $caraAngkutText = bc261_ref_label($mapCaraAngkut, $pengangkut['kodeCaraAngkut'] ?? '', false);
 }
 
-// Dalam template kamu, "Jenis Sarana Pengangkut" itu 1 blok teks.
 // Kita gabung: cara angkut + nama + nomor
 $jenisSaranaAngkut = trim(
     implode(' | ', array_filter([
